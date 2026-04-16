@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Claims Processing — Governance Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0e14;
+    --surface: #111620;
+    --surface2: #171e2c;
+    --border: #1e2a3d;
+    --border2: #263347;
+    --text: #c8d4e8;
+    --text-dim: #5a7090;
+    --text-bright: #e8f0ff;
+    --accent-blue: #3b7dd8;
+    --accent-cyan: #00c4cc;
+    --accent-amber: #f5a623;
+    --accent-red: #e05252;
+    --accent-green: #3dd68c;
+    --accent-purple: #8b5cf6;
+    --accent-orange: #f97316;
+    --layer-1: rgba(59,125,216,0.08);
+    --layer-2: rgba(0,196,204,0.06);
+    --layer-3: rgba(245,166,35,0.06);
+    --layer-4: rgba(139,92,246,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,14,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 0;
+    height: 52px;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 600; font-size: 0.9rem;
+    color: var(--text-bright);
+    margin-right: 2rem;
+    white-space: nowrap;
+  }
+  .nav-logo span { color: var(--accent-cyan); }
+  .nav-tabs { display: flex; gap: 0; }
+  .nav-tab {
+    padding: 0 1.2rem; height: 52px;
+    display: flex; align-items: center;
+    font-size: 0.75rem; font-weight: 400;
+    font-family: 'DM Mono', monospace;
+    color: var(--text-dim);
+    cursor: pointer; border: none; background: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s; white-space: nowrap;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--accent-cyan); border-bottom-color: var(--accent-cyan); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 2rem; max-width: 1400px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* HERO */
+  .hero {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent-cyan);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900; color: var(--text-bright);
+    line-height: 1.1; margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent-amber); }
+  .hero-sub {
+    font-size: 0.9rem; color: var(--text-dim);
+    max-width: 600px; line-height: 1.7;
+  }
+  .hero-metrics {
+    display: flex; gap: 2rem; margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .metric {
+    display: flex; flex-direction: column;
+  }
+  .metric-val {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem; font-weight: 600;
+    color: var(--accent-cyan); line-height: 1;
+  }
+  .metric-label {
+    font-size: 0.7rem; color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--text-bright); margin-bottom: 0.4rem;
+  }
+  .section-desc {
+    font-size: 0.82rem; color: var(--text-dim);
+    margin-bottom: 2rem; max-width: 700px;
+  }
+
+  /* FLOW DIAGRAM */
+  .flow-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    overflow-x: auto;
+  }
+
+  .flow-stage-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .flow-row {
+    display: flex; align-items: flex-start;
+    gap: 0; margin-bottom: 0.5rem;
+    min-width: 900px;
+  }
+
+  .flow-node {
+    flex: 1; min-width: 130px; max-width: 180px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .flow-node:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
+  .flow-node.selected { border-color: var(--accent-cyan); background: rgba(0,196,204,0.07); }
+
+  .flow-node-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 0.3rem;
+  }
+  .flow-node-name {
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--text-bright); line-height: 1.3;
+  }
+  .flow-node-sub {
+    font-size: 0.68rem; color: var(--text-dim);
+    margin-top: 0.25rem; line-height: 1.4;
+  }
+
+  .flow-arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; flex-shrink: 0; padding-top: 1rem;
+    color: var(--text-dim); font-size: 0.9rem;
+  }
+
+  .node-agent { border-left: 3px solid var(--accent-blue); }
+  .node-agent .flow-node-type { color: var(--accent-blue); }
+  .node-human { border-left: 3px solid var(--accent-amber); }
+  .node-human .flow-node-type { color: var(--accent-amber); }
+  .node-gate { border-left: 3px solid var(--accent-red); }
+  .node-gate .flow-node-type { color: var(--accent-red); }
+  .node-system { border-left: 3px solid var(--text-dim); }
+  .node-system .flow-node-type { color: var(--text-dim); }
+  .node-output { border-left: 3px solid var(--accent-green); }
+  .node-output .flow-node-type { color: var(--accent-green); }
+
+  .flow-legend {
+    display: flex; gap: 1.5rem; margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 1px; }
+
+  /* DETAIL PANEL */
+  .detail-panel {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    display: none;
+  }
+  .detail-panel.visible { display: block; }
+  .detail-panel h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem; color: var(--text-bright);
+    margin-bottom: 0.25rem;
+  }
+  .detail-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.1em; padding: 0.2rem 0.5rem;
+    border-radius: 2px; margin-bottom: 0.75rem;
+  }
+  .detail-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem; margin-top: 1rem;
+  }
+  .detail-block { }
+  .detail-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+  .detail-block-body {
+    font-size: 0.78rem; color: var(--text);
+    line-height: 1.6;
+  }
+  .detail-block-body li {
+    margin-left: 1rem; margin-bottom: 0.2rem;
+    color: var(--text-dim);
+  }
+  .detail-block-body li strong { color: var(--text); font-weight: 500; }
+
+  /* GOVERNANCE LAYERS */
+  .layers-container { display: flex; flex-direction: column; gap: 1rem; }
+
+  .gov-layer {
+    border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gov-layer:hover { border-color: var(--border2); }
+
+  .gov-layer-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface);
+  }
+  .gov-layer-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem; font-weight: 900;
+    line-height: 1; min-width: 2.5rem;
+    opacity: 0.3;
+  }
+  .gov-layer-info { flex: 1; }
+  .gov-layer-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--text-bright);
+  }
+  .gov-layer-subtitle {
+    font-size: 0.75rem; color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+  .gov-layer-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.15rem 0.4rem;
+    border-radius: 2px; border: 1px solid;
+  }
+  .gov-layer-chevron {
+    color: var(--text-dim); font-size: 0.8rem;
+    transition: transform 0.2s;
+  }
+  .gov-layer.open .gov-layer-chevron { transform: rotate(180deg); }
+
+  .gov-layer-body {
+    display: none; padding: 1.5rem;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+  }
+  .gov-layer.open .gov-layer-body { display: block; }
+
+  .gov-body-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .gov-col-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim);
+    margin-bottom: 0.6rem; padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .gov-item {
+    padding: 0.6rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+  .gov-item-title {
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--text-bright); margin-bottom: 0.2rem;
+  }
+  .gov-item-body {
+    font-size: 0.72rem; color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* OPERATING MODEL */
+  .om-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 2rem;
+  }
+  .om-tier {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .om-tier-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .om-tier-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 0.3rem;
+  }
+  .om-tier-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--text-bright);
+  }
+  .om-tier-cadence {
+    font-size: 0.7rem; color: var(--text-dim);
+    margin-top: 0.2rem;
+  }
+  .om-tier-body { padding: 1rem 1.25rem; }
+  .om-role {
+    display: flex; align-items: flex-start; gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .om-role-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    margin-top: 0.45rem; flex-shrink: 0;
+  }
+  .om-role-name {
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.1rem;
+  }
+  .om-role-desc {
+    font-size: 0.68rem; color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .om-activities {
+    margin-top: 1rem; padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .om-act-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .om-act-item {
+    font-size: 0.7rem; color: var(--text-dim);
+    padding: 0.35rem 0.5rem;
+    background: var(--surface2);
+    border-radius: 3px; margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+
+  /* ESCALATION TABLE */
+  .esc-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.75rem;
+  }
+  .esc-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim);
+    text-align: left; padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border2);
+    background: var(--surface2);
+  }
+  .esc-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top; line-height: 1.5;
+  }
+  .esc-table tr:last-child td { border-bottom: none; }
+  .esc-table tr:hover td { background: var(--surface2); }
+  .risk-chip {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; text-transform: uppercase;
+    padding: 0.1rem 0.35rem; border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+  .risk-low { background: rgba(61,214,140,0.12); color: var(--accent-green); }
+  .risk-med { background: rgba(245,166,35,0.12); color: var(--accent-amber); }
+  .risk-high { background: rgba(224,82,82,0.12); color: var(--accent-red); }
+  .risk-crit { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+
+  /* AGENT REGISTER */
+  .agent-register { display: flex; flex-direction: column; gap: 0.75rem; }
+  .agent-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .agent-card:hover { border-color: var(--accent-blue); }
+  .agent-card-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.875rem 1.25rem;
+  }
+  .agent-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .agent-info { flex: 1; }
+  .agent-name {
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--text-bright);
+  }
+  .agent-desc {
+    font-size: 0.7rem; color: var(--text-dim);
+    margin-top: 0.1rem;
+  }
+  .agent-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+  .agent-chevron {
+    color: var(--text-dim); font-size: 0.8rem;
+    transition: transform 0.2s; flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+  .agent-card.open .agent-chevron { transform: rotate(180deg); }
+  .agent-detail-body {
+    display: none; padding: 1rem 1.25rem;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+  }
+  .agent-card.open .agent-detail-body { display: block; }
+  .agent-detail-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  .agent-detail-col-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+  .agent-detail-item {
+    font-size: 0.7rem; color: var(--text-dim);
+    line-height: 1.5; margin-bottom: 0.3rem;
+    padding-left: 0.6rem;
+    border-left: 2px solid var(--border2);
+  }
+  .agent-detail-item strong { color: var(--text); display: block; font-weight: 500; }
+
+  /* REGULATORY */
+  .reg-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .reg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .reg-card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .reg-icon {
+    font-size: 1.2rem;
+  }
+  .reg-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--text-bright);
+  }
+  .reg-scope {
+    font-size: 0.7rem; color: var(--text-dim);
+    margin-top: 0.1rem;
+  }
+  .reg-body { padding: 1.25rem 1.5rem; }
+  .reg-obligation {
+    display: flex; gap: 0.75rem; margin-bottom: 0.75rem;
+    align-items: flex-start;
+  }
+  .reg-ob-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.08em; white-space: nowrap;
+    padding: 0.15rem 0.4rem; border-radius: 2px;
+    margin-top: 0.1rem; flex-shrink: 0;
+  }
+  .reg-ob-text { font-size: 0.75rem; color: var(--text-dim); line-height: 1.5; }
+  .reg-ob-text strong { color: var(--text); font-weight: 500; }
+
+  /* TABS within sections */
+  .inner-tabs {
+    display: flex; gap: 0; margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .inner-tab {
+    padding: 0.5rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-dim);
+    cursor: pointer; border: none; background: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; transition: all 0.15s;
+  }
+  .inner-tab:hover { color: var(--text); }
+  .inner-tab.active { color: var(--accent-cyan); border-bottom-color: var(--accent-cyan); }
+  .inner-content { display: none; }
+  .inner-content.active { display: block; }
+
+  /* SCROLL */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* UTIL */
+  .tag-blue { background: rgba(59,125,216,0.12); color: var(--accent-blue); border-color: rgba(59,125,216,0.3); }
+  .tag-cyan { background: rgba(0,196,204,0.1); color: var(--accent-cyan); border-color: rgba(0,196,204,0.25); }
+  .tag-amber { background: rgba(245,166,35,0.1); color: var(--accent-amber); border-color: rgba(245,166,35,0.25); }
+  .tag-red { background: rgba(224,82,82,0.1); color: var(--accent-red); border-color: rgba(224,82,82,0.25); }
+  .tag-green { background: rgba(61,214,140,0.1); color: var(--accent-green); border-color: rgba(61,214,140,0.25); }
+  .tag-purple { background: rgba(139,92,246,0.1); color: var(--accent-purple); border-color: rgba(139,92,246,0.25); }
+  .tag-dim { background: rgba(90,112,144,0.1); color: var(--text-dim); border-color: var(--border2); }
+
+  .mt1 { margin-top: 0.5rem; }
+  .mt2 { margin-top: 1rem; }
+  .mt3 { margin-top: 1.5rem; }
+
+  .callout {
+    background: rgba(0,196,204,0.05);
+    border: 1px solid rgba(0,196,204,0.2);
+    border-left: 3px solid var(--accent-cyan);
+    border-radius: 4px; padding: 0.875rem 1rem;
+    font-size: 0.78rem; color: var(--text-dim);
+    line-height: 1.6; margin-bottom: 1.5rem;
+  }
+  .callout strong { color: var(--text-bright); font-weight: 500; }
+
+  /* ═══ GOVERNANCE FLOW TAB ═══ */
+  .gf-time-col {
+    flex:1; text-align:center;
+    font-family:'DM Mono',monospace;
+    font-size:0.58rem; text-transform:uppercase;
+    letter-spacing:0.1em; color:var(--text-dim);
+    padding:0.5rem 0.25rem;
+    border-right:1px solid var(--border);
+  }
+  .gf-time-col:last-child { border-right:none; }
+
+  .gf-tier-sidebar {
+    width:140px; flex-shrink:0;
+    padding:1rem 0.875rem;
+    border-right:1px solid var(--border);
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+  }
+  .gf-tier-sidebar::after {
+    content:''; position:absolute;
+    right:-1px; top:0; width:2px; height:100%;
+  }
+  .gf-t1::after { background:var(--accent-purple); opacity:0.5; }
+  .gf-t2::after { background:var(--accent-amber); opacity:0.5; }
+  .gf-t3::after { background:var(--accent-green); opacity:0.5; }
+
+  .gf-tier-num {
+    font-family:'Fraunces',serif;
+    font-size:2.2rem; font-weight:900;
+    line-height:1; opacity:0.15; margin-bottom:0.2rem;
+  }
+  .gf-tier-name {
+    font-family:'Fraunces',serif;
+    font-size:0.82rem; font-weight:600;
+    color:var(--text-bright);
+  }
+  .gf-tier-cadence {
+    font-family:'DM Mono',monospace;
+    font-size:0.56rem; text-transform:uppercase;
+    letter-spacing:0.1em; margin-top:0.2rem;
+  }
+
+  .gf-tier-canvas {
+    flex:1; position:relative;
+    min-height:150px;
+  }
+
+  .gf-block {
+    position:absolute;
+    border-radius:4px; border:1px solid;
+    padding:6px 8px; cursor:pointer;
+    transition:all 0.15s;
+  }
+  .gf-block:hover { transform:translateY(-1px); filter:brightness(1.15); }
+  .gf-block-title {
+    font-size:0.72rem; font-weight:500;
+    color:var(--text-bright); line-height:1.3;
+    margin-bottom:0.15rem;
+  }
+  .gf-block-sub {
+    font-size:0.62rem; color:var(--text-dim);
+    line-height:1.3;
+  }
+  .gf-b-purple { background:rgba(139,92,246,0.08); border-color:rgba(139,92,246,0.25); border-left:2px solid var(--accent-purple); }
+  .gf-b-amber  { background:rgba(245,166,35,0.08);  border-color:rgba(245,166,35,0.25);  border-left:2px solid var(--accent-amber); }
+  .gf-b-green  { background:rgba(61,214,140,0.08);  border-color:rgba(61,214,140,0.25);  border-left:2px solid var(--accent-green); }
+
+  .gf-continuous-band {
+    width:100%; height:42px;
+    background:rgba(61,214,140,0.06);
+    border:1px solid rgba(61,214,140,0.2);
+    border-radius:4px;
+    display:flex; align-items:center;
+    gap:10px; padding:0 1rem;
+    cursor:pointer; transition:all 0.15s;
+  }
+  .gf-continuous-band:hover { background:rgba(61,214,140,0.1); }
+  .gf-pulse-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--accent-green); flex-shrink:0;
+    animation:gfPulse 2s ease-in-out infinite;
+  }
+  @keyframes gfPulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+  .gf-detail-panel {
+    background:var(--surface); border:1px solid var(--border2);
+    border-radius:8px; padding:1.25rem;
+    display:none; margin-bottom:0;
+  }
+  .gf-detail-panel.visible { display:block; }
+
+  .gf-flow-chip {
+    display:flex; align-items:center; gap:0.4rem;
+    padding:0.3rem 0.7rem; border-radius:3px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.03);
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--fc, var(--text-dim));
+    cursor:pointer; transition:all 0.15s;
+  }
+  .gf-flow-chip:hover { background:rgba(255,255,255,0.07); }
+  .gf-flow-chip.active { background:rgba(255,255,255,0.08); border-color:var(--fc); }
+  .gf-chip-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+  .gf-flow-title {
+    font-family:'Fraunces',serif;
+    font-size:1rem; font-weight:600;
+    color:var(--text-bright); margin-bottom:0.2rem;
+  }
+  .gf-flow-subtitle {
+    font-size:0.75rem; color:var(--text-dim);
+  }
+
+  @keyframes gfFlowIn {
+    from { opacity:0; transform:translateX(-8px); }
+    to   { opacity:1; transform:translateX(0); }
+  }
+
+
+  /* ═══ COMPLIANCE REFERENCE TAB ═══ */
+  .cr-section-head {
+    font-family:'Fraunces',serif;
+    font-size:1.1rem; font-weight:600;
+    color:var(--text-bright); margin-bottom:1rem;
+  }
+
+  .cr-decision-tree {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; padding:1.5rem;
+    margin-bottom:1.5rem;
+    display:flex; flex-direction:column; align-items:flex-start; gap:0;
+  }
+  .cr-decision-node {
+    width:100%; border-radius:6px;
+    border:1px solid var(--border2);
+    padding:0.875rem 1rem;
+    background:var(--surface2);
+  }
+  .cr-dn-root  { border-left:3px solid var(--accent-cyan); }
+  .cr-dn-blue  { border-left:3px solid var(--accent-blue); }
+  .cr-dn-amber { border-left:3px solid var(--accent-amber); }
+  .cr-dn-purple{ border-left:3px solid var(--accent-purple); }
+  .cr-dn-q {
+    font-size:0.8rem; font-weight:500;
+    color:var(--text-bright); margin-bottom:0.5rem;
+  }
+  .cr-dn-answers { display:flex; gap:1rem; flex-wrap:wrap; }
+  .cr-dn-yes {
+    font-size:0.72rem; color:var(--accent-green);
+    background:rgba(61,214,140,0.07);
+    border:1px solid rgba(61,214,140,0.2);
+    border-radius:3px; padding:0.3rem 0.6rem;
+    flex:1; min-width:200px;
+  }
+  .cr-dn-no {
+    font-size:0.72rem; color:var(--text-dim);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:3px; padding:0.3rem 0.6rem;
+    flex:1; min-width:200px;
+  }
+  .cr-tree-arrow {
+    font-size:1.2rem; color:var(--text-dim);
+    padding:0.4rem 1rem; align-self:flex-start;
+    margin-left:1rem;
+  }
+
+  .cr-frameworks { display:flex; flex-direction:column; gap:0.75rem; }
+
+  .cr-fw-card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px; overflow:hidden;
+  }
+  .cr-fw-header {
+    display:flex; align-items:center; gap:1rem;
+    padding:1rem 1.5rem; cursor:pointer;
+    transition:background 0.15s;
+  }
+  .cr-fw-header:hover { background:var(--surface2); }
+  .cr-fw-icon { font-size:1.2rem; flex-shrink:0; }
+  .cr-fw-info { flex:1; }
+  .cr-fw-name {
+    font-family:'Fraunces',serif;
+    font-size:1rem; font-weight:600;
+    color:var(--text-bright);
+  }
+  .cr-fw-scope {
+    font-size:0.7rem; color:var(--text-dim);
+    margin-top:0.15rem;
+  }
+  .cr-fw-status {
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem; text-transform:uppercase;
+    letter-spacing:0.08em; padding:0.2rem 0.5rem;
+    border-radius:2px; border:1px solid;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .cr-status-active   { color:var(--accent-green);  border-color:rgba(61,214,140,0.3);  background:rgba(61,214,140,0.08); }
+  .cr-status-upcoming { color:var(--accent-amber);  border-color:rgba(245,166,35,0.3);  background:rgba(245,166,35,0.08); }
+  .cr-fw-chevron {
+    color:var(--text-dim); font-size:0.8rem;
+    transition:transform 0.2s; flex-shrink:0;
+  }
+  .cr-fw-card.open .cr-fw-chevron { transform:rotate(180deg); }
+  .cr-fw-body {
+    display:none; padding:1.25rem 1.5rem;
+    border-top:1px solid var(--border);
+    background:var(--surface2);
+  }
+  .cr-fw-card.open .cr-fw-body { display:block; }
+
+  .cr-subsection { margin-bottom:1.25rem; }
+  .cr-subsection:last-child { margin-bottom:0; }
+  .cr-subsection-title {
+    font-family:'DM Mono',monospace;
+    font-size:0.6rem; text-transform:uppercase;
+    letter-spacing:0.1em; color:var(--text-dim);
+    margin-bottom:0.6rem; padding-bottom:0.4rem;
+    border-bottom:1px solid var(--border);
+  }
+
+  .cr-obligation {
+    display:flex; gap:0.875rem; margin-bottom:0.6rem;
+    padding:0.65rem 0.875rem; border-radius:4px;
+    border:1px solid; align-items:flex-start;
+  }
+  .cr-ob-red    { background:rgba(224,82,82,0.06);   border-color:rgba(224,82,82,0.2); }
+  .cr-ob-amber  { background:rgba(245,166,35,0.06);  border-color:rgba(245,166,35,0.2); }
+  .cr-ob-blue   { background:rgba(59,125,216,0.06);  border-color:rgba(59,125,216,0.2); }
+  .cr-ob-green  { background:rgba(61,214,140,0.06);  border-color:rgba(61,214,140,0.2); }
+  .cr-ob-label {
+    font-family:'DM Mono',monospace;
+    font-size:0.58rem; text-transform:uppercase;
+    letter-spacing:0.08em; white-space:nowrap;
+    color:var(--text-dim); flex-shrink:0;
+    padding-top:0.1rem; min-width:90px;
+  }
+  .cr-ob-text {
+    font-size:0.75rem; color:var(--text-dim);
+    line-height:1.6;
+  }
+  .cr-ob-text strong { color:var(--text); font-weight:500; }
+
+  .cr-checklist { display:flex; flex-direction:column; gap:0.5rem; }
+  .cr-check-item {
+    display:flex; gap:0.75rem;
+    padding:0.65rem 0.875rem;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:4px; cursor:pointer;
+    transition:all 0.15s; align-items:flex-start;
+  }
+  .cr-check-item:hover { border-color:var(--accent-cyan); }
+  .cr-check-item.checked {
+    background:rgba(61,214,140,0.05);
+    border-color:rgba(61,214,140,0.25);
+  }
+  .cr-check-box {
+    font-size:1rem; flex-shrink:0;
+    color:var(--text-dim); margin-top:0.05rem;
+    width:1.2rem;
+  }
+  .cr-check-item.checked .cr-check-box {
+    color:var(--accent-green);
+  }
+  .cr-check-title {
+    font-size:0.78rem; font-weight:500;
+    color:var(--text-bright); margin-bottom:0.2rem;
+  }
+  .cr-check-item.checked .cr-check-title {
+    color:var(--text-dim); text-decoration:line-through;
+    text-decoration-color:var(--accent-green);
+  }
+  .cr-check-desc {
+    font-size:0.7rem; color:var(--text-dim);
+    line-height:1.55;
+  }
+
+  .cr-timeline { display:flex; flex-direction:column; gap:0; position:relative; }
+  .cr-tl-item {
+    display:flex; gap:1rem; padding:0.65rem 0;
+    border-left:2px solid var(--border);
+    padding-left:1rem; position:relative;
+  }
+  .cr-tl-item::before {
+    content:''; position:absolute;
+    left:-5px; top:1rem;
+    width:8px; height:8px; border-radius:50%;
+    border:2px solid var(--border);
+    background:var(--bg);
+  }
+  .cr-tl-past::before   { background:var(--text-dim); border-color:var(--text-dim); }
+  .cr-tl-now::before    { background:var(--accent-amber); border-color:var(--accent-amber); }
+  .cr-tl-upcoming::before { background:var(--accent-red); border-color:var(--accent-red); }
+  .cr-tl-future::before { background:var(--surface); border-color:var(--border2); }
+  .cr-tl-date {
+    font-family:'DM Mono',monospace;
+    font-size:0.65rem; color:var(--accent-cyan);
+    white-space:nowrap; min-width:80px;
+    padding-top:0.05rem;
+  }
+  .cr-tl-event {
+    font-size:0.75rem; color:var(--text-dim);
+    line-height:1.5;
+  }
+  .cr-tl-event strong { color:var(--text); font-weight:500; }
+
+  @media (max-width: 768px) {
+    .detail-grid, .gov-body-grid, .om-grid, .agent-detail-grid { grid-template-columns: 1fr; }
+    .reg-grid { grid-template-columns: 1fr; }
+    .flow-row { min-width: 700px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Agentic Governance <span>/ Allianz Partners</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('overview')">Overview</button>
+    <button class="nav-tab" onclick="showSection('flow')">Process Flow</button>
+    <button class="nav-tab" onclick="showSection('agents')">Agent Register</button>
+    <button class="nav-tab" onclick="showSection('governance')">Governance Layers</button>
+    <button class="nav-tab" onclick="showSection('opmodel')">Operating Model</button>
+    <button class="nav-tab" onclick="showSection('govflow')">Gov. Flow</button>
+    <button class="nav-tab" onclick="showSection('regulatory')">Regulatory</button>
+    <button class="nav-tab" onclick="showSection('compliance')">Compliance Ref.</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ OVERVIEW -->
+<div class="section active" id="section-overview">
+  <div class="hero">
+    <div class="hero-label">Applied Use Case · Insurance · Claims Processing</div>
+    <h1>Allianz Partners<br><em>Autonomous Claims Architecture</em></h1>
+    <div class="hero-sub">End-to-end governance architecture for an agentic claims processing network — covering process flow, agent authority boundaries, governance layers, operating model, and regulatory obligations under EU AI Act and NIS-2.</div>
+    <div class="hero-metrics">
+      <div class="metric"><span class="metric-val">29→3.5</span><span class="metric-label">Days → avg resolution (Otera/HFS) · Allianz own data: 19→4 days</span></div>
+      <div class="metric"><span class="metric-val">90%+</span><span class="metric-label">STP — Otera platform claim · Allianz reports 65% automation eligible</span></div>
+      <div class="metric"><span class="metric-val">€300M</span><span class="metric-label">Targeted annual profit impact</span></div>
+      <div class="metric"><span class="metric-val">30</span><span class="metric-label">Countries in scope (Otera/HFS reported)</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>How to use this reference:</strong> Each tab represents a distinct governance domain. Start with Process Flow to understand what the agent network actually does, then work through Agent Register (authority boundaries), Governance Layers (structural controls), Operating Model (who does what), and Regulatory (compliance obligations). Every section is interactive — click nodes and cards for detail. <strong>Note:</strong> The process flow and agent architecture are illustrative governance models grounded in the Allianz Partners case — not Allianz's documented internal design. Metrics sourced from Otera/HFS and Allianz's own published data are labelled accordingly.
+  </div>
+
+  <div class="section-title">What makes this case useful</div>
+  <div class="section-desc">Allianz Partners processes millions of travel insurance and assistance claims across 30 countries. The transformation is documented and real — making it a reliable anchor for understanding governance in production.</div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1.25rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-blue); margin-bottom:0.5rem;">The Problem Before</div>
+      <div style="font-size:0.78rem; color:var(--text-dim); line-height:1.7;">Claims routed manually across 15+ systems. Adjusters in each country applying interpretation variance to identical policy rules. 29-day average resolution. Volume scaling required proportional headcount. No unified audit trail across the claims lifecycle.</div>
+    </div>
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1.25rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-cyan); margin-bottom:0.5rem;">The Architecture After</div>
+      <div style="font-size:0.78rem; color:var(--text-dim); line-height:1.7;">Specialist agents handle intake, triage, document extraction, policy validation, fraud detection, settlement calculation, and payment — collaborating under a unified governance layer. At the operational level, humans handle exceptions; at the governance level, humans actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable, explainable, and reversible. <em>Note: the seven-agent architecture in this reference is illustrative — constructed as a governance model. Allianz's own published Project Nemo also uses seven specialist agents for claims processing, confirming the pattern is realistic.</em></div>
+    </div>
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1.25rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-amber); margin-bottom:0.5rem;">The Governance Challenge</div>
+      <div style="font-size:0.78rem; color:var(--text-dim); line-height:1.7;">When agents make autonomous financial decisions at scale, "trust" requires architecture — not just policy. Authority boundaries, escalation triggers, change control, accountability assignment, and regulatory audit trails must all be designed independently of the platform that runs the agents.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ PROCESS FLOW -->
+<div class="section" id="section-flow">
+  <div class="section-title">End-to-End Claims Process Flow</div>
+  <div class="section-desc">Click any node to see agent authority, inputs/outputs, escalation triggers, and governance controls for that step. <strong>Illustrative architecture</strong> — designed as a governance model grounded in the Allianz Partners transformation context. Financial authority thresholds are representative, not Allianz's actual internal values. Allianz's own Project Nemo (launched 2025) uses a comparable seven-agent structure for claims processing.</div>
+
+  <div class="flow-container">
+    <div class="flow-stage-label">Stage 1 — Intake & Triage</div>
+    <div class="flow-row">
+      <div class="flow-node node-system" onclick="showNodeDetail('fnol')">
+        <div class="flow-node-type">Trigger</div>
+        <div class="flow-node-name">FNOL Received</div>
+        <div class="flow-node-sub">Email / portal / API / phone transcript</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-agent" onclick="showNodeDetail('intake')">
+        <div class="flow-node-type">Agent · Intake</div>
+        <div class="flow-node-name">Intake & Classification Agent</div>
+        <div class="flow-node-sub">Reads FNOL, extracts structured data, classifies claim type & complexity</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-agent" onclick="showNodeDetail('doc')">
+        <div class="flow-node-type">Agent · IDP</div>
+        <div class="flow-node-name">Document Extraction Agent</div>
+        <div class="flow-node-sub">OCR + NLP extraction from medical reports, receipts, police reports</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-gate" onclick="showNodeDetail('completeness')">
+        <div class="flow-node-type">Gate · Validation</div>
+        <div class="flow-node-name">Completeness Check</div>
+        <div class="flow-node-sub">Confidence threshold ≥ 0.85 to proceed; else request additional docs</div>
+      </div>
+    </div>
+
+    <div style="margin: 0.75rem 0 0.75rem 162px; color:var(--text-dim); font-size:0.7rem; font-family:'DM Mono',monospace; letter-spacing:0.08em;">↓ PASSED</div>
+
+    <div class="flow-stage-label">Stage 2 — Validation & Risk</div>
+    <div class="flow-row">
+      <div class="flow-node node-agent" onclick="showNodeDetail('policy')">
+        <div class="flow-node-type">Agent · Policy</div>
+        <div class="flow-node-name">Policy Rules Agent</div>
+        <div class="flow-node-sub">Maps claim against policy terms; determines coverage & exclusions</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-agent" onclick="showNodeDetail('fraud')">
+        <div class="flow-node-type">Agent · Risk</div>
+        <div class="flow-node-name">Fraud & Anomaly Detection Agent</div>
+        <div class="flow-node-sub">Cross-references claim signals against fraud pattern library</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-gate" onclick="showNodeDetail('riskgate')">
+        <div class="flow-node-type">Gate · Risk</div>
+        <div class="flow-node-name">Risk Threshold Gate</div>
+        <div class="flow-node-sub">High-risk flags escalate to human; clear claims proceed</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-human" onclick="showNodeDetail('humanreview')">
+        <div class="flow-node-type">Human · Exception</div>
+        <div class="flow-node-name">Senior Claims Adjuster</div>
+        <div class="flow-node-sub">Reviews escalated claims; override/approve with documented rationale</div>
+      </div>
+    </div>
+
+    <div style="margin: 0.75rem 0 0.75rem 0; color:var(--text-dim); font-size:0.7rem; font-family:'DM Mono',monospace; letter-spacing:0.08em; padding-left:2px;">↓ CLEARED (both paths rejoin here)</div>
+
+    <div class="flow-stage-label">Stage 3 — Settlement & Payment</div>
+    <div class="flow-row">
+      <div class="flow-node node-agent" onclick="showNodeDetail('settlement')">
+        <div class="flow-node-type">Agent · Finance</div>
+        <div class="flow-node-name">Settlement Calculation Agent</div>
+        <div class="flow-node-sub">Computes settlement within authority limits; applies deductibles & exchange rates</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-gate" onclick="showNodeDetail('authgate')">
+        <div class="flow-node-type">Gate · Authority</div>
+        <div class="flow-node-name">Financial Authority Gate</div>
+        <div class="flow-node-sub">Illustrative thresholds: ≤€5k agent autonomous · €5–25k manager · >€25k director</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-agent" onclick="showNodeDetail('payment')">
+        <div class="flow-node-type">Agent · Operations</div>
+        <div class="flow-node-name">Payment Execution Agent</div>
+        <div class="flow-node-sub">Initiates payment via banking API; generates audit record</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-output" onclick="showNodeDetail('close')">
+        <div class="flow-node-type">Output</div>
+        <div class="flow-node-name">Claim Closed</div>
+        <div class="flow-node-sub">Customer notified; immutable audit log sealed; case archived</div>
+      </div>
+    </div>
+
+    <div class="flow-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-blue)"></div>AI Agent</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-amber)"></div>Human Decision</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-red)"></div>Governance Gate</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--text-dim)"></div>System Trigger</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green)"></div>Output / Close</div>
+    </div>
+  </div>
+
+  <!-- NODE DETAIL PANEL -->
+  <div class="detail-panel" id="node-detail">
+    <div id="node-detail-content"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ AGENT REGISTER -->
+<div class="section" id="section-agents">
+  <div class="section-title">Agent Authority Register</div>
+  <div class="section-desc">The Agent Authority Register is the central governance artefact that defines what each agent is permitted to decide, at what threshold, under what conditions, and who owns it. Click each agent to expand its authority profile.</div>
+
+  <div class="agent-register" id="agent-register"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ GOVERNANCE LAYERS -->
+<div class="section" id="section-governance">
+  <div class="section-title">Governance Architecture</div>
+  <div class="section-desc">Four independent governance layers that must be designed regardless of the platform. Each addresses a different failure mode of autonomous systems. Click to expand.</div>
+
+  <div class="layers-container" id="gov-layers"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ OPERATING MODEL -->
+<div class="section" id="section-opmodel">
+  <div class="section-title">Governance Operating Model</div>
+  <div class="section-desc">The institutional machinery — who does what, at what cadence, with what authority. Three-tier structure from strategic to real-time.</div>
+
+  <div class="om-grid" id="om-grid"></div>
+
+  <div class="section-title mt2">Escalation & Authority Matrix</div>
+  <div class="section-desc">Defines precisely when autonomous execution must yield to human decision-making.</div>
+
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; overflow-x:auto;">
+    <table class="esc-table" id="esc-table"></table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ GOV FLOW -->
+<div class="section" id="section-govflow">
+  <div class="section-title">Governance Flow — How the Tiers Operate Over Time</div>
+  <div class="section-desc">The rhythm of governance: when each tier acts, what it produces, and how events propagate across tiers. Select an event flow below to trace how a trigger moves from detection to resolution.</div>
+
+  <!-- TIME AXIS + TIER LANES -->
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:1.5rem;">
+
+    <!-- Time axis header -->
+    <div style="display:flex; border-bottom:1px solid var(--border);">
+      <div style="width:140px; flex-shrink:0; padding:0.6rem 1rem; border-right:1px solid var(--border);">
+        <span style="font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim);">Tier / Cadence</span>
+      </div>
+      <div style="flex:1; display:flex;">
+        <div class="gf-time-col">Continuous</div>
+        <div class="gf-time-col">Daily</div>
+        <div class="gf-time-col">Weekly</div>
+        <div class="gf-time-col">Monthly</div>
+        <div class="gf-time-col">Quarterly</div>
+      </div>
+    </div>
+
+    <!-- TIER 1 -->
+    <div style="display:flex; border-bottom:1px solid var(--border); min-height:150px;">
+      <div class="gf-tier-sidebar gf-t1">
+        <div class="gf-tier-num" style="color:var(--accent-purple)">1</div>
+        <div class="gf-tier-name">Strategic</div>
+        <div class="gf-tier-cadence" style="color:var(--accent-purple)">Monthly · Quarterly</div>
+      </div>
+      <div class="gf-tier-canvas" id="gf-t1-canvas">
+        <!-- Monthly blocks -->
+        <div class="gf-block gf-b-purple" style="left:60%;top:16px;width:17%;" onclick="showGfDetail('t1-authority')">
+          <div class="gf-block-title">Authority Register Review</div>
+          <div class="gf-block-sub">Scope creep · Coverage gaps</div>
+        </div>
+        <div class="gf-block gf-b-purple" style="left:60%;top:74px;width:17%;" onclick="showGfDetail('t1-deployment')">
+          <div class="gf-block-title">Agent Deployment Approval</div>
+          <div class="gf-block-sub">New scope sign-off</div>
+        </div>
+        <div class="gf-block gf-b-purple" style="left:60%;top:112px;width:17%;" onclick="showGfDetail('t1-reg')">
+          <div class="gf-block-title">Regulatory Review</div>
+          <div class="gf-block-sub">NIS-2 · AI Act horizon</div>
+        </div>
+        <!-- Quarterly blocks -->
+        <div class="gf-block gf-b-purple" style="left:80%;top:16px;width:17%;" onclick="showGfDetail('t1-patterns')">
+          <div class="gf-block-title">Exception Pattern Review</div>
+          <div class="gf-block-sub">Board-level systemic view</div>
+        </div>
+        <div class="gf-block gf-b-purple" style="left:80%;top:74px;width:17%;" onclick="showGfDetail('t1-aiact')">
+          <div class="gf-block-title">EU AI Act Conformity</div>
+          <div class="gf-block-sub">Annual audit + sign-off</div>
+        </div>
+        <div class="gf-block gf-b-purple" style="left:80%;top:112px;width:17%;" onclick="showGfDetail('t1-pl')">
+          <div class="gf-block-title">P&amp;L vs. Governance</div>
+          <div class="gf-block-sub">Performance vs targets</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2 -->
+    <div style="display:flex; border-bottom:1px solid var(--border); min-height:150px;">
+      <div class="gf-tier-sidebar gf-t2">
+        <div class="gf-tier-num" style="color:var(--accent-amber)">2</div>
+        <div class="gf-tier-name">Operational</div>
+        <div class="gf-tier-cadence" style="color:var(--accent-amber)">Weekly</div>
+      </div>
+      <div class="gf-tier-canvas" id="gf-t2-canvas">
+        <div class="gf-block gf-b-amber" style="left:40%;top:16px;width:17%;" onclick="showGfDetail('t2-exceptions')">
+          <div class="gf-block-title">Exception Queue Review</div>
+          <div class="gf-block-sub">Volume · Pattern · SLA</div>
+        </div>
+        <div class="gf-block gf-b-amber" style="left:40%;top:74px;width:17%;" onclick="showGfDetail('t2-thresholds')">
+          <div class="gf-block-title">Confidence Threshold Check</div>
+          <div class="gf-block-sub">Escalation rate in band?</div>
+        </div>
+        <div class="gf-block gf-b-amber" style="left:40%;top:112px;width:17%;" onclick="showGfDetail('t2-drift')">
+          <div class="gf-block-title">Drift Detection Run</div>
+          <div class="gf-block-sub">vs. baseline distributions</div>
+        </div>
+        <div class="gf-block gf-b-amber" style="left:60%;top:16px;width:17%;" onclick="showGfDetail('t2-changes')">
+          <div class="gf-block-title">Change Request Intake</div>
+          <div class="gf-block-sub">Classify · Prioritise</div>
+        </div>
+        <div class="gf-block gf-b-amber" style="left:60%;top:74px;width:17%;" onclick="showGfDetail('t2-overrides')">
+          <div class="gf-block-title">Override Analysis</div>
+          <div class="gf-block-sub">Agent failure patterns?</div>
+        </div>
+        <div class="gf-block gf-b-amber" style="left:60%;top:112px;width:17%;" onclick="showGfDetail('t2-data')">
+          <div class="gf-block-title">Data Quality SLA Report</div>
+          <div class="gf-block-sub">Upstream source health</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 3 -->
+    <div style="display:flex; min-height:80px;">
+      <div class="gf-tier-sidebar gf-t3">
+        <div class="gf-tier-num" style="color:var(--accent-green)">3</div>
+        <div class="gf-tier-name">Real-time</div>
+        <div class="gf-tier-cadence" style="color:var(--accent-green)">Always on</div>
+      </div>
+      <div class="gf-tier-canvas" style="position:relative; display:flex; align-items:center; padding:0 1rem;">
+        <div class="gf-continuous-band" onclick="showGfDetail('t3-monitoring')">
+          <div class="gf-pulse-dot"></div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--accent-green); letter-spacing:0.06em;">
+            Platform monitoring &nbsp;·&nbsp; Alert detection &nbsp;·&nbsp; Authority gate integrity &nbsp;·&nbsp; Payment success tracking &nbsp;·&nbsp; On-call coverage 24/7
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY DETAIL PANEL -->
+  <div class="gf-detail-panel" id="gf-detail-panel">
+    <div id="gf-detail-content"></div>
+  </div>
+
+  <!-- EVENT FLOWS -->
+  <div style="margin-top:1.5rem;">
+    <div style="font-family:'Fraunces',serif; font-size:1.1rem; font-weight:600; color:var(--text-bright); margin-bottom:0.3rem;">Event Flows</div>
+    <div style="font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-dim); margin-bottom:1rem;">Select a trigger to trace propagation across tiers</div>
+    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+      <button class="gf-flow-chip" id="gfc-incident" style="--fc:var(--accent-red);" onclick="activateGfFlow('incident')">
+        <span class="gf-chip-dot" style="background:var(--accent-red)"></span> Incident detected
+      </button>
+      <button class="gf-flow-chip" id="gfc-drift" style="--fc:var(--accent-cyan);" onclick="activateGfFlow('drift')">
+        <span class="gf-chip-dot" style="background:var(--accent-cyan)"></span> Agent drift
+      </button>
+      <button class="gf-flow-chip" id="gfc-change" style="--fc:var(--accent-orange);" onclick="activateGfFlow('change')">
+        <span class="gf-chip-dot" style="background:var(--accent-orange)"></span> Change request
+      </button>
+      <button class="gf-flow-chip" id="gfc-reg" style="--fc:var(--accent-purple);" onclick="activateGfFlow('reg')">
+        <span class="gf-chip-dot" style="background:var(--accent-purple)"></span> Regulatory trigger
+      </button>
+      <button class="gf-flow-chip" id="gfc-clear" style="--fc:var(--text-dim);" onclick="clearGfFlow()">
+        ✕ clear
+      </button>
+    </div>
+
+    <!-- FLOW SVG CANVAS -->
+    <div id="gf-flow-canvas" style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:1.5rem; display:none;">
+      <div id="gf-flow-header" style="margin-bottom:1rem;">
+        <div class="gf-flow-title" id="gf-flow-title"></div>
+        <div class="gf-flow-subtitle" id="gf-flow-subtitle"></div>
+      </div>
+      <svg id="gf-flow-svg" width="100%" viewBox="0 0 860 280" style="overflow:visible; display:block;"></svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ REGULATORY -->
+<div class="section" id="section-regulatory">
+  <div class="section-title">Regulatory Obligations</div>
+  <div class="section-desc">How EU AI Act, NIS-2, GDPR, and Solvency II map onto the agentic claims architecture — with specific obligations and governance responses.</div>
+
+  <div class="callout" style="border-color:rgba(245,166,35,0.3); background:rgba(245,166,35,0.04);">
+    <strong>This tab covers architectural mapping</strong> — how each regulation shapes governance design decisions. For specific, actionable obligations, deadlines, checklists, and the latest deadline changes (EU AI Act trilogue), see the <strong>Compliance Ref.</strong> tab.
+  </div>
+
+  <div class="reg-grid" id="reg-grid"></div>
+</div>
+
+<script>
+// ═══════ DATA ═══════
+
+const nodeDetails = {
+  fnol: {
+    name: 'FNOL — First Notice of Loss',
+    type: 'System Trigger',
+    typeClass: 'tag-dim',
+    desc: 'The triggering event for the claims lifecycle. Can arrive via email, web portal, mobile app, API from assistance provider, or voice-to-text transcript from call centre.',
+    inputs: ['Customer email / portal submission', 'Assistance provider API webhook', 'Call centre voice transcript (STT)', 'Third-party claims notification'],
+    outputs: ['Structured FNOL record in claims system', 'Unique claim ID generated', 'Timestamp and channel recorded'],
+    governance: ['All FNOL sources logged with channel, timestamp, and source system', 'GDPR: consent basis confirmed before processing begins', 'Duplicate detection run against open claim register'],
+    risk: 'Low — intake only, no decision made'
+  },
+  intake: {
+    name: 'Intake & Classification Agent',
+    type: 'AI Agent',
+    typeClass: 'tag-blue',
+    desc: 'Reads the raw FNOL, extracts structured data fields, classifies claim type (medical, cancellation, baggage, liability), assesses complexity tier, and assigns to the correct processing track.',
+    inputs: ['Raw FNOL text / structured form data', 'Policy reference number', 'Historical claim patterns (anonymised)'],
+    outputs: ['Structured claim record', 'Claim type classification + confidence score', 'Complexity tier: Simple / Standard / Complex / Refer'],
+    governance: ['Confidence < 0.80: flag for human classification review', 'Classification rationale recorded in audit log', 'Authority: classify only — no coverage decision made here'],
+    risk: 'Low — classification error correctable downstream'
+  },
+  doc: {
+    name: 'Document Extraction Agent',
+    type: 'AI Agent — IDP',
+    typeClass: 'tag-blue',
+    desc: 'Processes unstructured documents submitted with the claim. Uses OCR + NLP to extract key data fields. Handles medical reports, expense receipts, police reports, flight confirmations, and death certificates.',
+    inputs: ['PDF / image attachments', 'Structured extraction schema per doc type', 'Confidence threshold config per field class'],
+    outputs: ['Structured JSON payload of extracted fields', 'Per-field confidence scores', 'Extraction failure log for missing / low-confidence fields'],
+    governance: ['Per-field confidence thresholds — below threshold, field flagged for human verification', 'Original document preserved immutably; extraction is additive', 'Medical data: special handling under GDPR Art. 9 — access restricted to authorised adjusters only'],
+    risk: 'Medium — extraction errors affect downstream decisions; must be auditable'
+  },
+  completeness: {
+    name: 'Completeness Gate',
+    type: 'Governance Gate',
+    typeClass: 'tag-red',
+    desc: 'Validates that the claim record has sufficient data quality to proceed. Acts as the first hard stop in the process — insufficient data triggers a structured information request to the claimant.',
+    inputs: ['Extracted claim record', 'Required fields checklist per claim type', 'Minimum confidence thresholds per field class'],
+    outputs: ['Pass: claim proceeds to Stage 2', 'Fail: auto-generated information request to claimant', 'Partial: proceed with flagged gaps noted'],
+    governance: ['Threshold values are governance decisions — set by Claims Governance Committee, not platform default', 'Information requests are templated and logged; count toward SLA clock', 'Maximum 2 information requests before human adjuster takes over'],
+    risk: 'Gate — controls data quality entering the decision layer'
+  },
+  policy: {
+    name: 'Policy Rules Agent',
+    type: 'AI Agent',
+    typeClass: 'tag-blue',
+    desc: 'The most governance-sensitive agent in the network. Maps the extracted claim facts against the applicable policy document — determining coverage, exclusions, conditions, and applicable sublimits. Operates from a deterministic ruleset derived from the policy text.',
+    inputs: ['Structured claim record', 'Policy document (versioned)', 'Jurisdiction-specific regulatory overrides', 'Customer segment and product variant'],
+    outputs: ['Coverage determination: Covered / Excluded / Partial / Unclear', 'Applicable policy sections cited', 'Sublimits and deductibles applied', 'Confidence score for determination'],
+    governance: ['Policy ruleset is version-controlled — agent always cites policy version used', 'Confidence < 0.90 or "Unclear" determination: automatic escalation to adjuster', 'New policy variants must pass through Policy Governance Review before activation', 'Customer challenging a policy exclusion → Senior Adjuster + Legal review required', 'EU AI Act: this agent makes a consequential automated decision — requires human oversight mechanism'],
+    risk: 'High — coverage determination is the primary financial decision in the claim'
+  },
+  fraud: {
+    name: 'Fraud & Anomaly Detection Agent',
+    type: 'AI Agent — Risk',
+    typeClass: 'tag-blue',
+    desc: 'Cross-references claim signals against known fraud patterns, industry fraud intelligence feeds, and historical anomaly patterns. Assigns a fraud risk score. Does not make a fraud determination — only flags for human investigation.',
+    inputs: ['Structured claim record', 'Customer history (claims frequency, prior flags)', 'Industry fraud pattern library', 'Network analysis signals (linked entities)'],
+    outputs: ['Fraud risk score (0–100)', 'Top contributing signal factors', 'Recommendation: Clear / Flag / Refer to SIU'],
+    governance: ['Agent cannot determine fraud — can only flag. All SIU referrals require human decision.', 'Fraud flags recorded but not visible to claimant-facing systems', 'False positive rate monitored monthly — if >8%, model review triggered', 'GDPR: fraud flag processing requires documented legitimate interest basis'],
+    risk: 'High — false positives harm legitimate claimants; false negatives enable fraud'
+  },
+  riskgate: {
+    name: 'Risk Threshold Gate',
+    type: 'Governance Gate',
+    typeClass: 'tag-red',
+    desc: 'The key branching point between autonomous processing and human review. Routes claims based on fraud score, coverage complexity, claim value, and special circumstances flags.',
+    inputs: ['Fraud risk score', 'Coverage determination confidence', 'Claim value vs. authority limit', 'Special flags: fatality, litigation, media, VIP'],
+    outputs: ['Track A — Autonomous: straight-through to settlement', 'Track B — Human: routed to adjuster queue with full context package', 'Track C — SIU: routed to Special Investigations Unit'],
+    governance: ['Routing thresholds are governance decisions — quarterly review by Claims Governance Committee', 'All threshold changes require documented rationale and impact assessment', 'Track B / C routing cannot be overridden by the agent — hard escalation'],
+    risk: 'Gate — routing error here is the primary systemic risk in the architecture'
+  },
+  humanreview: {
+    name: 'Senior Claims Adjuster',
+    type: 'Human Decision',
+    typeClass: 'tag-amber',
+    desc: 'Handles all escalated claims. Receives a full context package from the agent network — not raw data. Reviews, decides, and documents rationale. Can override agent recommendations with documented justification.',
+    inputs: ['Agent-prepared context package', 'Coverage recommendation + confidence', 'Fraud risk score + signal factors', 'Customer history and communication log'],
+    outputs: ['Coverage decision (with override justification if applicable)', 'Settlement authority instruction', 'SIU referral or clear decision'],
+    governance: ['All adjuster decisions logged with timestamp, adjuster ID, and rationale', 'Override decisions flagged for quality review sampling', 'SLA: adjuster must action within 4 business hours of queue entry', 'Decision authority limits: same financial authority matrix as autonomous track'],
+    risk: 'Human accountability — all escalated decisions are auditable to a named individual'
+  },
+  settlement: {
+    name: 'Settlement Calculation Agent',
+    type: 'AI Agent — Finance',
+    typeClass: 'tag-blue',
+    desc: 'Computes the settlement amount based on approved coverage, applied deductibles, sublimits, currency exchange rates, and any applicable regulatory requirements. Works within a strictly bounded financial authority envelope.',
+    inputs: ['Approved coverage determination', 'Claimed amounts and supporting receipts', 'Policy deductibles and sublimits', 'Live currency exchange rates', 'Jurisdiction-specific minimum payout rules'],
+    outputs: ['Settlement amount in claim currency', 'Calculation breakdown (auditable)', 'Payment instruction payload', 'Excess / shortfall explanation for customer communication'],
+    governance: ['Settlement amount hard-capped at policy sublimit — no exceptions without human approval', 'Currency rounding rules formally specified — agent cannot deviate', 'Goodwill / ex-gratia payments outside policy terms: agent cannot authorise — routes to CCO + Legal', 'All calculations logged with input values and formula version used'],
+    risk: 'High — financial error directly affects claimant and P&L'
+  },
+  authgate: {
+    name: 'Financial Authority Gate',
+    type: 'Governance Gate — Critical',
+    typeClass: 'tag-red',
+    desc: 'Enforces the financial authority matrix. This is the hardest governance control in the system — the gate that determines whether a payment proceeds autonomously or requires human sign-off.',
+    inputs: ['Settlement amount', 'Claim complexity tier', 'Customer segment', 'Prior exceptions on this claim'],
+    outputs: ['Illustrative thresholds — ≤€5,000: autonomous payment authorised', '€5,001–€25,000: Claims Manager approval required', '€25,001–€100,000: Senior Director approval required', '>€100,000: Chief Claims Officer + Legal sign-off'],
+    governance: ['Authority thresholds are Board-approved — changes require formal governance process', 'No agent can self-authorise above its tier — hard system stop, not soft warning', 'All approvals timestamped and linked to approver identity in immutable log', 'Segregation of duties: approver cannot be the adjuster who handled the claim'],
+    risk: 'Critical gate — financial authority control is primary SOX/Solvency II compliance mechanism'
+  },
+  payment: {
+    name: 'Payment Execution Agent',
+    type: 'AI Agent — Operations',
+    typeClass: 'tag-blue',
+    desc: 'Initiates payment via the banking API once financial authority is confirmed. Generates the customer communication, creates the immutable payment record, and triggers downstream accounting entries.',
+    inputs: ['Authorised payment instruction', 'Banking API credentials (vaulted)', 'Customer payment details (bank or card)', 'Notification template selection'],
+    outputs: ['Payment initiation confirmation', 'Customer notification (email/SMS)', 'Immutable audit record', 'Accounting system entry'],
+    governance: ['Agent cannot modify payment amount — instruction is sealed at authority gate', 'Banking API call is idempotent — duplicate execution prevention built in', 'Failed payments: auto-retry once, then escalate to Operations team', 'GDPR: payment data encrypted in transit and at rest; access logged'],
+    risk: 'Medium — payment failure is recoverable; duplicate payment is a financial control risk'
+  },
+  close: {
+    name: 'Claim Closed',
+    type: 'Output',
+    typeClass: 'tag-green',
+    desc: 'The claim lifecycle is complete. The audit log is sealed and archived. The customer receives a claim summary. The case enters the analytics pipeline for continuous improvement monitoring.',
+    inputs: ['Payment confirmation', 'Customer communication delivery confirmation', 'Complete audit trail from all agents'],
+    outputs: ['Sealed audit record (immutable)', 'Customer claim summary document', 'Analytics event for performance monitoring', 'Regulatory reporting entry if applicable'],
+    governance: ['Audit log sealed — no modification permitted post-close without formal reopening process', 'Data retention: claim records held per jurisdiction-specific requirements (typically 7–10 years)', 'Regulatory reporting: any claim >€50k reported to relevant supervisory authority within defined timeframe'],
+    risk: 'Low — archival step; risk is in record integrity and retention compliance'
+  }
+};
+
+const agents = [
+  {
+    icon: '📥', name: 'Intake & Classification Agent', desc: 'Reads FNOL, extracts structured data, classifies claim type and complexity tier',
+    riskTier: 'Low', color: 'tag-green',
+    scope: ['Classify claim type from FNOL data', 'Assign complexity tier (Simple / Standard / Complex / Refer)', 'Route to correct processing track'],
+    cannot: ['Make coverage determinations', 'Access full policy document', 'Contact the claimant'],
+    escalates: ['Confidence score < 0.80 on classification', 'Claim type not matching known taxonomy', 'FNOL contains legal threat language'],
+    owner: 'Head of Claims Operations',
+    changeApproval: 'Model changes: Claims Ops + IT Change Board. Taxonomy changes: Claims Governance Committee.',
+    monitoring: 'Daily: classification accuracy vs. adjuster overrides. Weekly: confidence score distribution. Monthly: new claim type emergence.',
+    aiActStatus: 'Limited Risk — classification only, no consequential autonomous decision'
+  },
+  {
+    icon: '📄', name: 'Document Extraction Agent (IDP)', desc: 'OCR + NLP extraction of structured data from medical reports, receipts, and supporting documents',
+    riskTier: 'Medium', color: 'tag-amber',
+    scope: ['Extract structured fields from supported document types', 'Assign per-field confidence scores', 'Flag missing or low-confidence fields'],
+    cannot: ['Interpret medical diagnoses', 'Make judgements about document authenticity', 'Request documents directly from claimants'],
+    escalates: ['Medical records with diagnoses requiring clinical interpretation', 'Documents in unsupported languages', 'Suspected document manipulation signals'],
+    owner: 'Head of Claims Technology',
+    changeApproval: 'Model updates: Claims Tech + Data Governance. New document type support: Claims Governance Committee.',
+    monitoring: 'Daily: extraction accuracy per field class. Weekly: false negative rate on required fields. Monthly: drift detection on confidence score distributions.',
+    aiActStatus: 'Limited Risk — extraction only; consequential decisions downstream. Likely qualifies for the Article 6(3) preparatory task exemption from high-risk classification, but this must be documented before deployment. Processes Art. 9 special category medical data — access controls and data minimisation obligations apply regardless of AI Act tier.'
+  },
+  {
+    icon: '📋', name: 'Policy Rules Agent', desc: 'Maps claim facts against policy terms; determines coverage, exclusions, and applicable sublimits',
+    riskTier: 'High', color: 'tag-red',
+    scope: ['Determine coverage / exclusion based on policy rules', 'Apply deductibles and sublimits', 'Cite applicable policy sections'],
+    cannot: ['Override documented policy exclusions', 'Apply goodwill payments outside policy terms', 'Make final determination if confidence < 0.90'],
+    escalates: ['Confidence < 0.90 on coverage determination', '"Unclear" coverage cases', 'New exclusion scenarios not in training set', 'Customer disputes agent determination', 'Customer challenges a policy exclusion — routes to Senior Adjuster + Legal review'],
+    owner: 'Chief Claims Officer',
+    changeApproval: 'Policy ruleset changes: Legal + Actuarial + Claims Governance Committee. New product variants: full governance review required before activation.',
+    monitoring: 'Daily: adjuster override rate on coverage determinations. Weekly: confidence score by claim type. Monthly: regulatory compliance audit sample.',
+    aiActStatus: 'HIGH RISK — automated decision with direct financial and legal consequence. EU AI Act conformity obligations apply: technical documentation, human oversight mechanism, audit logging, transparency to claimant.'
+  },
+  {
+    icon: '🔍', name: 'Fraud & Anomaly Detection Agent', desc: 'Assigns fraud risk score; identifies anomaly signals for human investigation',
+    riskTier: 'High', color: 'tag-red',
+    scope: ['Generate fraud risk score (0–100)', 'Identify top signal contributors', 'Recommend: Clear / Flag / Refer to SIU'],
+    cannot: ['Determine that fraud has occurred', 'Communicate fraud suspicion to claimant', 'Delay claim processing without human authorisation'],
+    escalates: ['Fraud score ≥ 65: automatic SIU queue', 'Network analysis reveals linked known-fraud entities', 'Document signals suggest manipulation'],
+    owner: 'Head of Special Investigations',
+    changeApproval: 'Model updates: SIU + Data Science + Legal (GDPR review). Fraud pattern library updates: SIU weekly review process.',
+    monitoring: 'Weekly: false positive rate (target <8%), false negative audit sample. Monthly: SIU outcome feedback loop to model team. Quarterly: GDPR legitimate interest review.',
+    aiActStatus: 'HIGH RISK — fraud flagging has direct adverse consequence for claimant. EU AI Act + GDPR Art. 22 obligations apply. Claimant has right to human review of fraud-based decisions.'
+  },
+  {
+    icon: '🧮', name: 'Settlement Calculation Agent', desc: 'Computes settlement amount within authority bounds; applies deductibles, sublimits, and currency conversion',
+    riskTier: 'High', color: 'tag-red',
+    scope: ['Calculate settlement within policy sublimits', 'Apply deductibles per policy terms', 'Convert currency at live rates within tolerance band'],
+    cannot: ['Exceed policy sublimits', 'Apply goodwill uplifts', 'Deviate from approved currency rounding rules'],
+    escalates: ['Calculated amount requires authority above €5,000', 'Currency volatility exceeds defined tolerance', 'Claimant disputes calculation', 'Goodwill payment commercially appropriate but outside policy terms — routes to CCO + Legal; agent cannot authorise'],
+    owner: 'Chief Financial Officer (delegated to Head of Claims Finance)',
+    changeApproval: 'Formula changes: Finance + Actuarial + Legal. Authority limit changes: Board approval required.',
+    monitoring: 'Daily: settlement accuracy vs. manual spot checks. Weekly: currency rate source integrity. Monthly: outlier settlement review.',
+    aiActStatus: 'HIGH RISK — direct financial consequence. Solvency II audit trail requirements apply. Customer communication must include calculation summary in plain language.'
+  },
+  {
+    icon: '💳', name: 'Payment Execution Agent', desc: 'Initiates authorised payments via banking API; generates audit record and customer notification',
+    riskTier: 'Medium', color: 'tag-amber',
+    scope: ['Execute payment instruction as issued by authority gate', 'Send customer notification', 'Generate immutable payment record'],
+    cannot: ['Modify payment amount', 'Execute without confirmed authority gate pass', 'Retry more than once on failure without human escalation'],
+    escalates: ['Payment API failure after one retry', 'Claimant bank account rejected / closed', 'Payment blocked by receiving bank compliance screen'],
+    owner: 'Head of Operations',
+    changeApproval: 'Banking integration changes: IT Change Board + Finance + Legal. Notification templates: Claims Comms team approval.',
+    monitoring: 'Real-time: payment success / failure rate. Daily: retry queue review. Weekly: failed payment resolution time.',
+    aiActStatus: 'Limited Risk — executes authorised instruction only; no autonomous decision-making'
+  }
+];
+
+const govLayers = [
+  {
+    num: '01', name: 'Authority Governance', color: 'tag-blue',
+    subtitle: 'What each agent is permitted to decide — and what it cannot',
+    badges: ['Agent Authority Register', 'Decision Scope', 'Value Thresholds', 'Reversibility Classes'],
+    what: [
+      { title: 'Agent Authority Register', body: 'Central artefact mapping each agent to: permitted decision scope, financial authority ceiling, reversibility class (reversible / hard-to-reverse / irreversible), and accountable human owner. Reviewed quarterly.' },
+      { title: 'Decision Scope Boundaries', body: 'Each agent has a formally defined scope of what it can decide, what it cannot decide, and what triggers mandatory escalation. Scope boundaries are independent of the platform\'s technical capabilities.' },
+      { title: 'Value Thresholds', body: 'Financial authority matrix defining at what monetary value autonomous decision-making must yield to human approval. Board-approved; changes require formal governance process.' }
+    ],
+    how: [
+      { title: 'Authority Gate', body: 'Hard system stops enforced at defined thresholds. Not configurable by operations teams — requires governance process to change.' },
+      { title: 'Confidence Thresholds', body: 'Per-agent, per-decision-class minimum confidence scores below which escalation is mandatory. Set by governance committee, not platform default.' },
+      { title: 'Escalation Triggers', body: 'Formal catalogue of scenarios that trigger mandatory human review, independent of confidence scores. Includes novel scenarios, regulatory exposure cases, and customer-disputed decisions.' }
+    ],
+    failure: [
+      { title: 'Scope Creep', body: 'Agent gradually handles cases outside its original scope as edge cases accumulate. Prevented by: quarterly authority register review + anomaly detection on escalation rate changes.' },
+      { title: 'Threshold Drift', body: 'Authority thresholds informally raised by operations without governance process. Prevented by: Board approval requirement + change log audit.' },
+      { title: 'Authority Gap', body: 'New claim type or scenario not covered by existing authority definitions. Detected by: weekly "unclassified escalation" review.' }
+    ]
+  },
+  {
+    num: '02', name: 'Accountability Governance', color: 'tag-amber',
+    subtitle: 'When something goes wrong — who is responsible, and how is that documented',
+    badges: ['RACI', 'EU AI Act Art. 22', 'Incident Ownership', 'NIS-2 Reporting'],
+    what: [
+      { title: 'Human Accountability Assignment', body: 'Every agent in the network has a named human accountable — not for day-to-day operation, but for: scope decisions, model change approval, incident response, and regulatory reporting.' },
+      { title: 'System-Level Accountability', body: 'Multi-agent interactions can produce outcomes no single agent "decided". The governance model must assign accountability for emergent system behaviour, not just individual agent behaviour.' },
+      { title: 'Claimant Rights', body: 'Under EU AI Act and GDPR Art. 22, claimants have the right to human review of automated decisions with significant effect. This right must be operationally realisable — not just stated in policy.' }
+    ],
+    how: [
+      { title: 'Accountability RACI', body: 'Formal RACI mapping agents to human accountables across: normal operation, exception handling, model changes, regulatory incidents, and claimant complaints.' },
+      { title: 'Incident Response Protocol', body: 'Defined protocol for agent-related incidents: detection → containment → accountable owner notified → impact assessment → regulatory notification if required (NIS-2: 72-hour window).' },
+      { title: 'Complaint Handling', body: 'Claimants who receive an automated decision they dispute are entitled to human review. SLA: 5 business days. Outcome documented regardless of whether original decision is upheld.' }
+    ],
+    failure: [
+      { title: 'Diffusion of Responsibility', body: 'In multi-agent networks, bad outcomes can result from agent interaction — no single agent "decided" the wrong thing. Mitigated by: assigning system-level accountability to a named executive.' },
+      { title: 'Accountability Vacuum', body: 'Agent owner leaves organisation; accountability not reassigned. Prevented by: accountability register reviewed quarterly; departures trigger immediate reassignment.' },
+      { title: 'NIS-2 Clock Miss', body: '72-hour reporting window for significant incidents missed because incident detection was slow or ownership unclear. Prevented by: automated incident detection + clear escalation path.' }
+    ]
+  },
+  {
+    num: '03', name: 'Change Governance', color: 'tag-red',
+    subtitle: 'How the agent network changes — and who controls that, including autonomous self-optimisation',
+    badges: ['Model Change Classification', 'Change Board', 'Auto-Optimisation Controls', 'Drift Detection'],
+    what: [
+      { title: 'Change Classification Taxonomy', body: 'Three-tier classification: (A) Parameter optimisation — low risk, can be automatic within defined bounds. (B) Behaviour change — requires peer review + ops approval. (C) Scope expansion — requires full governance review.' },
+      { title: 'Auto-Optimisation Controls', body: 'Platforms that auto-optimise agent behaviour create a governance gap. The governance model must define what optimisation is permitted autonomously and what requires human approval — separately from what the platform technically allows.' },
+      { title: 'Policy Document Changes', body: 'When the policy document changes, the agent\'s ruleset must be reviewed before the new version is activated. Policy changes cannot automatically propagate to live agents without governance review.' }
+    ],
+    how: [
+      { title: 'Change Approval Workflow', body: 'Tier A: automated, logged. Tier B: Claims Tech + Operations sign-off, 5-day SLA. Tier C: Claims Governance Committee, full impact assessment, 15-day SLA.' },
+      { title: 'Drift Detection', body: 'Weekly comparison of agent decision distributions vs. baseline. Statistically significant drift in any metric triggers a Tier B change review, even if no intentional change was made.' },
+      { title: 'Rollback Capability', body: 'All agent versions are retained. Any change can be rolled back within 4 hours. Rollback authority: Head of Claims Technology without governance process (emergency); retrospective review required within 48 hours.' }
+    ],
+    failure: [
+      { title: 'Silent Drift', body: 'Auto-optimisation changes agent behaviour without triggering change process. Mitigated by: drift detection + platform configuration to require approval for behaviour-class changes.' },
+      { title: 'Policy-Ruleset Mismatch', body: 'Legal team updates policy document; agent continues applying old rules. Prevented by: policy document version is a dependency in the agent\'s change log — document change triggers mandatory ruleset review.' },
+      { title: 'Unapproved Scope Expansion', body: 'Agent begins handling a new claim type it wasn\'t validated for as edge cases accumulate. Detected by: weekly new-scenario monitoring + authority register coverage audit.' }
+    ]
+  },
+  {
+    num: '04', name: 'Data & Decision Governance', color: 'tag-purple',
+    subtitle: 'Input data integrity, decision explainability standards, and audit trail completeness',
+    badges: ['Data Quality SLAs', 'Explainability Standard', 'Audit Log Spec', 'Confidence Governance'],
+    what: [
+      { title: 'Input Data Quality SLAs', body: 'Agents making consequential decisions are only as reliable as their input data. Formal data quality SLAs must be defined upstream of every decision-making agent — including completeness, timeliness, and accuracy thresholds.' },
+      { title: 'Decision Explainability Standard', body: 'What counts as a sufficient explanation for a regulated automated decision is a governance decision, not a platform feature. The standard must be defined in terms the claimant can understand and the regulator will accept.' },
+      { title: 'Audit Log Specification', body: 'The audit log must be specified independently of the platform. Minimum required fields: agent ID, decision timestamp, input data snapshot, decision output, confidence score, policy version cited, authority gate status, human override flag.' }
+    ],
+    how: [
+      { title: 'Data Quality Gates', body: 'Upstream data quality checks block agents from processing on out-of-spec inputs. Quality failures escalate to data stewards, not to claims adjusters — separate escalation path.' },
+      { title: 'Confidence Threshold Governance', body: 'Threshold values are owned by the Claims Governance Committee. Platform default thresholds are overridden on activation. Threshold changes follow Tier B change process.' },
+      { title: 'Explainability Template', body: 'Approved customer-facing explanation template for each decision class. Reviewed by Legal + Customer Experience before activation. Agent output must map to template fields.' }
+    ],
+    failure: [
+      { title: 'Unexplainable Decision', body: 'Claimant or regulator requests explanation; audit log insufficient. Prevented by: audit log specification reviewed against regulatory requirements before go-live.' },
+      { title: 'Data Poisoning Upstream', body: 'Source system data quality degrades; agents begin making decisions on corrupted inputs. Mitigated by: input quality gate + upstream SLA monitoring.' },
+      { title: 'Confidence Threshold Gaming', body: 'Operations teams informally lower thresholds to reduce escalation volume. Prevented by: threshold values in governance-controlled config, not operations-accessible settings.' }
+    ]
+  }
+];
+
+const opModel = [
+  {
+    tier: 'Tier 1', name: 'Strategic Governance', cadence: 'Monthly / Quarterly',
+    color: 'var(--accent-purple)',
+    roles: [
+      { name: 'Claims Governance Committee', desc: 'Cross-functional. Sets authority thresholds, approves Tier C changes, reviews aggregate performance, owns regulatory obligations.' },
+      { name: 'Chief Claims Officer', desc: 'Executive accountable for agent network outcomes. Signs off on EU AI Act conformity documentation.' },
+      { name: 'Legal & Compliance', desc: 'Regulatory horizon scanning. Translates new obligations into governance model updates.' }
+    ],
+    activities: [
+      'Review Agent Authority Register — scope creep, coverage gaps',
+      'Approve new agent deployments or significant scope expansions',
+      'Aggregate exception pattern review — systemic issues identification',
+      'EU AI Act conformity review — annual at minimum',
+      'NIS-2 risk assessment update',
+      'Performance vs. targets review: STP rate, resolution time, customer satisfaction'
+    ]
+  },
+  {
+    tier: 'Tier 2', name: 'Operational Governance', cadence: 'Weekly',
+    color: 'var(--accent-amber)',
+    roles: [
+      { name: 'Claims Operations Manager', desc: 'Owns exception queue performance and adjuster capacity planning. Escalates systemic issues to Tier 1.' },
+      { name: 'Head of Claims Technology', desc: 'Owns platform health, drift detection, change queue. Approves Tier B changes.' },
+      { name: 'Data Steward — Claims', desc: 'Monitors input data quality SLAs. Owns upstream data quality escalations.' }
+    ],
+    activities: [
+      'Exception queue review — volume, resolution time, pattern analysis',
+      'Confidence threshold performance — is escalation rate within target band?',
+      'Drift detection review — comparing agent decision distributions to baseline',
+      'Change request intake — classify, prioritise, assign',
+      'Adjuster override analysis — are overrides indicating agent failure patterns?',
+      'Data quality SLA reporting — upstream source system health'
+    ]
+  },
+  {
+    tier: 'Tier 3', name: 'Real-Time Control', cadence: 'Continuous',
+    color: 'var(--accent-green)',
+    roles: [
+      { name: 'Platform Monitoring (Automated)', desc: 'Agent health dashboards, anomaly alerts, authority gate logs, payment success rates.' },
+      { name: 'On-Call Operations Analyst', desc: 'Responds to automated alerts. First escalation point for real-time incidents. 24/7 coverage.' },
+      { name: 'On-Call Claims Manager', desc: 'Approves emergency rollbacks. Authorises temporary threshold changes pending Tier 2 review.' }
+    ],
+    activities: [
+      'Automated: agent health monitoring against defined KPIs',
+      'Automated: authority gate integrity checks — no autonomous payment above threshold',
+      'Automated: payment success / failure tracking',
+      'On-alert: incident triage and initial containment',
+      'On-alert: NIS-2 incident detection — does this trigger 72-hour reporting clock?',
+      'On-alert: emergency rollback authorisation if agent behaviour anomaly detected'
+    ]
+  }
+];
+
+const escData = [
+  { scenario: 'Coverage determination confidence < 0.90', agent: 'Policy Rules Agent', trigger: 'Automatic', routeTo: 'Senior Adjuster queue', sla: '4 business hours', authority: 'Adjuster authority limits apply', risk: 'high' },
+  { scenario: 'Fraud risk score ≥ 65', agent: 'Fraud Detection Agent', trigger: 'Automatic', routeTo: 'Special Investigations Unit', sla: '24 hours initial triage', authority: 'SIU team', risk: 'high' },
+  { scenario: 'Settlement > €5,000', agent: 'Settlement Calculation Agent', trigger: 'Financial authority gate', routeTo: 'Claims Manager approval queue', sla: '4 business hours', authority: 'Claims Manager (up to €25k)', risk: 'med' },
+  { scenario: 'Settlement > €25,000', agent: 'Settlement Calculation Agent', trigger: 'Financial authority gate', routeTo: 'Senior Director queue', sla: '8 business hours', authority: 'Senior Director (up to €100k)', risk: 'high' },
+  { scenario: 'Settlement > €100,000', agent: 'Settlement Calculation Agent', trigger: 'Financial authority gate', routeTo: 'Chief Claims Officer + Legal', sla: '24 hours', authority: 'CCO + Legal sign-off required', risk: 'crit' },
+  { scenario: 'Customer disputes automated decision', agent: 'Any', trigger: 'Customer complaint received', routeTo: 'Dedicated human review team', sla: '5 business days (EU AI Act right)', authority: 'Team Lead sign-off on outcome', risk: 'med' },
+  { scenario: 'Customer challenges policy exclusion specifically', agent: 'Policy Rules Agent', trigger: 'Customer complaint received', routeTo: 'Senior Adjuster + Legal review', sla: '5 business days', authority: 'Legal sign-off required — exclusion cannot be upheld by adjuster alone', risk: 'high' },
+  { scenario: 'Payment API failure after retry', agent: 'Payment Execution Agent', trigger: 'System failure', routeTo: 'Operations on-call analyst', sla: '2 business hours', authority: 'Operations Analyst', risk: 'med' },
+  { scenario: 'Agent drift detected (statistical)', agent: 'Any', trigger: 'Weekly drift detection run', routeTo: 'Head of Claims Technology', sla: 'Next Tier 2 governance meeting', authority: 'Change Board Tier B process', risk: 'med' },
+  { scenario: 'Novel claim type — no taxonomy match', agent: 'Intake Agent', trigger: 'Automatic (unclassified)', routeTo: 'Claims Operations Manager', sla: '8 business hours', authority: 'Manager creates new taxonomy entry', risk: 'low' },
+  { scenario: 'Goodwill payment appropriate but outside policy terms', agent: 'Settlement Calculation Agent', trigger: 'Manual referral from adjuster', routeTo: 'CCO + Legal', sla: '24 hours', authority: 'CCO sign-off required — agent cannot authorise ex-gratia payments', risk: 'high' },
+  { scenario: 'Potential NIS-2 reportable incident', agent: 'Platform monitoring', trigger: 'Automated detection', routeTo: 'On-call Claims Manager → Legal', sla: 'Immediate (72-hour clock starts)', authority: 'CCO authorises BSI notification', risk: 'crit' }
+];
+
+const regData = [
+  {
+    icon: '⚖️', name: 'EU AI Act', scope: 'Automated decision-making with legal / financial consequence',
+    color: 'tag-blue',
+    obligations: [
+      { label: 'HIGH RISK', labelClass: 'tag-red', text: '<strong>Classification:</strong> Policy Rules Agent, Fraud Detection Agent, and Settlement Agent are high-risk AI systems under Annex III (insurance / financial services category). This triggers full conformity obligations.' },
+      { label: 'TECH DOC', labelClass: 'tag-blue', text: '<strong>Technical Documentation:</strong> Each high-risk agent requires maintained technical documentation covering model design, training data, performance metrics, and known limitations. Must be available to regulators on request.' },
+      { label: 'OVERSIGHT', labelClass: 'tag-amber', text: '<strong>Human Oversight Mechanism:</strong> Must be operationally realisable — not just stated in policy. Claimants must be able to request human review. Adjusters must have the authority and context to genuinely review, not just rubber-stamp.' },
+      { label: 'AUDIT LOG', labelClass: 'tag-purple', text: '<strong>Logging Obligations:</strong> High-risk agents must log inputs, outputs, and the decision-making context for each consequential decision. Logs retained per regulatory retention requirements.' },
+      { label: 'ACCURACY', labelClass: 'tag-green', text: '<strong>Performance Monitoring:</strong> Ongoing monitoring of accuracy and reliability. Significant performance degradation triggers mandatory review. No specific threshold defined — governance committee sets and owns this.' }
+    ]
+  },
+  {
+    icon: '🛡️', name: 'NIS-2', scope: 'Network and information security for essential / important entities',
+    color: 'tag-cyan',
+    obligations: [
+      { label: 'SCOPE', labelClass: 'tag-cyan', text: '<strong>Allianz Partners classification:</strong> Insurance at scale across 30 countries — likely "Important Entity" under NIS-2, with possible "Essential" classification in some jurisdictions based on systemic significance.' },
+      { label: '72 HRS', labelClass: 'tag-red', text: '<strong>Incident Reporting:</strong> Significant incidents affecting the availability, integrity, or confidentiality of the agent network must be reported to BSI (Germany) within 72 hours. The governance model must define what counts as "significant" and who authorises the report.' },
+      { label: 'SUPPLY CHAIN', labelClass: 'tag-amber', text: '<strong>Third-Party Risk:</strong> The agentic platform vendor and any external model providers are in scope for supply chain security obligations. Vendor security assessments and contractual security requirements must be maintained.' },
+      { label: 'MGMT LBL', labelClass: 'tag-purple', text: '<strong>Management Liability:</strong> NIS-2 introduces personal liability for senior management for non-compliance. The Chief Claims Officer and CTO need documented evidence of governance oversight.' },
+      { label: 'MEASURES', labelClass: 'tag-green', text: '<strong>Technical Measures:</strong> Multi-factor authentication, encryption, access logging, and network segmentation for the agent infrastructure. Penetration testing cadence must be defined and executed.' }
+    ]
+  },
+  {
+    icon: '🔒', name: 'GDPR', scope: 'Personal data processing in automated decisions',
+    color: 'tag-amber',
+    obligations: [
+      { label: 'ART. 22', labelClass: 'tag-red', text: '<strong>Automated Decision Rights:</strong> Claimants have the right not to be subject to solely automated decisions with significant effect. The human oversight mechanism under EU AI Act doubles as the Art. 22 compliance mechanism — must be equally realisable.' },
+      { label: 'LEGAL BASIS', labelClass: 'tag-blue', text: '<strong>Lawful Basis:</strong> Claims processing: contract performance. Fraud detection: legitimate interest (documented). Medical data processing: Art. 9 special category — explicit consent or vital interests basis required.' },
+      { label: 'SPECIAL CAT', labelClass: 'tag-purple', text: '<strong>Medical Data:</strong> Medical records processed by the Document Extraction Agent are special category data. Access controls must be role-restricted. Data minimisation principle applies — extract only what is necessary for the claim decision.' },
+      { label: 'RETENTION', labelClass: 'tag-amber', text: '<strong>Retention Limits:</strong> Claim records retained per jurisdiction-specific requirements. Audit logs for AI decisions have specific retention obligations — long enough to support regulatory review but not indefinitely.' }
+    ]
+  },
+  {
+    icon: '🏦', name: 'Solvency II', scope: 'Insurance-specific governance and financial control requirements',
+    color: 'tag-purple',
+    obligations: [
+      { label: 'ORSA', labelClass: 'tag-blue', text: '<strong>Own Risk and Solvency Assessment:</strong> The operational risk profile changes materially when claims decisions are automated at scale. The ORSA must reflect agentic system risk — including model failure scenarios, concentration risk, and systemic error scenarios.' },
+      { label: 'AUDIT TRAIL', labelClass: 'tag-amber', text: '<strong>Financial Audit Requirements:</strong> Settlement calculations must be auditable to the level required for external audit. Every input, formula version, and authority approval must be traceable. The Solvency II audit trail requirement should drive the audit log specification.' },
+      { label: 'GOVERNANCE', labelClass: 'tag-purple', text: '<strong>System of Governance:</strong> Solvency II requires a documented system of governance with clear allocation of responsibilities. The Claims Governance Committee and Agent Authority Register directly serve this requirement — they should be explicitly referenced in the ORSA documentation.' },
+      { label: 'OUTSOURCING', labelClass: 'tag-red', text: '<strong>Outsourcing Rules:</strong> If the agentic platform is a third-party provider, Solvency II outsourcing requirements apply. Written agreement, regular review, ability to terminate and transfer, regulatory notification if material.' }
+    ]
+  }
+];
+
+// ═══════ RENDER ═══════
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function showNodeDetail(id) {
+  const d = nodeDetails[id];
+  if (!d) return;
+  const panel = document.getElementById('node-detail');
+  const tagClass = d.typeClass || 'tag-dim';
+  document.getElementById('node-detail-content').innerHTML = `
+    <div class="detail-tag ${tagClass}">${d.type}</div>
+    <h3>${d.name}</h3>
+    <p style="font-size:0.78rem; color:var(--text-dim); line-height:1.6; margin-bottom:1rem;">${d.desc}</p>
+    <div class="detail-grid">
+      <div class="detail-block">
+        <div class="detail-block-title">Inputs</div>
+        <div class="detail-block-body"><ul>${d.inputs.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-title">Outputs</div>
+        <div class="detail-block-body"><ul>${d.outputs.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-title">Governance Controls</div>
+        <div class="detail-block-body"><ul>${d.governance.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+    <div style="margin-top:0.75rem; padding:0.5rem 0.75rem; background:var(--surface2); border-radius:4px; font-size:0.7rem;">
+      <span style="font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim);">Risk Level: </span>
+      <span style="color:var(--text);">${d.risk}</span>
+    </div>
+  `;
+  panel.classList.add('visible');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function renderAgents() {
+  const container = document.getElementById('agent-register');
+  agents.forEach((a, i) => {
+    const div = document.createElement('div');
+    div.className = 'agent-card';
+    div.innerHTML = `
+      <div class="agent-card-header" onclick="toggleAgent(${i})">
+        <div class="agent-icon" style="background:var(--surface2)">${a.icon}</div>
+        <div class="agent-info">
+          <div class="agent-name">${a.name}</div>
+          <div class="agent-desc">${a.desc}</div>
+        </div>
+        <div class="agent-meta">
+          <span class="badge ${a.color}">Risk: ${a.riskTier}</span>
+        </div>
+        <div class="agent-chevron">▼</div>
+      </div>
+      <div class="agent-detail-body">
+        <div class="agent-detail-grid">
+          <div>
+            <div class="agent-detail-col-title">✓ Decision Scope</div>
+            ${a.scope.map(s=>`<div class="agent-detail-item"><strong>${s}</strong></div>`).join('')}
+          </div>
+          <div>
+            <div class="agent-detail-col-title">✗ Cannot Decide</div>
+            ${a.cannot.map(s=>`<div class="agent-detail-item" style="border-color:var(--accent-red);opacity:0.7"><strong>${s}</strong></div>`).join('')}
+          </div>
+          <div>
+            <div class="agent-detail-col-title">⚡ Escalation Triggers</div>
+            ${a.escalates.map(s=>`<div class="agent-detail-item" style="border-color:var(--accent-amber)"><strong>${s}</strong></div>`).join('')}
+          </div>
+          <div>
+            <div class="agent-detail-col-title">Governance</div>
+            <div class="agent-detail-item"><strong>Owner</strong>${a.owner}</div>
+            <div class="agent-detail-item" style="margin-top:0.4rem"><strong>Change Approval</strong>${a.changeApproval}</div>
+            <div class="agent-detail-item" style="margin-top:0.4rem"><strong>Monitoring</strong>${a.monitoring}</div>
+            <div class="agent-detail-item" style="margin-top:0.4rem; border-color:${a.riskTier==='High'?'var(--accent-red)':'var(--accent-amber)'}"><strong>EU AI Act Status</strong>${a.aiActStatus}</div>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function toggleAgent(i) {
+  const cards = document.querySelectorAll('.agent-card');
+  cards[i].classList.toggle('open');
+}
+
+function renderGovLayers() {
+  const container = document.getElementById('gov-layers');
+  govLayers.forEach((l, i) => {
+    const div = document.createElement('div');
+    div.className = 'gov-layer';
+    div.innerHTML = `
+      <div class="gov-layer-header" onclick="toggleLayer(${i})">
+        <div class="gov-layer-num" style="color:var(--accent-${['blue','amber','red','purple'][i]})">${l.num}</div>
+        <div class="gov-layer-info">
+          <div class="gov-layer-name">${l.name}</div>
+          <div class="gov-layer-subtitle">${l.subtitle}</div>
+        </div>
+        <div class="gov-layer-badges">${l.badges.map(b=>`<span class="badge ${l.color}">${b}</span>`).join('')}</div>
+        <div class="gov-layer-chevron">▼</div>
+      </div>
+      <div class="gov-layer-body">
+        <div class="gov-body-grid">
+          <div>
+            <div class="gov-col-title">What It Covers</div>
+            ${l.what.map(w=>`<div class="gov-item"><div class="gov-item-title">${w.title}</div><div class="gov-item-body">${w.body}</div></div>`).join('')}
+          </div>
+          <div>
+            <div class="gov-col-title">How It Works In Practice</div>
+            ${l.how.map(w=>`<div class="gov-item"><div class="gov-item-title">${w.title}</div><div class="gov-item-body">${w.body}</div></div>`).join('')}
+          </div>
+          <div>
+            <div class="gov-col-title">Failure Modes & Mitigations</div>
+            ${l.failure.map(w=>`<div class="gov-item" style="border-color:rgba(224,82,82,0.2)"><div class="gov-item-title" style="color:var(--accent-red)">${w.title}</div><div class="gov-item-body">${w.body}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function toggleLayer(i) {
+  const layers = document.querySelectorAll('.gov-layer');
+  layers[i].classList.toggle('open');
+}
+
+function renderOpModel() {
+  const grid = document.getElementById('om-grid');
+  opModel.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'om-tier';
+    div.innerHTML = `
+      <div class="om-tier-header" style="border-left:3px solid ${t.color}">
+        <div class="om-tier-label" style="color:${t.color}">${t.tier}</div>
+        <div class="om-tier-name">${t.name}</div>
+        <div class="om-tier-cadence">Cadence: ${t.cadence}</div>
+      </div>
+      <div class="om-tier-body">
+        ${t.roles.map(r=>`
+          <div class="om-role">
+            <div class="om-role-dot" style="background:${t.color}"></div>
+            <div>
+              <div class="om-role-name">${r.name}</div>
+              <div class="om-role-desc">${r.desc}</div>
+            </div>
+          </div>
+        `).join('')}
+        <div class="om-activities">
+          <div class="om-act-title">Key Activities</div>
+          ${t.activities.map(a=>`<div class="om-act-item">${a}</div>`).join('')}
+        </div>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+
+  const table = document.getElementById('esc-table');
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Escalation Scenario</th>
+        <th>Originating Agent</th>
+        <th>Trigger Type</th>
+        <th>Routes To</th>
+        <th>SLA</th>
+        <th>Authority</th>
+        <th>Risk</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${escData.map(r=>`
+        <tr>
+          <td style="color:var(--text)">${r.scenario}</td>
+          <td style="color:var(--text-dim)">${r.agent}</td>
+          <td>${r.trigger}</td>
+          <td style="color:var(--text-dim)">${r.routeTo}</td>
+          <td style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--accent-cyan)">${r.sla}</td>
+          <td style="color:var(--text-dim)">${r.authority}</td>
+          <td><span class="risk-chip risk-${r.risk}">${r.risk}</span></td>
+        </tr>
+      `).join('')}
+    </tbody>
+  `;
+}
+
+function renderReg() {
+  const grid = document.getElementById('reg-grid');
+  regData.forEach(r => {
+    const div = document.createElement('div');
+    div.className = 'reg-card';
+    div.innerHTML = `
+      <div class="reg-card-header">
+        <div class="reg-icon">${r.icon}</div>
+        <div>
+          <div class="reg-name">${r.name}</div>
+          <div class="reg-scope">${r.scope}</div>
+        </div>
+      </div>
+      <div class="reg-body">
+        ${r.obligations.map(o=>`
+          <div class="reg-obligation">
+            <span class="reg-ob-label ${o.labelClass}">${o.label}</span>
+            <div class="reg-ob-text">${o.text}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+
+// ═══ GOVERNANCE FLOW TAB ═══
+
+const gfDetails = {
+  't1-authority': {
+    title: 'Authority Register Review',
+    tier: 'Tier 1 — Monthly',
+    color: 'var(--accent-purple)',
+    who: 'Claims Governance Committee',
+    what: 'Review the Agent Authority Register for scope creep or coverage gaps. Each agent\'s permitted decision scope, financial authority ceiling, and escalation triggers are checked against actual behaviour over the past month.',
+    inputs: 'Exception reports · Override analysis · Adjuster feedback · Anomaly flags',
+    outputs: 'Updated authority register · Scope change instructions (if needed) · Escalation trigger amendments',
+    triggersUp: 'If scope expansion identified → Tier C change process',
+    triggersDown: 'Updated register distributed to Tier 2 Ops Manager + Claims Tech',
+  },
+  't1-deployment': {
+    title: 'New Agent Deployment Approval',
+    tier: 'Tier 1 — Monthly (as needed)',
+    color: 'var(--accent-purple)',
+    who: 'Claims Governance Committee + CCO sign-off',
+    what: 'Formal approval gate for deploying new agents or significantly expanding existing agent scope. Requires technical documentation, EU AI Act risk classification, and proposed authority boundaries before committee review.',
+    inputs: 'Technical documentation draft · Risk classification (AI Act) · Proposed authority register entry · Pilot performance data',
+    outputs: 'Approval decision · Conditions of deployment · Monitoring requirements · Go-live date',
+    triggersUp: 'Board notification if high-risk AI Act classification',
+    triggersDown: 'Deployment instruction to Claims Tech · Monitoring config to T3',
+  },
+  't1-reg': {
+    title: 'Regulatory Horizon Review',
+    tier: 'Tier 1 — Monthly',
+    color: 'var(--accent-purple)',
+    who: 'Legal & Compliance + CCO',
+    what: 'Review of incoming regulatory changes — NIS-2 updates, EU AI Act guidance, Solvency II circulars, GDPR enforcement actions — and assessment of impact on the governance model. Produces a forward agenda for the Committee.',
+    inputs: 'BSI advisories · EIOPA circulars · EU AI Act implementation guidance · Legal horizon scan',
+    outputs: 'Regulatory impact assessment · Governance model amendment proposals · Priority actions for next quarter',
+    triggersUp: 'Material changes → Board notification',
+    triggersDown: 'Action items to T2 Ops Manager + Legal team',
+  },
+  't1-patterns': {
+    title: 'Exception Pattern Board Review',
+    tier: 'Tier 1 — Quarterly',
+    color: 'var(--accent-purple)',
+    who: 'Claims Governance Committee + Board representation',
+    what: 'Aggregate view of exception patterns across the quarter. If 20%+ of a decision class is escalating to human review, the agent is not fit for that scope and this meeting decides whether to narrow scope, retrain, or replace.',
+    inputs: 'T2 weekly exception reports (aggregated) · Adjuster override analysis · STP rate trends · Customer complaint data',
+    outputs: 'Scope reduction decisions · Model review instructions · Performance improvement targets · Board briefing pack',
+    triggersUp: 'Poor performance → Board escalation',
+    triggersDown: 'Model review → T2 Claims Tech · Scope changes → Agent Authority Register',
+  },
+  't1-aiact': {
+    title: 'EU AI Act Conformity Audit',
+    tier: 'Tier 1 — Annual (minimum)',
+    color: 'var(--accent-purple)',
+    who: 'CCO + Legal + external auditor (where required)',
+    what: 'Full review of technical documentation for all high-risk agents (Policy Rules, Fraud Detection, Settlement). Verifies human oversight mechanisms are operationally realisable, audit logs meet retention requirements, and performance monitoring is in place.',
+    inputs: 'Technical documentation for each high-risk agent · Audit log samples · Human override rate data · Claimant complaint records',
+    outputs: 'Conformity declaration · Gap list with remediation owners and deadlines · Regulator notification if required',
+    triggersUp: 'Non-conformity → Regulator notification',
+    triggersDown: 'Remediation actions → T2 Claims Tech + Legal',
+  },
+  't1-pl': {
+    title: 'P&L vs. Governance Performance Review',
+    tier: 'Tier 1 — Quarterly',
+    color: 'var(--accent-purple)',
+    who: 'CCO + CFO + Claims Governance Committee',
+    what: 'The critical tension check: are governance controls creating bottlenecks that harm business performance, or is performance pressure eroding governance quality? This review holds both accountable. Any informal threshold drift is surfaced here.',
+    inputs: 'STP rate · Claim resolution time · Exception rate · Threshold change requests · Customer satisfaction scores · Cost per claim',
+    outputs: 'Balanced scorecard update · Threshold adjustment decisions (formal process) · Resourcing decisions for exception handling capacity',
+    triggersUp: 'Material underperformance → Board',
+    triggersDown: 'Adjusted targets → T2 Ops · Threshold changes → T3 platform config',
+  },
+  't2-exceptions': {
+    title: 'Exception Queue Review',
+    tier: 'Tier 2 — Weekly',
+    color: 'var(--accent-amber)',
+    who: 'Claims Operations Manager',
+    what: 'Weekly review of exception queue volume, adjuster resolution time, and emerging patterns. High queue volume may indicate agent confidence thresholds are too low; consistent patterns in exception reasons may indicate a model gap.',
+    inputs: 'Exception queue dashboard · Adjuster resolution time log · Exception reason codes · Queue age distribution',
+    outputs: 'Capacity adjustment if needed · Threshold review request if pattern detected · Pattern report for T1 monthly review',
+    triggersUp: 'Systemic pattern → T1 authority register review',
+    triggersDown: 'Capacity instructions to adjuster team · T3 alert threshold adjustment if signal detected',
+  },
+  't2-thresholds': {
+    title: 'Confidence Threshold Performance Check',
+    tier: 'Tier 2 — Weekly',
+    color: 'var(--accent-amber)',
+    who: 'Head of Claims Technology + Ops Manager',
+    what: 'Are the confidence thresholds producing the right escalation rate? If the Policy Rules Agent is escalating 35% of cases when the target is 10%, the threshold is misconfigured or the model is underperforming. Either requires action.',
+    inputs: 'Per-agent confidence score distributions · Escalation rate by agent and decision class · Target escalation rate bands',
+    outputs: 'Threshold adjustment proposal (Tier B change process) · Model performance flag if threshold change won\'t solve it',
+    triggersUp: 'Threshold change requires T1 approval if it changes authority scope',
+    triggersDown: 'Adjusted thresholds deployed via T3 platform config after change approval',
+  },
+  't2-drift': {
+    title: 'Drift Detection Run',
+    tier: 'Tier 2 — Weekly',
+    color: 'var(--accent-amber)',
+    who: 'Head of Claims Technology + Data Science',
+    what: 'Statistical comparison of each agent\'s decision distributions against its approved baseline. A statistically significant shift — even without an intentional change — triggers a Tier B change review. This catches silent drift from auto-optimisation.',
+    inputs: 'Agent decision logs (7-day window) · Approved baseline distribution per agent · Statistical significance thresholds',
+    outputs: 'Drift report: Green / Amber / Red per agent · Tier B change request if Amber/Red · Incident flag if Red + unexplained',
+    triggersUp: 'Unexplained Red drift → Incident protocol · Persistent Amber → T1 model review',
+    triggersDown: 'Tier B change process initiated if drift confirmed · T3 monitoring alert updated',
+  },
+  't2-changes': {
+    title: 'Change Request Intake & Classification',
+    tier: 'Tier 2 — Weekly',
+    color: 'var(--accent-amber)',
+    who: 'Head of Claims Technology',
+    what: 'Incoming change requests are classified into three tiers: (A) parameter optimisation — auto-deploy with logging; (B) behaviour change — peer review + ops approval, 5-day SLA; (C) scope expansion — full Committee review, 15-day SLA.',
+    inputs: 'Change requests from: agents flagging own optimisation proposals, adjuster feedback, regulatory instructions, performance reviews',
+    outputs: 'Classified change queue · Tier A: immediate deployment instruction · Tier B: review workflow initiated · Tier C: Committee agenda item',
+    triggersUp: 'Tier C → T1 Committee review',
+    triggersDown: 'Tier A → T3 immediate deployment · Tier B → peer review team',
+  },
+  't2-overrides': {
+    title: 'Adjuster Override Analysis',
+    tier: 'Tier 2 — Weekly',
+    color: 'var(--accent-amber)',
+    who: 'Claims Operations Manager + Head of Claims Technology',
+    what: 'Adjusters who override agent recommendations must document rationale. Weekly analysis asks: are overrides concentrated on specific decision classes? Are they consistent across adjusters? High override rates on a specific scenario signal an agent gap.',
+    inputs: 'Override log with rationale codes · Override rate by agent, decision class, adjuster · Outcome tracking (was the override right?)',
+    outputs: 'Override pattern report · Model gap flag if pattern confirmed · Training feedback if adjuster inconsistency detected',
+    triggersUp: 'Systematic override pattern → T1 authority register review',
+    triggersDown: 'Model gap → Tier B change request · Adjuster training if inconsistency detected',
+  },
+  't2-data': {
+    title: 'Data Quality SLA Report',
+    tier: 'Tier 2 — Weekly',
+    color: 'var(--accent-amber)',
+    who: 'Data Steward — Claims',
+    what: 'Upstream data quality SLAs are reviewed: are source systems delivering complete, accurate, timely data to the agents? Quality failures do not escalate to claims adjusters — they escalate to data stewards on a separate path.',
+    inputs: 'Per-source data quality metrics · Field completeness rates · Timeliness SLA adherence · Extraction failure log from IDP agent',
+    outputs: 'SLA compliance report · Escalation to source system owners if SLA missed · Quality gate adjustment if systematic gap detected',
+    triggersUp: 'Persistent SLA failure → T1 vendor/system governance review',
+    triggersDown: 'Quality gate config update → T3 if threshold change needed',
+  },
+  't3-monitoring': {
+    title: 'Real-Time Platform Monitoring',
+    tier: 'Tier 3 — Continuous',
+    color: 'var(--accent-green)',
+    who: 'Automated platform + On-call Operations Analyst (24/7)',
+    what: 'The always-on layer. Monitors agent health KPIs, authority gate integrity (no autonomous payment above threshold), payment success/failure, exception queue SLA, and anomaly signals. Automated alerts trigger on-call human response.',
+    inputs: 'Agent decision logs (real-time) · Payment API status · Authority gate logs · Exception queue depth · Anomaly detection model outputs',
+    outputs: 'Alert to on-call analyst when threshold breached · Automatic agent halt if authority boundary violation · NIS-2 incident flag if availability/integrity affected',
+    triggersUp: 'Incident → T2 Ops Manager → T1 CCO (if NIS-2 reportable)',
+    triggersDown: 'N/A — this is the base layer. Receives config updates from T2.',
+  },
+};
+
+const gfFlows = {
+  incident: {
+    color: 'var(--accent-red)',
+    colorHex: '#e05252',
+    title: 'Incident detected',
+    subtitle: 'Real-time detection → Operational assessment → Strategic escalation if NIS-2 reportable (72-hour clock)',
+    steps: [
+      { tier:3, x:70,  label:'Platform alert\nfired', time:'T+0' },
+      { tier:3, x:200, label:'On-call analyst\ntriages', time:'< 5 min' },
+      { tier:3, x:340, label:'Containment\naction', time:'< 15 min' },
+      { tier:2, x:480, label:'Ops Manager\nscope assessment', time:'< 1 hr' },
+      { tier:2, x:620, label:'Impact log +\nchange entry', time:'< 2 hrs' },
+      { tier:1, x:760, label:'NIS-2 reporting\ndecision', time:'< 4 hrs' },
+    ]
+  },
+  drift: {
+    color: 'var(--accent-cyan)',
+    colorHex: '#00c4cc',
+    title: 'Agent drift detected',
+    subtitle: 'Weekly drift run flags statistical deviation → change classification → approval → deployment → monitoring resumes',
+    steps: [
+      { tier:2, x:70,  label:'Weekly drift\nrun executes', time:'Mon' },
+      { tier:2, x:220, label:'Deviation flagged\nvs. baseline', time:'Mon' },
+      { tier:2, x:370, label:'Claims Tech\nclassifies tier', time:'Tue' },
+      { tier:2, x:520, label:'Tier B: review\n+ ops sign-off', time:'Wed–Thu' },
+      { tier:1, x:680, label:'Tier C: Committee\nif scope change', time:'If needed' },
+      { tier:3, x:800, label:'Monitoring\nrules updated', time:'Post-approval' },
+    ]
+  },
+  change: {
+    color: 'var(--accent-orange)',
+    colorHex: '#f97316',
+    title: 'Change request raised',
+    subtitle: 'Intake → Tier classification → Approval pathway → Deployment → Post-deploy drift monitoring activated',
+    steps: [
+      { tier:2, x:70,  label:'Change request\nraised', time:'Day 0' },
+      { tier:2, x:220, label:'Classified:\nTier A / B / C', time:'Day 0' },
+      { tier:3, x:220, label:'Tier A:\nauto-deploy + log', time:'Day 0', branch:true },
+      { tier:2, x:380, label:'Tier B:\npeer review', time:'Day 1–5' },
+      { tier:1, x:560, label:'Tier C:\nCommittee review', time:'Day 1–15' },
+      { tier:3, x:730, label:'Post-deploy:\ndrift monitoring', time:'Ongoing' },
+    ]
+  },
+  reg: {
+    color: 'var(--accent-purple)',
+    colorHex: '#8b5cf6',
+    title: 'Regulatory trigger',
+    subtitle: 'External change or audit finding → impact assessment → governance update → operational rollout → monitoring updated',
+    steps: [
+      { tier:1, x:70,  label:'New reg. guidance\nor audit finding', time:'Trigger' },
+      { tier:1, x:230, label:'Legal impact\nassessment', time:'Week 1' },
+      { tier:1, x:390, label:'Committee:\nframework update', time:'Week 2' },
+      { tier:2, x:540, label:'Agent config +\nthreshold review', time:'Week 3' },
+      { tier:2, x:690, label:'Docs + training\nupdated', time:'Week 3–4' },
+      { tier:3, x:790, label:'Monitoring rules\nupdated live', time:'Week 4' },
+    ]
+  }
+};
+
+const tierY = { 1: 65, 2: 155, 3: 235 };
+const tierColors = { 1: '#8b5cf6', 2: '#f5a623', 3: '#3dd68c' };
+
+function showGfDetail(key) {
+  const d = gfDetails[key];
+  if (!d) return;
+
+  // Map block key → flow key
+  const blockToFlow = {
+    't1-authority': 'reg',
+    't1-deployment': 'change',
+    't1-reg':        'reg',
+    't1-patterns':   'incident',
+    't1-aiact':      'reg',
+    't1-pl':         'reg',
+    't2-exceptions': 'incident',
+    't2-thresholds': 'drift',
+    't2-drift':      'drift',
+    't2-changes':    'change',
+    't2-overrides':  'drift',
+    't2-data':       'incident',
+    't3-monitoring': 'incident',
+  };
+
+  // If an event flow is already visible, or always — update it to match
+  const flowCanvas = document.getElementById('gf-flow-canvas');
+  const mappedFlow = blockToFlow[key];
+  if (mappedFlow) {
+    activateGfFlow(mappedFlow);
+  }
+
+  const panel = document.getElementById('gf-detail-panel');
+  document.getElementById('gf-detail-content').innerHTML = `
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+      <span style="font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; padding:0.2rem 0.5rem; border-radius:2px; border:1px solid; color:${d.color}; border-color:${d.color}; background:${d.color}18;">${d.tier}</span>
+      <span style="font-family:'Fraunces',serif; font-size:1rem; font-weight:600; color:var(--text-bright);">${d.title}</span>
+    </div>
+    <p style="font-size:0.78rem; color:var(--text-dim); line-height:1.65; margin-bottom:1rem;">${d.what}</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:0.4rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border);">Accountable</div>
+        <div style="font-size:0.75rem; color:var(--text);">${d.who}</div>
+        <div style="margin-top:0.75rem; font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:0.4rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border);">Inputs</div>
+        <div style="font-size:0.72rem; color:var(--text-dim);">${d.inputs}</div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:0.4rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border);">Outputs</div>
+        <div style="font-size:0.72rem; color:var(--text-dim);">${d.outputs}</div>
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-purple); margin-bottom:0.4rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border);">↑ Triggers up</div>
+        <div style="font-size:0.72rem; color:var(--text-dim); margin-bottom:0.75rem;">${d.triggersUp}</div>
+        <div style="font-family:'DM Mono',monospace; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-green); margin-bottom:0.4rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border);">↓ Triggers down</div>
+        <div style="font-size:0.72rem; color:var(--text-dim);">${d.triggersDown}</div>
+      </div>
+    </div>
+  `;
+  panel.classList.add('visible');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function activateGfFlow(key) {
+  document.querySelectorAll('.gf-flow-chip').forEach(c => c.classList.remove('active'));
+  const chip = document.getElementById('gfc-' + key);
+  if (chip) chip.classList.add('active');
+
+  const f = gfFlows[key];
+  if (!f) return;
+
+  document.getElementById('gf-flow-canvas').style.display = 'block';
+  document.getElementById('gf-flow-title').textContent = f.title;
+  document.getElementById('gf-flow-title').style.color = f.color;
+  document.getElementById('gf-flow-subtitle').textContent = f.subtitle;
+
+  const svg = document.getElementById('gf-flow-svg');
+  const col = f.colorHex;
+
+  let h = `<defs>
+    <marker id="gfarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="${col}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>`;
+
+  // Lane backgrounds
+  [1,2,3].forEach(t => {
+    const y = tierY[t];
+    const tc = tierColors[t];
+    h += `<rect x="0" y="${y-28}" width="860" height="56" rx="2" fill="${tc}" fill-opacity="0.04"/>`;
+    h += `<text x="8" y="${y-14}" font-family="'DM Mono',monospace" font-size="9" fill="${tc}" opacity="0.6" letter-spacing="1">T${t}</text>`;
+  });
+
+  // Lane dividers
+  h += `<line x1="0" y1="${tierY[2]-28}" x2="860" y2="${tierY[2]-28}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+  h += `<line x1="0" y1="${tierY[1]-28}" x2="860" y2="${tierY[1]-28}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+
+  const steps = f.steps;
+
+  // Draw connectors
+  for (let i = 0; i < steps.length - 1; i++) {
+    const s = steps[i];
+    const n = steps[i + 1];
+    if (n.branch) continue; // skip branch connector drawing (handled separately)
+    const sy = tierY[s.tier];
+    const ny = tierY[n.tier];
+    const isDiff = s.tier !== n.tier;
+
+    if (isDiff) {
+      const mx = (s.x + n.x) / 2;
+      h += `<path d="M${s.x} ${sy} C${mx} ${sy} ${mx} ${ny} ${n.x} ${ny}"
+        fill="none" stroke="${col}" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.65"
+        marker-end="url(#gfarrow)"
+        style="animation:gfFlowIn 0.5s ease ${i*0.1}s both;"/>`;
+    } else {
+      h += `<line x1="${s.x+20}" y1="${sy}" x2="${n.x-20}" y2="${ny}"
+        stroke="${col}" stroke-width="1.5" opacity="0.8"
+        marker-end="url(#gfarrow)"
+        style="animation:gfFlowIn 0.5s ease ${i*0.1}s both;"/>`;
+    }
+  }
+
+  // Branch connector for change flow
+  if (key === 'change') {
+    const s = steps[1]; // classified step
+    const b = steps[2]; // branch step
+    h += `<path d="M${s.x} ${tierY[s.tier]+6} C${s.x} ${tierY[3]} ${b.x} ${tierY[3]} ${b.x} ${tierY[3]}"
+      fill="none" stroke="${col}" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.5"
+      marker-end="url(#gfarrow)"/>`;
+    h += `<text x="${(s.x+b.x)/2-20}" y="${tierY[3]-18}" font-family="'DM Mono',monospace" font-size="8" fill="${col}" opacity="0.6">Tier A only</text>`;
+  }
+
+  // Draw nodes
+  steps.forEach((s, i) => {
+    const sy = tierY[s.tier];
+    const lines = s.label.split('\n');
+    const labelAbove = s.tier === 1;
+    h += `<g style="animation:gfFlowIn 0.4s ease ${i*0.1}s both; opacity:0;">`;
+    // Node circle
+    h += `<circle cx="${s.x}" cy="${sy}" r="7" fill="${col}" opacity="0.85"/>`;
+    h += `<circle cx="${s.x}" cy="${sy}" r="7" fill="none" stroke="${col}" stroke-width="1.5" opacity="0.4"/>`;
+    // Time badge
+    h += `<rect x="${s.x - 24}" y="${sy+11}" width="48" height="14" rx="3" fill="${col}" fill-opacity="0.15"/>`;
+    h += `<text x="${s.x}" y="${sy+21}" text-anchor="middle" font-family="'DM Mono',monospace" font-size="8" fill="${col}">${s.time}</text>`;
+    // Label
+    const baseY = labelAbove ? sy - 18 : sy + 38;
+    const dyDir = labelAbove ? -1 : 1;
+    lines.forEach((line, li) => {
+      const ly = labelAbove ? baseY - (lines.length - 1 - li) * 13 : baseY + li * 13;
+      h += `<text x="${s.x}" y="${ly}" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" fill="#e8f0ff" opacity="0.9">${line}</text>`;
+    });
+    h += `</g>`;
+  });
+
+  svg.innerHTML = h;
+
+  // Scroll into view
+  document.getElementById('gf-flow-canvas').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function clearGfFlow() {
+  document.querySelectorAll('.gf-flow-chip').forEach(c => c.classList.remove('active'));
+  document.getElementById('gf-flow-canvas').style.display = 'none';
+  const panel = document.getElementById('gf-detail-panel');
+  panel.classList.remove('visible');
+}
+
+
+
+// ═══ COMPLIANCE REFERENCE TAB ═══
+
+function toggleCrFw(key) {
+  const card = document.getElementById('cr-fw-' + key);
+  if (card) card.classList.toggle('open');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const box = el.querySelector('.cr-check-box');
+  if (box) box.textContent = el.classList.contains('checked') ? '☑' : '☐';
+}
+
+
+renderAgents();
+renderGovLayers();
+renderOpModel();
+renderReg();
+</script>
+<!-- ═══════════════════════════════════════════════════ COMPLIANCE REFERENCE -->
+<div class="section" id="section-compliance">
+
+  <div class="hero" style="padding-bottom:1.5rem;">
+    <div class="hero-label">Compliance Reference · Decision-Ready Policy Brief</div>
+    <h1>Regulatory <em>Obligations</em></h1>
+    <div class="hero-sub">Specific, actionable obligations by framework — with deadlines, thresholds, and procedural requirements. Distinct from the Regulatory tab, which covers architectural mapping. This tab is for the compliance officer and legal team.</div>
+  </div>
+
+  <!-- CLASSIFICATION DECISION TREE -->
+  <div class="cr-section-head">Step 1 — Establish what applies to your organisation</div>
+  <div class="cr-decision-tree" id="cr-tree">
+
+    <div class="cr-decision-node cr-dn-root">
+      <div class="cr-dn-q">Does your organisation process personal data of EU residents in an automated claims or financial decision context?</div>
+      <div class="cr-dn-answers">
+        <div class="cr-dn-yes">Yes → GDPR Art. 22 applies. Continue.</div>
+        <div class="cr-dn-no">No → GDPR Art. 22 likely out of scope. Verify with legal.</div>
+      </div>
+    </div>
+
+    <div class="cr-tree-arrow">↓</div>
+
+    <div class="cr-decision-node cr-dn-blue">
+      <div class="cr-dn-q">Do your AI systems make or significantly influence individual decisions on insurance coverage, claims, or pricing?</div>
+      <div class="cr-dn-answers">
+        <div class="cr-dn-yes">Yes → Likely High-Risk under EU AI Act Annex III. Full conformity obligations apply from <strong>2 August 2026</strong> under current law — Parliament's simplification proposal (adopted April 2026, trilogue pending) proposes extending this to <strong>2 December 2027.</strong> Plan for 2026; monitor trilogue outcome.</div>
+        <div class="cr-dn-no">No → Limited Risk tier. Transparency obligations only (Article 50).</div>
+      </div>
+    </div>
+
+    <div class="cr-tree-arrow">↓</div>
+
+    <div class="cr-decision-node cr-dn-amber">
+      <div class="cr-dn-q">Is your organisation a financial/insurance entity providing digital services in the EU with >50 employees or >€10M turnover?</div>
+      <div class="cr-dn-answers">
+        <div class="cr-dn-yes">Yes → NIS-2 / German BSI Act applies (in force 6 Dec 2025). DORA also applies if you are a regulated financial entity — check overlap.</div>
+        <div class="cr-dn-no">No → Check if micro/small enterprise exemption applies. Some categories in scope regardless of size.</div>
+      </div>
+    </div>
+
+    <div class="cr-tree-arrow">↓</div>
+
+    <div class="cr-decision-node cr-dn-purple">
+      <div class="cr-dn-q">Is your organisation a regulated insurance undertaking subject to Solvency II?</div>
+      <div class="cr-dn-answers">
+        <div class="cr-dn-yes">Yes → ORSA must reflect agentic operational risk. Outsourcing rules apply to third-party agentic platforms. Audit trail requirements apply to settlement decisions.</div>
+        <div class="cr-dn-no">No → Solvency II out of scope. Verify if other sectoral regulation applies.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FRAMEWORK CARDS -->
+  <div class="cr-section-head" style="margin-top:2rem;">Step 2 — Obligations by framework</div>
+
+  <div class="cr-frameworks" id="cr-frameworks">
+
+    <!-- EU AI ACT -->
+    <div class="cr-fw-card" id="cr-fw-aiact">
+      <div class="cr-fw-header" onclick="toggleCrFw('aiact')">
+        <div class="cr-fw-icon">⚖️</div>
+        <div class="cr-fw-info">
+          <div class="cr-fw-name">EU AI Act</div>
+          <div class="cr-fw-scope">Regulation (EU) 2024/1689 · In force 1 Aug 2024 · Current legal deadline: <strong>2 Aug 2026</strong> · Parliament proposes: <strong>2 Dec 2027</strong> (trilogue pending)</div>
+        </div>
+        <div class="cr-fw-status cr-status-upcoming">⚠ Deadline under revision</div>
+        <div class="cr-fw-chevron">▼</div>
+      </div>
+      <div class="cr-fw-body">
+
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">High-Risk Classification — Is your system in scope?</div>
+          <div class="cr-obligation cr-ob-red">
+            <div class="cr-ob-label">Annex III · 5(b)(c)</div>
+            <div class="cr-ob-text">AI systems used for <strong>risk assessment and pricing in life and health insurance</strong>, and <strong>creditworthiness evaluation</strong>, are explicitly listed as high-risk. Travel insurance claims automation is not explicitly listed — classification depends on whether the system significantly influences individual decisions on coverage or payout. If yes: treat as high-risk. Document the assessment regardless.</div>
+          </div>
+          <div class="cr-obligation cr-ob-amber">
+            <div class="cr-ob-label">Article 6(3)</div>
+            <div class="cr-ob-text">An Annex III system is <strong>not</strong> high-risk if it: performs only a narrow procedural task; detects decision patterns without replacing human assessment; or performs a preparatory task to an assessment. The Document Extraction (IDP) agent may qualify for this exemption — but the exemption must be <strong>documented before deployment.</strong></div>
+          </div>
+          <div class="cr-obligation cr-ob-amber">
+            <div class="cr-ob-label">Article 6(4)</div>
+            <div class="cr-ob-text">If you believe a system falls within Annex III but is not high-risk, you must <strong>document the assessment</strong> before placing it on the market or putting it into service. The system must still be registered in the EU AI database.</div>
+          </div>
+        </div>
+
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">High-Risk System Obligations Checklist</div>
+          <div class="cr-checklist" id="cr-checklist-aiact">
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Technical documentation (Article 11)</div>
+                <div class="cr-check-desc">Maintained documentation covering: system design and purpose, training methodology, performance metrics, known limitations, human oversight mechanisms. Must be available to regulators on request. Required per high-risk agent.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Record-keeping / audit logging (Article 12)</div>
+                <div class="cr-check-desc">Automatic logging of events relevant to national-level risk identification and substantial modifications throughout the system lifecycle. Logs must enable post-hoc reconstruction of each consequential decision.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Human oversight mechanism (Article 14)</div>
+                <div class="cr-check-desc">Must be operationally realisable — not just stated in policy. Designated individuals must have the authority, context, and capacity to genuinely review and override automated decisions. Right to human review must be accessible to claimants.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Accuracy, robustness and cybersecurity (Article 15)</div>
+                <div class="cr-check-desc">Ongoing performance monitoring. Significant degradation triggers mandatory review. Resilience against adversarial manipulation, particularly for fraud detection agents whose outputs affect financial decisions.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Fundamental Rights Impact Assessment (Article 27)</div>
+                <div class="cr-check-desc">Required for deployers of high-risk AI systems before first use. In insurance: underwriting, claims automation, and eligibility assessments likely require a FRIA. Must be completed before the system is put into use.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">EU AI database registration (Article 49)</div>
+                <div class="cr-check-desc">All high-risk AI systems must be registered in the EU database before deployment — including systems where the provider has assessed non-high-risk status under Article 6(4).</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Post-market monitoring (Article 72)</div>
+                <div class="cr-check-desc">Ongoing monitoring plan for accuracy and reliability. No specific threshold defined by the Act — governance committee must set and own performance thresholds. Significant incidents must be reported to relevant authorities.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Timeline</div>
+          <div class="cr-timeline">
+            <div class="cr-tl-item cr-tl-past">
+              <div class="cr-tl-date">1 Aug 2024</div>
+              <div class="cr-tl-event">AI Act entered into force</div>
+            </div>
+            <div class="cr-tl-item cr-tl-past">
+              <div class="cr-tl-date">2 Feb 2025</div>
+              <div class="cr-tl-event">Prohibited AI provisions applicable</div>
+            </div>
+            <div class="cr-tl-item cr-tl-now">
+              <div class="cr-tl-date">Now</div>
+              <div class="cr-tl-event">Prepare: gap analysis, technical docs, FRIA, governance model</div>
+            </div>
+            <div class="cr-tl-item cr-tl-upcoming">
+              <div class="cr-tl-date">2 Aug 2026</div>
+              <div class="cr-tl-event"><strong>Current legal deadline — High-risk AI system obligations (Annex III).</strong> Remains in force until trilogue concludes. Systems placed on market after this date must comply under current law. Systems already deployed: comply if subject to significant change.</div>
+            </div>
+            <div class="cr-tl-item cr-tl-future" style="border-left-color:var(--accent-amber);">
+              <div class="cr-tl-date" style="color:var(--accent-amber);">2 Dec 2027 ⚠</div>
+              <div class="cr-tl-event"><strong>Parliament's proposed revised deadline for Annex III high-risk systems.</strong> European Parliament adopted this position April 2026 (569–45). Trilogue with Council now begins — final date not yet law. The Digital Omnibus proposal also introduces a "grandfathering" clause permitting early deployment without full compliance. Monitor closely.</div>
+            </div>
+            <div class="cr-tl-item cr-tl-future">
+              <div class="cr-tl-date">2 Aug 2028</div>
+              <div class="cr-tl-event">Parliament proposes this date for Annex I product safety component AI systems (replacing 2 Aug 2027 under current law). Also subject to trilogue.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NIS-2 -->
+    <div class="cr-fw-card" id="cr-fw-nis2">
+      <div class="cr-fw-header" onclick="toggleCrFw('nis2')">
+        <div class="cr-fw-icon">🛡️</div>
+        <div class="cr-fw-info">
+          <div class="cr-fw-name">NIS-2 / German BSI Act (NIS2UmsuCG)</div>
+          <div class="cr-fw-scope">Directive (EU) 2022/2555 · German implementation in force <strong>6 December 2025</strong> · No grace period</div>
+        </div>
+        <div class="cr-fw-status cr-status-active">In force now</div>
+        <div class="cr-fw-chevron">▼</div>
+      </div>
+      <div class="cr-fw-body">
+
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Entity Classification</div>
+          <div class="cr-obligation cr-ob-red">
+            <div class="cr-ob-label">Essential Entity</div>
+            <div class="cr-ob-text">Large enterprises (≥250 employees <strong>or</strong> >€50M revenue and >€43M balance sheet) operating in Annex I sectors. Subject to <strong>proactive supervision</strong> and higher penalties (up to €10M or 2% global turnover). In Germany: called "besonders wichtige Einrichtungen." KRITIS operators automatically classified as Essential. <strong>Allianz Partners at scale: almost certainly Essential.</strong></div>
+          </div>
+          <div class="cr-obligation cr-ob-amber">
+            <div class="cr-ob-label">Important Entity</div>
+            <div class="cr-ob-text">Medium enterprises (≥50 employees <strong>or</strong> >€10M revenue) in Annex I or II sectors. Subject to <strong>reactive supervision</strong> and lower penalties (up to €7M or 1.4% global turnover). In Germany: called "wichtige Einrichtungen."</div>
+          </div>
+          <div class="cr-obligation cr-ob-blue">
+            <div class="cr-ob-label">Insurance + DORA</div>
+            <div class="cr-ob-text">Insurance is not listed in NIS-2 Annex I or II directly. For regulated financial/insurance entities, <strong>DORA (Digital Operational Resilience Act, Regulation (EU) 2022/2554)</strong> is the primary cybersecurity framework. NIS-2 applies to the digital infrastructure layer. The two are complementary — DORA Article 4 governs the relationship. Verify with legal which framework governs which systems.</div>
+          </div>
+        </div>
+
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Incident Reporting — the 3-step cascade</div>
+          <div class="cr-timeline">
+            <div class="cr-tl-item cr-tl-upcoming">
+              <div class="cr-tl-date">24 hours</div>
+              <div class="cr-tl-event"><strong>Early warning to BSI.</strong> Notify of any significant incident within 24 hours of detection. This is the operationally critical window. Must indicate whether the incident is suspected to be caused by unlawful or malicious action.</div>
+            </div>
+            <div class="cr-tl-item cr-tl-now">
+              <div class="cr-tl-date">72 hours</div>
+              <div class="cr-tl-event"><strong>Incident notification.</strong> Detailed report including: initial assessment of severity and impact, indicators of compromise, whether the incident is ongoing. Update or replace the 24-hour early warning.</div>
+            </div>
+            <div class="cr-tl-item cr-tl-future">
+              <div class="cr-tl-date">1 month</div>
+              <div class="cr-tl-event"><strong>Final report.</strong> Detailed description of the incident, type of threat or root cause, applied and ongoing mitigation measures, cross-border impact where applicable.</div>
+            </div>
+          </div>
+          <div class="cr-obligation cr-ob-red" style="margin-top:0.75rem;">
+            <div class="cr-ob-label">Significant incident</div>
+            <div class="cr-ob-text">An incident is significant if it: causes severe operational disruption or financial loss; has affected or is capable of affecting other entities; or affects a large number of persons. The governance model must define what constitutes "significant" for the agentic claims platform specifically — this definition must be documented and owned.</div>
+          </div>
+        </div>
+
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Key Obligations Checklist</div>
+          <div class="cr-checklist">
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Self-assessment and registration with BSI</div>
+                <div class="cr-check-desc">Entities must self-assess their classification (BSI will not inform you). Register via BSI Portal within 3 months of qualifying. Requires "Mein Unternehmenskonto" (MUK) and Elster organisation certificate.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Cybersecurity risk management measures</div>
+                <div class="cr-check-desc">Risk analysis, incident handling, business continuity, supply chain security, access control, encryption, MFA, vulnerability handling. Must be documented. ISO 27001 certification covers ~70–80% of requirements.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Supply chain security</div>
+                <div class="cr-check-desc">Assess and manage cybersecurity risks in third-party/vendor relationships. Agentic platform vendor and external model providers are in scope. Right-to-audit clauses, security requirements in contracts, regular assessments.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Management accountability and training</div>
+                <div class="cr-check-desc">Senior management personally liable for non-compliance. Must approve cybersecurity measures, oversee implementation, and undergo regular cybersecurity training. Document training cadence and attendance.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Incident detection and response capability</div>
+                <div class="cr-check-desc">Operational capability to detect significant incidents and initiate the 24-hour reporting clock. The governance operating model's Tier 3 real-time monitoring layer must be configured to identify NIS-2 reportable events and trigger the escalation path to CCO + Legal immediately.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GDPR -->
+    <div class="cr-fw-card" id="cr-fw-gdpr">
+      <div class="cr-fw-header" onclick="toggleCrFw('gdpr')">
+        <div class="cr-fw-icon">🔒</div>
+        <div class="cr-fw-info">
+          <div class="cr-fw-name">GDPR</div>
+          <div class="cr-fw-scope">Regulation (EU) 2016/679 · In force · Focus: Art. 22 automated decisions + Art. 9 special category data</div>
+        </div>
+        <div class="cr-fw-status cr-status-active">In force now</div>
+        <div class="cr-fw-chevron">▼</div>
+      </div>
+      <div class="cr-fw-body">
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Article 22 — Automated Decision-Making</div>
+          <div class="cr-obligation cr-ob-red">
+            <div class="cr-ob-label">Art. 22 trigger</div>
+            <div class="cr-ob-text">Claimants have the right not to be subject to <strong>solely automated decisions</strong> that produce legal or similarly significant effects. A coverage denial, fraud flag causing delay, or settlement calculation are all in scope. The human oversight mechanism required by EU AI Act Article 14 doubles as the Art. 22 compliance mechanism — but must be equally operationally realisable.</div>
+          </div>
+          <div class="cr-obligation cr-ob-amber">
+            <div class="cr-ob-label">Operationalisation requirement</div>
+            <div class="cr-ob-text">The right to human review must be <strong>accessible, not just stated</strong>. This means: a documented process for claimants to request review, a named team with authority to genuinely reassess, an SLA (recommended 5 business days), and outcome documentation regardless of whether the original decision is upheld.</div>
+          </div>
+        </div>
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Article 9 — Special Category Data</div>
+          <div class="cr-obligation cr-ob-red">
+            <div class="cr-ob-label">Medical data</div>
+            <div class="cr-ob-text">Medical records processed by the Document Extraction Agent are special category data. Lawful basis options: explicit consent, or vital interests (emergency). Access must be role-restricted. Data minimisation applies — extract only what is necessary for the claim decision. Retention must be limited and documented.</div>
+          </div>
+        </div>
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Lawful Basis by Processing Activity</div>
+          <div class="cr-table-wrap">
+            <table class="cr-table">
+              <thead><tr><th>Processing Activity</th><th>Lawful Basis</th><th>Note</th></tr></thead>
+              <tbody>
+                <tr><td>Claims processing (standard)</td><td>Art. 6(1)(b) — Contract performance</td><td>Core processing basis</td></tr>
+                <tr><td>Fraud detection and flagging</td><td>Art. 6(1)(f) — Legitimate interest</td><td>Must be documented; LIA required</td></tr>
+                <tr><td>Medical record processing</td><td>Art. 9(2)(a) — Explicit consent, or Art. 9(2)(c) — Vital interests</td><td>Special category; stricter controls</td></tr>
+                <tr><td>Automated coverage decision</td><td>Art. 6(1)(b) + Art. 22(2)(a) — Necessary for contract</td><td>Right to human review must be provided</td></tr>
+                <tr><td>Audit log retention</td><td>Art. 6(1)(c) — Legal obligation</td><td>Retention period per jurisdiction</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DORA -->
+    <div class="cr-fw-card" id="cr-fw-dora">
+      <div class="cr-fw-header" onclick="toggleCrFw('dora')">
+        <div class="cr-fw-icon">🏦</div>
+        <div class="cr-fw-info">
+          <div class="cr-fw-name">DORA — Digital Operational Resilience Act</div>
+          <div class="cr-fw-scope">Regulation (EU) 2022/2554 · In force 17 Jan 2025 · Primary framework for regulated financial/insurance entities</div>
+        </div>
+        <div class="cr-fw-status cr-status-active">In force now</div>
+        <div class="cr-fw-chevron">▼</div>
+      </div>
+      <div class="cr-fw-body">
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Relationship to NIS-2</div>
+          <div class="cr-obligation cr-ob-blue">
+            <div class="cr-ob-label">DORA vs NIS-2</div>
+            <div class="cr-ob-text">For regulated financial entities (insurers, banks, investment firms), <strong>DORA is the lex specialis</strong> — it takes precedence over NIS-2 for ICT risk requirements under Article 4 NIS-2. NIS-2 applies to the digital infrastructure layer where DORA does not reach. Both may apply simultaneously to different parts of the organisation. Verify with legal which framework governs which systems and functions.</div>
+          </div>
+        </div>
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Key DORA Obligations for Agentic Systems</div>
+          <div class="cr-checklist">
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">ICT risk management framework</div>
+                <div class="cr-check-desc">Board-approved ICT risk framework. Agentic claims platform must be included in ICT asset inventory and risk register. Change management for agent updates must feed into ICT change governance.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Third-party ICT provider oversight (Chapter V)</div>
+                <div class="cr-check-desc">Agentic platform vendor qualifies as a critical ICT third-party provider if it supports critical or important functions. Requires: written agreement, exit strategy, concentration risk assessment, regulatory notification if material. Register of ICT third-party arrangements must be maintained and reported to supervisor annually.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Digital operational resilience testing</div>
+                <div class="cr-check-desc">Annual basic testing for all entities. Significant financial entities must conduct Threat-Led Penetration Testing (TLPT) every 3 years. Agentic platform and its integration points should be in scope for TLPT where applicable.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Major ICT incident reporting</div>
+                <div class="cr-check-desc">Major incidents reported to competent authority (BaFin in Germany for insurers). Classification criteria include: number of clients affected, duration, geographic spread, data losses, criticality of services impacted. Separate from NIS-2 reporting — both may apply.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLVENCY II -->
+    <div class="cr-fw-card" id="cr-fw-solvency">
+      <div class="cr-fw-header" onclick="toggleCrFw('solvency')">
+        <div class="cr-fw-icon">📊</div>
+        <div class="cr-fw-info">
+          <div class="cr-fw-name">Solvency II</div>
+          <div class="cr-fw-scope">Directive 2009/138/EC · In force · Applicable to regulated insurance undertakings</div>
+        </div>
+        <div class="cr-fw-status cr-status-active">In force now</div>
+        <div class="cr-fw-chevron">▼</div>
+      </div>
+      <div class="cr-fw-body">
+        <div class="cr-subsection">
+          <div class="cr-subsection-title">Key Obligations for Agentic Claims Platforms</div>
+          <div class="cr-checklist">
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">ORSA — Own Risk and Solvency Assessment</div>
+                <div class="cr-check-desc">The operational risk profile changes materially when claims decisions are automated at scale. ORSA must explicitly model: agentic system failure scenarios, model error concentration risk (single agent class failing across millions of claims), systemic bias scenarios, and vendor dependency risk.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">System of governance (Article 41)</div>
+                <div class="cr-check-desc">Solvency II requires a documented system of governance with clear allocation of responsibilities. The Agent Authority Register and Claims Governance Committee structure directly serve this requirement and should be explicitly referenced in governance documentation submitted to supervisors.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Outsourcing rules (Article 49)</div>
+                <div class="cr-check-desc">If agentic platform vendor supports critical or important functions: written agreement required, including: description of services, data protection obligations, business continuity provisions, ability to terminate and transfer, right to audit. Supervisory authority (BaFin) must be notified of material outsourcing arrangements before implementation.</div>
+              </div>
+            </div>
+            <div class="cr-check-item" onclick="toggleCheck(this)">
+              <div class="cr-check-box">☐</div>
+              <div class="cr-check-content">
+                <div class="cr-check-title">Audit trail for financial decisions</div>
+                <div class="cr-check-desc">Settlement calculations must be auditable to the standard required for external audit. Every input, formula version, and authority approval must be traceable. The audit log specification should be designed to meet Solvency II audit requirements — not just operational convenience.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #0a0e14;
+  --surface: #111620;
+  --surface2: #171e2c;
+  --border: #1e2a3d;
+  --border2: #263347;
+  --text: #c8d4e8;
+  --text-dim: #7a90a8;
+  --text-bright: #e8f0ff;
+  --accent-blue: #3b7dd8;
+  --accent-cyan: #00c4cc;
+  --accent-amber: #f5a623;
+  --accent-red: #e05252;
+  --accent-green: #3dd68c;
+  --accent-purple: #8b5cf6;
+  --accent-orange: #f97316;
+  --layer-1: rgba(59,125,216,0.08);
+  --layer-2: rgba(0,196,204,0.06);
+  --layer-3: rgba(245,166,35,0.06);
+  --layer-4: rgba(139,92,246,0.06);
+}
