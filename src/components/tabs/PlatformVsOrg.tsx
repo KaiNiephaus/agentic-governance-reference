@@ -15,12 +15,8 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
         Platforms like Otera make autonomous claims operations at scale genuinely possible — handling the execution layer that would otherwise take years to build: routing, extracting, scoring, deciding, paying. What the organisation must define alongside it is the governance foundation that makes it safe to operate: authority boundaries, accountability structures, change governance, and operational oversight. Both are required. Neither substitutes for the other.
       </div>
 
-      <div className="callout">
-        "A platform that offers 'built-in governance' addresses some of the mechanics but none of the institutional design. What the Otera platform provides and what Allianz as an organisation must design are two different things. Confusing them is the most common governance failure in agentic deployments."
-      </div>
 
       <div className="section-title" style={{ marginBottom: '1rem', marginTop: '5rem' }}>
-        What the platform gives you — and what it doesn't
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
@@ -70,7 +66,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
       </div>
 
       <div className="section-title" style={{ marginBottom: '1rem' }}>
-        The tensions inbetween that need to be adressed
+        The trade-offs that sit in between
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
