@@ -12,7 +12,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
     <div className="section active" id="section-platformorg">
       <div className="section-title">Platform vs. Organisation</div>
       <div className="section-desc">
-        The most important distinction in agentic governance design — what the platform provides versus what the organisation must independently build.
+        Platforms like Otera make autonomous claims operations at scale genuinely possible — handling the execution layer that would otherwise take years to build: routing, extracting, scoring, deciding, paying. What the organisation must define alongside it is the governance foundation that makes it safe to operate: authority boundaries, accountability structures, change governance, and operational oversight. Both are required. Neither substitutes for the other.
       </div>
 
       <div className="callout">
