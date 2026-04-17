@@ -4,7 +4,20 @@ nav {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   height: 52px;
-  overflow: hidden;
+  overflow: visible;
+}
+nav::after {
+  content: '›';
+  position: absolute;
+  right: 0; top: 0;
+  height: 52px; width: 3.5rem;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 0.875rem;
+  background: linear-gradient(to right, transparent, rgba(10,14,20,0.97));
+  color: var(--accent-cyan);
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 1;
 }
 .nav-inner {
   max-width: 1400px;
@@ -27,9 +40,6 @@ nav {
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  /* fade shadow on right edge to signal overflow */
-  -webkit-mask-image: linear-gradient(to right, black calc(100% - 3rem), transparent 100%);
-  mask-image: linear-gradient(to right, black calc(100% - 3rem), transparent 100%);
 }
 .nav-tabs::-webkit-scrollbar { display: none; }
 .nav-tab {
