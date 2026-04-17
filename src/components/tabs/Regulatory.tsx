@@ -3,7 +3,7 @@ import { regData } from '../../data/regulatory'
 export default function Regulatory() {
   return (
     <div className="section active" id="section-regulatory">
-      <div className="section-title">Regulatory Obligations</div>
+      <div className="section-title">Regulatory Frameworks</div>
       <div className="section-desc">
         Key regulatory frameworks shaping the governance architecture. Each framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting. See the Compliance Ref. tab for specific obligations, deadlines, and checklists.
       </div>

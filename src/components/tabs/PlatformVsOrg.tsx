@@ -16,10 +16,10 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
       </div>
 
       <div className="callout">
-        "A platform that offers 'built-in governance' addresses some of the mechanics but none of the institutional design. What the Otera platformprovides and what Allianz as an organisation must design are two different things. Confusing them is the most common governance failure in agentic deployments."
+        "A platform that offers 'built-in governance' addresses some of the mechanics but none of the institutional design. What the Otera platform provides and what Allianz as an organisation must design are two different things. Confusing them is the most common governance failure in agentic deployments."
       </div>
 
-      <div className="section-title" style={{ marginBottom: '1rem' }}>
+      <div className="section-title" style={{ marginBottom: '1rem', marginTop: '5rem' }}>
         What the platform gives you — and what it doesn't
       </div>
 
@@ -70,7 +70,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
       </div>
 
       <div className="section-title" style={{ marginBottom: '1rem' }}>
-        The tensions that don't resolve cleanly
+        The tensions inbetween that need to be adressed
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>

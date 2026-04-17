@@ -270,7 +270,7 @@
 .agent-detail-item strong { color: var(--text); display: block; font-weight: 500; }
 
 /* ═══ REGULATORY ═══ */
-.reg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.reg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 5rem; }
 .reg-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 8px; overflow: hidden;
@@ -290,6 +290,7 @@
   letter-spacing: 0.08em; white-space: nowrap;
   padding: 0.15rem 0.4rem; border-radius: 2px;
   margin-top: 0.1rem; flex-shrink: 0;
+  width: 7rem; text-align: center;
 }
 .reg-ob-text { font-size: 0.75rem; color: var(--text-dim); line-height: 1.5; }
 .reg-ob-text strong { color: var(--text); font-weight: 500; }
