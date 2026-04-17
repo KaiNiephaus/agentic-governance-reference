@@ -123,9 +123,6 @@ export default function Overview() {
         </div>
       </div>
 
-      <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '0.875rem', fontStyle: 'italic', lineHeight: 1.6 }}>
-        Note: The agent architecture is exemplary, not Allianz's documented internal design. Allianz's own Project Nemo also uses seven specialist agents for claims processing, confirming the pattern is grounded in production reality.
-      </div>
 
       </div>
 

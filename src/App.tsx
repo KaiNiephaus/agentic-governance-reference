@@ -77,6 +77,14 @@ export default function App() {
         </div>
       )}
       </main>
+
+      <footer style={{ borderTop: '1px solid var(--border)', margin: '5rem 2rem 0', padding: '2rem 0 3rem' }}>
+        <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6, maxWidth: '860px' }}>
+          Disclaimer: The agent architecture and governance design developed throughout this reference are not affiliated with or representative of Allianz Partners' or Otera's internal design. They have been independently developed as a working example of what a governance-ready architecture for this type of operation could look like, grounded in publicly available data from Allianz Partners and Otera.
+          <br /><br />
+          © 2026 Kai-Uwe Niephaus | <a href="https://linkedin.com/in/kai-uwe-niephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>LinkedIn</a> | Writing on AI, transformation strategy and governance → <a href="https://substack.com/@kaiuweniephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>Substack</a>
+        </div>
+      </footer>
     </>
   )
 }
