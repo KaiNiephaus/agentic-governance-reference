@@ -42,19 +42,21 @@ export default function App() {
   return (
     <>
       <nav aria-label="Main navigation">
-        <div className="nav-logo">
-          Agentic Governance Reference
-        </div>
-        <div className="nav-tabs">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`nav-tab${activeTab === tab.id ? ' active' : ''}`}
-              onClick={() => navigate(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div className="nav-inner">
+          <div className="nav-logo">
+            Agentic Governance Reference
+          </div>
+          <div className="nav-tabs">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`nav-tab${activeTab === tab.id ? ' active' : ''}`}
+                onClick={() => navigate(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
@@ -78,11 +80,13 @@ export default function App() {
       )}
       </main>
 
-      <footer style={{ borderTop: '1px solid var(--border)', margin: '5rem 2rem 0', padding: '2rem 0 3rem' }}>
+      <footer style={{ borderTop: '1px solid var(--border)', marginTop: '5rem' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem 2rem 3rem' }}>
         <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6, maxWidth: '860px' }}>
           Disclaimer: The agent architecture and governance design developed throughout this reference are not affiliated with or representative of Allianz Partners' or Otera's internal design. They have been independently developed as a working example of what a governance-ready architecture for this type of operation could look like, grounded in publicly available data from Allianz Partners and Otera.
           <br /><br />
           <span style={{ fontStyle: 'normal' }}>© 2026 Kai-Uwe Niephaus | <a href="https://linkedin.com/in/kai-uwe-niephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>LinkedIn</a> | Writing on AI, transformation strategy and governance → <a href="https://substack.com/@kaiuweniephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>Substack</a></span>
+        </div>
         </div>
       </footer>
     </>
