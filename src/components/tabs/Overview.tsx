@@ -10,32 +10,31 @@ export default function Overview() {
           A worked example based on the Allianz Partners / Otera claims automation case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-          Applied agentic governance, particularly in regulated and international contexts, is genuinely complex. The end-to-end governance architecture developed for this reference aims to make it concrete and explorable: authority boundaries, operating model, escalation cadences, and regulatory obligations, all mapped to the Allianz Partners / Otera case. While the agent architecture, definitions, and thresholds are speculatively designed for this reference, the governance relationships they make tangible are the main value.
-        </div>
+        Applied agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make agentic governance concrete and explorable. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent architecture, definitions, and thresholds have been specifically designed for the travel insurance claims scenario, grounded in the Allianz Partners / Otera transformation case, the governance relationships they demonstrate apply broadly to any organisation deploying autonomous agents at scale in a regulated environment.        </div>
       </div>
 
       {/* ── THE CASE ── */}
       <div className="section-title">The Case</div>
       <div className="section-desc">
-        Allianz Partners processes millions of travel insurance and assistance claims across 30 countries. The transformation to autonomous claims processing is documented and real, making it a credible anchor for understanding what agentic governance looks like in a regulated, international production environment.
+        Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Autonomous agents offer a path to consistent, fast, auditable claims handling across all markets, a transformation Allianz Partners and Otera are running in production today.
       </div>
 
       <div className="hero-metrics" style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
         <div className="metric-card">
           <span className="metric-val">29→3.5<span className="metric-unit">Days</span></span>
-          <span className="metric-label">avg resolution (Otera/HFS)<br /><span style={{ fontStyle: 'italic' }}>19→4 days (Allianz)</span></span>
+          <span className="metric-label">Avg resolution time</span>
         </div>
         <div className="metric-card">
-          <span className="metric-val">90%+<span className="metric-unit">STP</span></span>
-          <span className="metric-label">(Otera platform)<br /><span style={{ fontStyle: 'italic' }}>65% (Allianz)</span></span>
+          <span className="metric-val">90%+</span>
+          <span className="metric-label">Straight-through processing rate</span>
         </div>
         <div className="metric-card">
           <span className="metric-val">€300M</span>
-          <span className="metric-label">Targeted annual profit impact (Allianz)</span>
+          <span className="metric-label">Targeted annual profit impact</span>
         </div>
         <div className="metric-card">
           <span className="metric-val">30<span className="metric-unit">Countries</span></span>
-          <span className="metric-label">In scope (Otera/HFS)</span>
+          <span className="metric-label">In scope</span>
         </div>
       </div>
 
@@ -66,8 +65,12 @@ export default function Overview() {
         </div>
       </div>
 
+      <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '0.875rem', fontStyle: 'italic', lineHeight: 1.6 }}>
+        Metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data.
+      </div>
+
       {/* ── THE GOVERNANCE ARCHITECTURE ── */}
-      <div style={{ borderTop: '1px solid var(--border)', marginTop: '2.5rem', paddingTop: '2rem' }}>
+      <div style={{ borderTop: '1px solid var(--border)', marginTop: '5rem', paddingTop: '2rem' }}>
       <div className="section-title">The Governance Architecture</div>
       <div className="section-desc">
         The seven-agent and governance architecture developed in this reference addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
@@ -126,11 +129,10 @@ export default function Overview() {
 
       </div>
 
-      {/* ── HOW TO NAVIGATE ── */}
-      <div className="callout" style={{ marginTop: '2rem' }}>
+      {/* ── HOW TO NAVIGATE (hidden) ── */}
+      {/* <div className="callout" style={{ marginTop: '2rem' }}>
         <strong>How to navigate this reference:</strong> Each tab covers a distinct governance domain. Start with Process Flow to understand what the agent network does, then work through Agent Register (authority boundaries per agent), Governance Layers (the four design problems in detail), Operating Model (who does what and when), and Regulatory (compliance obligations by framework). Every section is interactive — click nodes and cards for detail.<br /><br />
-        Metrics sourced from Otera/HFS research and Allianz's own published data are labelled accordingly throughout.
-      </div>
+      </div> */}
 
     </div>
   )
