@@ -4,13 +4,13 @@ export default function Overview() {
 
       {/* ── HERO ── */}
       <div className="hero">
-        <div className="hero-label">Applied Reference · Insurance · Autonomous Claims Processing</div>
+        <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
-          A worked example based on the Allianz Partners / Otera claims automation case
+          An applied architecture based on the Allianz Partners / Otera claims automation case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-        Applied agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make agentic governance concrete and explorable. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent architecture, definitions, and thresholds have been specifically designed for the travel insurance claims scenario, grounded in the Allianz Partners / Otera transformation case, the governance relationships they demonstrate apply broadly to any organisation deploying autonomous agents at scale in a regulated environment.        </div>
+        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make agentic governance concrete and explorable. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent architecture, definitions, and thresholds have been specifically designed for the travel insurance claims scenario, grounded in the Allianz Partners / Otera transformation case, the governance relationships they demonstrate apply broadly to any organisation deploying autonomous agents at scale in a regulated environment.        </div>
       </div>
 
       {/* ── THE CASE ── */}
