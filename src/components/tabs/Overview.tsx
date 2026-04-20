@@ -10,11 +10,11 @@ export default function Overview() {
           An applied architecture based on the Allianz Partners / Otera claims automation case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make agentic governance concrete and explorable. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent architecture, definitions, and thresholds have been specifically designed for the travel insurance claims scenario, grounded in the Allianz Partners / Otera transformation case, the governance relationships they demonstrate apply broadly to any organisation deploying autonomous agents at scale in a regulated environment.        </div>
+        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make agentic governance concrete and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent architecture, definitions, and thresholds have been specifically designed for the travel insurance claims scenario, grounded in the Allianz Partners / Otera transformation case, the governance relationships they demonstrate apply broadly to any organisation deploying autonomous agents at scale in a regulated environment.        </div>
       </div>
 
       {/* ── THE CASE ── */}
-      <div className="section-title">The Case</div>
+      <div className="section-subtitle">The Case</div>
       <div className="section-desc">
         Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Autonomous agents offer a path to consistent, fast, auditable claims handling across all markets, a transformation Allianz Partners and Otera are running in production today.
       </div>
@@ -71,7 +71,7 @@ export default function Overview() {
 
       {/* ── THE GOVERNANCE ARCHITECTURE ── */}
       <div style={{ borderTop: '1px solid var(--border)', marginTop: '5rem', paddingTop: '2rem' }}>
-      <div className="section-title">The Governance Architecture</div>
+      <div className="section-subtitle">The Governance Architecture</div>
       <div className="section-desc">
         The seven-agent and governance architecture developed in this reference addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
       </div>

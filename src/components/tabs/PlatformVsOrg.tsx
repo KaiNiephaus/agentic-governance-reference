@@ -16,7 +16,8 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
       </div>
 
 
-      <div className="section-title" style={{ marginBottom: '1rem', marginTop: '5rem' }}>
+      <div className="section-subtitle" style={{ marginBottom: '1rem', marginTop: '5rem' }}>
+        What the platform gives you — and what it doesn't
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
@@ -65,7 +66,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
         </div>
       </div>
 
-      <div className="section-title" style={{ marginBottom: '1rem' }}>
+      <div className="section-subtitle" style={{ marginBottom: '1rem' }}>
         The trade-offs that sit in between
       </div>
 

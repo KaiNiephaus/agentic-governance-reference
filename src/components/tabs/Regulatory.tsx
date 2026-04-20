@@ -1,6 +1,10 @@
 import { regData } from '../../data/regulatory'
 
-export default function Regulatory() {
+interface RegulatoryProps {
+  onNavigate: (tab: string) => void
+}
+
+export default function Regulatory({ onNavigate }: RegulatoryProps) {
   return (
     <div className="section active" id="section-regulatory">
       <div className="section-title">Regulatory Frameworks</div>
@@ -9,7 +13,13 @@ export default function Regulatory() {
       </div>
 
       <div className="callout">
-        <strong>Architectural lens:</strong> This tab covers how regulations shape governance design. For specific article-level obligations, implementation deadlines, and readiness checklists, use the <strong>Compliance Ref.</strong> tab.
+        <strong>Architectural lens:</strong> This tab covers how regulations shape governance design. For specific article-level obligations, implementation deadlines, and readiness checklists, use the{' '}
+        <span
+          onClick={() => onNavigate('compliance')}
+          style={{ color: 'var(--accent-cyan)', cursor: 'pointer' }}
+        >
+          Compliance Ref. →
+        </span>
       </div>
 
       <div className="reg-grid" id="reg-grid">

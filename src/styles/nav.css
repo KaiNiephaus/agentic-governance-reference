@@ -6,18 +6,16 @@ nav {
   height: 52px;
   overflow: visible;
 }
-nav::after {
-  content: '›';
+.nav-scroll-indicator {
   position: absolute;
-  right: 0; top: 0;
-  height: 52px; width: 3.5rem;
+  right: 2rem; top: 0;
+  height: 52px; width: 4rem;
   display: flex; align-items: center; justify-content: flex-end;
-  padding-right: 0.875rem;
   background: linear-gradient(to right, transparent, rgba(10,14,20,0.97));
   color: var(--accent-cyan);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   pointer-events: none;
-  z-index: 1;
+  flex-shrink: 0;
 }
 .nav-inner {
   max-width: 1400px;
@@ -25,6 +23,7 @@ nav::after {
   padding: 0 2rem;
   display: flex; align-items: center; gap: 0;
   height: 100%;
+  position: relative;
 }
 .nav-logo {
   font-family: 'Fraunces', serif;

@@ -45,7 +45,7 @@ export default function OperatingModel() {
         ))}
       </div>
 
-      <div className="section-title" style={{ marginBottom: '0.4rem' }}>Escalation Matrix</div>
+      <div className="section-subtitle" style={{ marginBottom: '0.4rem' }}>Escalation Matrix</div>
       <div className="section-desc">
         Every key escalation scenario mapped to trigger type, routing destination, SLA, and authority level.
       </div>
