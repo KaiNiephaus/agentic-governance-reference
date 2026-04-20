@@ -73,8 +73,9 @@ export default function ProcessFlow() {
   return (
     <div className="section active" id="section-flow">
       <div className="section-title">End-to-End Claims Process Flow</div>
+      <div className="section-tagline">How decisions move through the claim lifecycle</div>
       <div className="section-desc">
-        Click any node to see agent authority, inputs/outputs, escalation triggers, and governance controls for that step. <strong>Illustrative architecture</strong> — designed as a governance model grounded in the Allianz Partners transformation context. Financial authority thresholds are representative, not Allianz's actual internal values. Allianz's own Project Nemo (launched 2025) uses a comparable seven-agent structure for claims processing.
+        Select a node to inspect authority, inputs/outputs, controls, and escalation logic. <br /><strong>Examplary architecture</strong> — designed as a governance model grounded in the Allianz Partners transformation context. Financial authority thresholds are representative, not Allianz's actual internal values.
       </div>
 
       <div className="flow-container">

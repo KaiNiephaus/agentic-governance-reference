@@ -11,12 +11,11 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
   return (
     <div className="section active" id="section-platformorg">
       <div className="section-title">Platform vs. Organisation</div>
+      <div className="section-tagline">What the platform provides and what the organisation must independently design</div>
       <div className="section-desc">
         Platforms like Otera make autonomous claims operations at scale genuinely possible — handling the execution layer that would otherwise take years to build: routing, extracting, scoring, deciding, paying. What the organisation must define alongside it is the governance foundation that makes it safe to operate: authority boundaries, accountability structures, change governance, and operational oversight. Both are required. Neither substitutes for the other.
       </div>
 
-
-      
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>

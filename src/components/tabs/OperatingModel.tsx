@@ -4,6 +4,7 @@ export default function OperatingModel() {
   return (
     <div className="section active" id="section-opmodel">
       <div className="section-title">Operating Model</div>
+      <div className="section-tagline">Who reviews, escalades, decides, changes — and owns the system organisationally</div>
       <div className="section-desc">
         Three-tier governance structure covering strategic, operational, and real-time control. Each tier has defined roles, cadence, and activities. The escalation matrix below maps every key scenario to the right human decision-maker.
       </div>

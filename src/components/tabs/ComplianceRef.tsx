@@ -503,6 +503,7 @@ export default function ComplianceRef() {
   return (
     <div className="section active" id="section-compliance">
       <div className="section-title">Compliance Reference & Obligations Checklist</div>
+      <div className="section-tagline">Specific obligations, deadlines, and readiness checklists by framework</div>
       <div className="section-desc">
         Specific, actionable obligations by framework, including deadlines, thresholds, and procedural requirements. Distinct from the Regulatory tab, which maps frameworks to governance design decisions. This tab is for the compliance officer and legal team.
       </div>

@@ -122,9 +122,10 @@ export default function GovFlow({ initialBlockKey }: GovFlowProps) {
 
   return (
     <div className="section active" id="section-govflow">
-      <div className="section-title">Governance Flow — How the Tiers Operate Over Time</div>
+      <div className="section-title">Governance Flow</div>
+      <div className="section-tagline">How governance tiers operate over time</div>
       <div className="section-desc">
-        The rhythm of governance: when each tier acts, what it produces, and how events propagate across tiers. Select an event flow below to trace how a trigger moves from detection to resolution.
+        The rhythm of governance: when each tier acts, what it produces, and how events propagate across tiers. 1. Select a governance event. <br />2. Inspect its accountable tier. <br />3. Trace propagation across time from detection to resolution.
       </div>
 
       {/* Time axis + tier lanes */}

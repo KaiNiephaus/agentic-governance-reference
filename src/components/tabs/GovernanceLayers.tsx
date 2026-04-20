@@ -19,6 +19,7 @@ export default function GovernanceLayers({ initialOpenIndex }: GovernanceLayersP
   return (
     <div className="section active" id="section-governance">
       <div className="section-title">Governance Layers</div>
+      <div className="section-tagline">The four structural design problems governance must solve in agentic deployment</div>
       <div className="section-desc">
         Four independent governance design problems. Each requires explicit organisational decisions — before deployment and throughout the operating life of the network. Click any layer to see scope, practical mechanics, and failure modes.
       </div>
