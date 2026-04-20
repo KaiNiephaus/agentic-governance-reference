@@ -16,9 +16,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
       </div>
 
 
-      <div className="section-subtitle" style={{ marginBottom: '1rem', marginTop: '5rem' }}>
-        What the platform gives you — and what it doesn't
-      </div>
+      
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>
