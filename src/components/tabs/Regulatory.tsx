@@ -10,7 +10,7 @@ export default function Regulatory({ onNavigate }: RegulatoryProps) {
       <div className="section-title">Regulatory Frameworks</div>
       <div className="section-tagline">How EU AI Act, NIS-2, GDPR, and Solvency II shape governance architecture</div>
       <div className="section-desc">
-        Key regulatory frameworks shaping the governance architecture. Each framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting. See the Compliance Ref. tab for specific obligations, deadlines, and checklists.
+        Each key framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting. See the Compliance Ref. tab for specific obligations, deadlines, and checklists.
       </div>
 
       <div className="callout">

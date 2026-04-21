@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+
 interface CheckItem {
   title: string
   desc: string
@@ -502,10 +503,15 @@ function FrameworkCardBlock({ fw }: { fw: FrameworkCard }) {
 export default function ComplianceRef() {
   return (
     <div className="section active" id="section-compliance">
-      <div className="section-title">Compliance Reference & Obligations Checklist</div>
-      <div className="section-tagline">Specific obligations, deadlines, and readiness checklists by framework</div>
+      <div className="section-title">Compliance Reference & Checklist</div>
+      <div className="section-tagline">Which specific obligations, deadlines, and procedural requirements apply – by framework</div>
       <div className="section-desc">
-        Specific, actionable obligations by framework, including deadlines, thresholds, and procedural requirements. Distinct from the Regulatory tab, which maps frameworks to governance design decisions. This tab is for the compliance officer and legal team.
+        Distinct from the Regulatory tab, which maps frameworks to governance design decisions. This tab is for the compliance officer and legal team.
+      </div>
+
+      <div className="callout">
+        Regulations and obligations below are summarised for architectural decision-making from a governance design lens. They are not legal advice.<br /> Last updated: April 2026.<br />For latest regulatory developments please refer to{' '}
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EUR-Lex</a>.
       </div>
 
       <div className="cr-section-head">Step 1 — Establish what applies to your organisation</div>
