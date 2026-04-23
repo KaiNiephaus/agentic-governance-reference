@@ -10,7 +10,7 @@ export default function Overview() {
           An applied architecture based on the Allianz Partners / Otera claims automation case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make agentic governance concrete and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent architecture, definitions, and thresholds have been specifically designed for the travel insurance claims scenario, grounded in the Allianz Partners / Otera transformation case, the governance relationships they demonstrate apply broadly to any organisation deploying autonomous agents at scale in a regulated environment.        </div>
+        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make it tangible and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent pipeline, governance architecture, definitions, and thresholds have been specifically designed for the travel insurance claims resolution, using Allianz Partners / Otera’s transformation case as the foundation and applied scenario, the governance relationships they demonstrate apply broadly to organisations deploying autonomous agents at scale in a regulated environment.        </div>
 
         <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '700px', lineHeight: 1.6 }}>
           The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
@@ -77,7 +77,7 @@ export default function Overview() {
       <div style={{ borderTop: '1px solid var(--border)', marginTop: '5rem', paddingTop: '2rem' }}>
       <div className="section-subtitle">The Governance Architecture</div>
       <div className="section-desc">
-        The seven-agent and governance architecture developed in this reference addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
+        The seven-agent pipeline and governance architecture developed for this reference addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
