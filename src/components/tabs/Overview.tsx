@@ -10,7 +10,8 @@ export default function Overview() {
           An applied architecture based on the Allianz Partners / Otera autonomous claims resolution case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make it tangible and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent pipeline, governance architecture, definitions, and thresholds have been specifically designed for the travel insurance claims resolution, using Allianz Partners / Otera’s transformation case as the foundation and applied scenario, the governance relationships they demonstrate apply broadly to organisations deploying autonomous agents at scale in a regulated environment.        </div>
+        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make it tangible and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.
+        </div>
 
         <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '700px', lineHeight: 1.6 }}>
           The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
@@ -101,16 +102,21 @@ export default function Overview() {
         </div>
       </div>
 
+      {/* Generalisation bridge */}
+      <div className="callout" style={{ marginTop: '1.5rem' }}>
+        While the agent pipeline, governance architecture, definitions, and thresholds have been specifically designed for this scenario, the governance relationships they demonstrate apply broadly to organisations deploying autonomous agents at scale in a regulated environment.
+      </div>
+
       {/* Footnote */}
-      <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '0.875rem', fontStyle: 'italic', lineHeight: 1.6 }}>
+      <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '3rem', fontStyle: 'italic', lineHeight: 1.6 }}>
         Metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data. The target architecture is constructed for this scenario, informed by but distinct from Allianz's published Project Nemo.
       </div>
 
       {/* ── THE GOVERNANCE ARCHITECTURE ── */}
-      <div style={{ borderTop: '1px solid var(--border)', marginTop: '5rem', paddingTop: '2rem' }}>
+      <div style={{ borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '2rem' }}>
       <div className="section-subtitle">The Four Organisational Governance Challenges at the Center</div>
       <div className="section-desc">
-        The seven-agent pipeline and governance architecture developed for this reference addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
+        The developed architecture addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
