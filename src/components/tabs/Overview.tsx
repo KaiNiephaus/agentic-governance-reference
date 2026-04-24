@@ -7,7 +7,7 @@ export default function Overview() {
         <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
-          An applied architecture based on the Allianz Partners / Otera claims automation case
+          An applied architecture based on the Allianz Partners / Otera autonomous claims resolution case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
         Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make it tangible and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.<br />While the agent pipeline, governance architecture, definitions, and thresholds have been specifically designed for the travel insurance claims resolution, using Allianz Partners / Otera’s transformation case as the foundation and applied scenario, the governance relationships they demonstrate apply broadly to organisations deploying autonomous agents at scale in a regulated environment.        </div>
@@ -18,64 +18,97 @@ export default function Overview() {
       </div>
 
       {/* ── THE CASE ── */}
-      <div className="section-subtitle">The Case</div>
-      <div className="section-desc">
-        Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Autonomous agents offer a path to consistent, fast, auditable claims handling across all markets, a transformation Allianz Partners and Otera are running in production today.
+      {/* Two-column layout: left = transformation case (real), right = reference design (authored) */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'stretch' }}>
+
+        {/* ── Left column: The Transformation Case ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div className="section-subtitle">The Transformation Case</div>
+
+          {/* Single card wrapping all case-sourced content */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
+
+            {/* Intro */}
+            <div className="section-desc" style={{ marginBottom: 0 }}>
+              Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Autonomous agents offer a path to consistent, fast, auditable claims handling across all markets, a transformation Allianz Partners and Otera are running in production today.
+            </div>
+
+            {/* The Problem */}
+            <div>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-blue)', marginBottom: '0.5rem' }}>
+                The Problem
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+                Claims routed manually across 15+ systems. Adjusters in each country applying interpretation variance to identical policy rules. 29-day average resolution. Volume scaling required proportional headcount. No unified audit trail across the claims lifecycle.
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div style={{ borderTop: '1px solid var(--border)' }} />
+
+            {/* The Impact + metrics */}
+            <div>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-amber)', marginBottom: '0.75rem' }}>
+                The Impact
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 1.5rem' }}>
+                <div className="metric-card">
+                  <span className="metric-val">29→3.5<span className="metric-unit">Days</span></span>
+                  <span className="metric-label">Avg resolution time</span>
+                </div>
+                <div className="metric-card">
+                  <span className="metric-val">90%+</span>
+                  <span className="metric-label">Straight-through processing rate</span>
+                </div>
+                <div className="metric-card">
+                  <span className="metric-val">€300M</span>
+                  <span className="metric-label">Targeted annual profit impact</span>
+                </div>
+                <div className="metric-card">
+                  <span className="metric-val">30<span className="metric-unit">Countries</span></span>
+                  <span className="metric-label">In scope</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ── Right column: The Reference Architecture ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div className="section-subtitle">The Governance Architecture developed upon the case</div>
+
+          {/* The Interpreted Target Architecture */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', flex: 1 }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
+              The Target Architecture
+            </div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+              For this reference, specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
+            </div>
+          </div>
+
+          {/* The Governance Challenge */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', flex: 1 }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
+              The Accountability Challenge
+            </div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+              When agents make autonomous financial decisions at scale, trust requires architecture, not just policy. Authority boundaries, escalation triggers, change control, accountability assignment, and regulatory audit trails must all be designed independently of the platform that runs the agents. Under the EU AI Act, this is a legal requirement, not just good practice.
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div className="hero-metrics" style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
-        <div className="metric-card">
-          <span className="metric-val">29→3.5<span className="metric-unit">Days</span></span>
-          <span className="metric-label">Avg resolution time</span>
-        </div>
-        <div className="metric-card">
-          <span className="metric-val">90%+</span>
-          <span className="metric-label">Straight-through processing rate</span>
-        </div>
-        <div className="metric-card">
-          <span className="metric-val">€300M</span>
-          <span className="metric-label">Targeted annual profit impact</span>
-        </div>
-        <div className="metric-card">
-          <span className="metric-val">30<span className="metric-unit">Countries</span></span>
-          <span className="metric-label">In scope</span>
-        </div>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-blue)', marginBottom: '0.5rem' }}>
-            The Problem
-          </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-            Claims routed manually across 15+ systems. Adjusters in each country applying interpretation variance to identical policy rules. 29-day average resolution. Volume scaling required proportional headcount. No unified audit trail across the claims lifecycle.
-          </div>
-        </div>
-        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
-            The Target Architecture
-          </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-            Specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
-          </div>
-        </div>
-        <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-amber)', marginBottom: '0.5rem' }}>
-            The Governance Challenge
-          </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-            When agents make autonomous financial decisions at scale, trust requires architecture, not just policy. Authority boundaries, escalation triggers, change control, accountability assignment, and regulatory audit trails must all be designed independently of the platform that runs the agents. Under the EU AI Act, this is a legal requirement, not just good practice.
-          </div>
-        </div>
-      </div>
-
+      {/* Footnote */}
       <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '0.875rem', fontStyle: 'italic', lineHeight: 1.6 }}>
-        Metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data.
+        Metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data. The target architecture is constructed for this scenario, informed by but distinct from Allianz's published Project Nemo.
       </div>
 
       {/* ── THE GOVERNANCE ARCHITECTURE ── */}
       <div style={{ borderTop: '1px solid var(--border)', marginTop: '5rem', paddingTop: '2rem' }}>
-      <div className="section-subtitle">The Governance Architecture</div>
+      <div className="section-subtitle">The Four Organisational Governance Challenges at the Center</div>
       <div className="section-desc">
         The seven-agent pipeline and governance architecture developed for this reference addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
       </div>
