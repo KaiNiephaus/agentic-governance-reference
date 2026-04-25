@@ -37,6 +37,7 @@ export default function App() {
   function navigate(tab: string, options: NavOptions = {}) {
     setNavOptions(options)
     setActiveTab(tab as TabId)
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   return (

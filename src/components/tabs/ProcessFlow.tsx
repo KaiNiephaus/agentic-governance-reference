@@ -75,7 +75,7 @@ export default function ProcessFlow() {
       <div className="section-title">End-to-End Claims Process Flow</div>
       <div className="section-tagline">How decisions move through the claim lifecycle</div>
       <div className="section-desc">
-        Select a node to inspect authority, inputs/outputs, controls, and escalation logic. <br /><strong>Examplary architecture</strong> — designed as a governance model grounded in the Allianz Partners transformation context. Financial authority thresholds are representative, not Allianz's actual internal values.
+        An exemplary flow and architecture covering the claims processing from first trigger to resolution — tailored to the travel insurance scenario. Select a node to inspect authority, inputs/outputs, controls, and escalation logic. Stated thresholds are representative values. In practice, each needs to be explicitly defined and signed off at board level.
       </div>
 
       <div className="flow-container">
