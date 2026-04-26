@@ -3,7 +3,10 @@ export default function Overview() {
     <div className="section active" id="section-overview">
 
       {/* ── HERO ── */}
-      <div className="hero">
+      <div className="hero" style={{ position: 'relative' }}>
+        <div style={{ position: 'absolute', top: 0, right: 0, fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
+          Version 3.2 | April 2026
+        </div>
         <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>

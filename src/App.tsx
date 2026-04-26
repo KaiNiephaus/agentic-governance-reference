@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import MobileGate from './components/MobileGate'
 import Overview from './components/tabs/Overview'
 import Regulatory from './components/tabs/Regulatory'
 import AgentRegister from './components/tabs/AgentRegister'
@@ -42,6 +43,7 @@ export default function App() {
 
   return (
     <>
+      <MobileGate />
       <nav aria-label="Main navigation">
         <div className="nav-inner">
           <div className="nav-logo">
