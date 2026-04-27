@@ -172,10 +172,7 @@ export default function Overview() {
 
       </div>
 
-      {/* ── HOW TO NAVIGATE (hidden) ── */}
-      {/* <div className="callout" style={{ marginTop: '2rem' }}>
-        <strong>How to navigate this reference:</strong> Each tab covers a distinct governance domain. Start with Process Flow to understand what the agent network does, then work through Agent Register (authority boundaries per agent), Governance Layers (the four design problems in detail), Operating Model (who does what and when), and Regulatory (compliance obligations by framework). Every section is interactive — click nodes and cards for detail.<br /><br />
-      </div> */}
+      
 
     </div>
   )

@@ -86,10 +86,10 @@ export default function App() {
 
       <footer style={{ borderTop: '1px solid var(--border)', marginTop: '5rem' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem 2rem 3rem' }}>
-        <div style={{ fontSize: '0.9rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6 }}>
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6 }}>
           Disclaimer: The agent architecture and governance design developed throughout this reference are not affiliated with or representative of Allianz Partners' or Otera's internal design. They have been independently developed as an interpretive working example of what a governance-ready architecture for this type of operation could look like, grounded in publicly available data from Allianz Partners, Otera and official regulatory institutions. The reference does not claim to be complete, and gaps or omissions may remain. Kai is human and may make mistakes.
           <br /><br />
-          <span style={{ fontStyle: 'normal' }}>© 2026 Kai-Uwe Niephaus | <a href="https://linkedin.com/in/kai-uwe-niephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>LinkedIn</a> | <a href="https://kainiephaus.com/" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>Work</a> | Occasional writings on AI, transformation strategy, organizational design, and governance → <a href="https://substack.com/@kaiuweniephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>Substack</a></span>
+          <span style={{ fontStyle: 'normal', fontSize: '0.875rem' }}>© 2026 Kai-Uwe Niephaus | <a href="https://linkedin.com/in/kai-uwe-niephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>LinkedIn</a> | <a href="https://kainiephaus.com/" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>Work</a> | Occasional writings on AI transformation strategy, governance, and organizational design → <a href="https://substack.com/@kaiuweniephaus" style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}>Substack</a></span>
         </div>
         </div>
       </footer>
