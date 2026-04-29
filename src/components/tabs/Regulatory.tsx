@@ -10,11 +10,11 @@ export default function Regulatory({ onNavigate }: RegulatoryProps) {
       <div className="section-title">Regulatory Frameworks</div>
       <div className="section-tagline">How EU AI Act, NIS-2, GDPR, and Solvency II shape governance architecture</div>
       <div className="section-desc">
-        Each key framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting. See the Compliance Ref. tab for specific obligations, deadlines, and checklists.
+        Each key framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting.
       </div>
 
       <div className="callout">
-        <strong>Architectural lens:</strong> This tab covers how regulations shape governance design. For specific article-level obligations, implementation deadlines, and readiness checklists, use the{' '}
+        <strong>Architectural lens:</strong> This tab covers how regulations shape governance design within EU context. For specific article-level obligations, implementation deadlines, and readiness checklists, use the{' '}
         <span
           onClick={() => onNavigate('compliance')}
           style={{ color: 'var(--accent-cyan)', cursor: 'pointer' }}

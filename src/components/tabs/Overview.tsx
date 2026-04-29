@@ -5,24 +5,24 @@ export default function Overview() {
       {/* ── HERO ── */}
       <div className="hero" style={{ position: 'relative' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
-          Version 3.2 | April 2026
+          Version 2.3 | April 2026
         </div>
         <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
-          An applied architecture based on the Allianz Partners / Otera autonomous travel-claims resolution case
+          An applied architecture based on the Allianz Partners / Otera autonomous travel-claims resolution
         </div>
-        <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-        Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it tangible by providing one applied scenario, on top of the Allianz/Otera case that serves as the foundation. <br />
+        <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '75%' }}>
+          Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation. <br />
         <br />
-        While the original case reflects an ambitious international, multi-country deployment, the scope of the designed architecture in this reference is deliberately narrower: to make it tractable, and to expose governance structures that remain applicable across different operational contexts.
-        <br />It defines a seven-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
+          While the original case reflects an ambitious international, multi-country deployment, the scope of the architecture designed for this reference is deliberately narrower: to make it tractable and to expose governance structures that remain relevant across different operational contexts.
+        <br />Within that scope it defines a seven-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
         <br />
          <br />
-        Within this applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is how organisations can deploy and govern autonomous agents at scale. The focus is therefore on the governance and process level, excluding product- and operation-specific aspects of travel insurance such as coverage rules, emergency response, repatriation, and destination risk.
+        For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is how organisations can deploy and govern autonomous agents at scale. The focus is therefore on the governance and process level, excluding product- and operation-specific aspects of travel insurance such as coverage rules, emergency response, and destination risk.
         </div>
 
-        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '700px', lineHeight: 1.6 }}>
+        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '75%', lineHeight: 1.6 }}>
           The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function Overview() {
 
       {/* Footnote */}
       <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '3rem', fontStyle: 'italic', lineHeight: 1.6 }}>
-        Metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data. The target architecture is constructed for this scenario, informed by but distinct from Allianz's published Project Nemo.
+        Information and metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data. The target architecture is constructed for this scenario, informed by but distinct from Allianz's published Project Nemo.
       </div>
 
       {/* ── THE GOVERNANCE ARCHITECTURE ── */}

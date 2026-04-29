@@ -506,11 +506,11 @@ export default function ComplianceRef() {
       <div className="section-title">Compliance Reference & Checklist</div>
       <div className="section-tagline">Which specific obligations, deadlines, and procedural requirements apply – by framework</div>
       <div className="section-desc">
-        Distinct from the Regulatory tab, which maps frameworks to governance design decisions. This tab is for the compliance officer and legal team.
+        Distinct from the Regulatory tab, which maps frameworks to governance design decisions. Use this reference to inform design decisions that need to be discussed with and signed off by the compliance officer and legal team.
       </div>
 
       <div className="callout">
-        Regulations and obligations below are summarised for architectural decision-making from a governance design lens. They are not legal advice.<br /> Last updated: April 2026.<br />For latest regulatory developments please refer to{' '}
+        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: April 2026.<br />For latest regulatory developments please refer to{' '}
         <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EUR-Lex</a>{' '}
         and{' '}
         <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EU AI Act Explorer</a>.
