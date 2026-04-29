@@ -10,10 +10,16 @@ export default function Overview() {
         <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
-          An applied architecture based on the Allianz Partners / Otera autonomous claims resolution case
+          An applied architecture based on the Allianz Partners / Otera autonomous travel-claims resolution case
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '700px' }}>
-        Agentic governance, particularly in regulated and international contexts, is genuinely complex — and most frameworks stay abstract. This interactive reference aims to make it tangible and explorable by providing one applied scenario based on a real world usecase. It defines an end-to-end organisational governance infrastructure for a seven-agent autonomous travel insurance claims pipeline — covering authority boundaries, operating model, escalation cadences, and regulatory obligations.
+        Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it tangible by providing one applied scenario, on top of the Allianz/Otera case that serves as the foundation. <br />
+        <br />
+        While the original case reflects an ambitious international, multi-country deployment, the scope of the designed architecture in this reference is deliberately narrower: to make it tractable, and to expose governance structures that remain applicable across different operational contexts.
+        <br />It defines a seven-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
+        <br />
+         <br />
+        Within this applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is how organisations can deploy and govern autonomous agents at scale. The focus is therefore on the governance and process level, excluding product- and operation-specific aspects of travel insurance such as coverage rules, emergency response, repatriation, and destination risk.
         </div>
 
         <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '700px', lineHeight: 1.6 }}>
@@ -69,8 +75,8 @@ export default function Overview() {
                   <span className="metric-label">Targeted annual profit impact</span>
                 </div>
                 <div className="metric-card">
-                  <span className="metric-val">30<span className="metric-unit">Countries</span></span>
-                  <span className="metric-label">In scope</span>
+                  <span className="metric-val">30</span>
+                  <span className="metric-label">Countries</span>
                 </div>
               </div>
             </div>
@@ -88,7 +94,7 @@ export default function Overview() {
               The Target Architecture
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-              For this reference, specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
+              For this reference — that covers the scenario of end-to-end travel claims resolution for a single regulated entity — specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
             </div>
           </div>
 
@@ -98,7 +104,7 @@ export default function Overview() {
               The Accountability Challenge
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-              When agents make autonomous financial decisions at scale, trust requires architecture, not just policy. Authority boundaries, escalation triggers, change control, accountability assignment, and regulatory audit trails must all be designed independently of the platform that runs the agents. Under the EU AI Act, this is a legal requirement, not just good practice.
+              When agents make autonomous financial decisions at scale, trust requires architecture, not just policy. Authority boundaries, escalation triggers, change control, accountability assignment, and regulatory audit trails must all be designed independently of the platform that runs the agents. Under the EU AI Act, this is a legal requirement, not just good practice. The challenge compounds when operations span jurisdictions and require federated, regional governance structures — excluded here to keep the reference tractable.
             </div>
           </div>
 
