@@ -7,8 +7,6 @@ Within that scope it defines a seven-agent autonomous claims pipeline and the or
 
 **[→ Live reference tool](https://agentic-governance-reference.vercel.app/)**
 
-Version 2.3 | May 2026
-
 ---
 The reference is structured across eight tabs:
 
@@ -45,4 +43,4 @@ The reference is structured across eight tabs:
 
 
 ---
-V1.1 // Built with Vite + React + TypeScript.
+Version 2.3 | May 2026 // Built with Vite + React + TypeScript.
