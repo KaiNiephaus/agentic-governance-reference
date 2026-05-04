@@ -510,7 +510,7 @@ export default function ComplianceRef() {
       </div>
 
       <div className="callout">
-        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: April 2026.<br />For latest regulatory developments please refer to{' '}
+        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: May 2026.<br />For latest regulatory developments please refer to{' '}
         <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EUR-Lex</a>{' '}
         and{' '}
         <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EU AI Act Explorer</a>.
