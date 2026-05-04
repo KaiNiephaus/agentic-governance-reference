@@ -1,22 +1,23 @@
 # Agentic Governance – Applied Reference
 
-When insurance companies automate claims processing with AI agents, the technology is only part of the problem. It can route, extract, assess, and pay — but defining what each agent is permitted to decide, who is accountable when something goes wrong, how the system can safely change over time, and what a regulator or customer will accept as a sufficient explanation: that requires organisational design no platform provides out of the box.
+Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation.
 
-This reference uses seven autonomous agents processing travel insurance claims as a concrete use case to map the required organisational governance infrastructure. A claim arrives — medical emergency, cancellation, lost baggage — and moves through a pipeline handling intake, document extraction, policy validation, fraud detection, settlement calculation, and payment. Millions of these claims, across 30 countries, under EU regulatory frameworks.
+While the original case reflects an ambitious international, multi-country deployment, the scope of the architecture designed for this reference is deliberately narrower: to make it tractable and to expose governance structures that remain relevant across different operational contexts.
+Within that scope it defines a seven-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
 
-While the business context is grounded in the Allianz Partners / Otera transformation case, the governance architecture — authority boundaries, operating model, escalation cadences, regulatory obligations — has been designed for the travel insurance claims scenario. The governance relationships it demonstrates apply to any organisation deploying autonomous agents at scale in a regulated environment.
+**[→ Live reference tool](https://agentic-governance-reference.vercel.app/)**
 
 ---
-Structured across these 8 related sections within tabs, it is intended as a concrete, explorable model rather than an abstract framework.
+The reference is structured across eight tabs:
 
-1. process flow
-2. agent register
-3. governance layers
-4. operating model
-5. governance flow
-6. platform vs. org design
-7. regulatory obligations
-8. and compliance reference
+- **Overview** — case context, scope, and the four governance design problems
+- **Process Flow** — the seven-agent claims pipeline from intake to payment
+- **Agent Register** — authority boundaries, decision scope, and escalation triggers per agent
+- **Governance Layers** — authority, accountability, change, and data quality as four distinct design problems
+- **Operating Model** — three-tier governance structure with cadences and roles
+- **Governance Flow** — how the operating model responds to specific event types
+- **Platform vs. Org** — what the platform provides and what must be designed organisationally
+- **Regulatory & Compliance** — EU AI Act, NIS-2, GDPR, DORA, and Solvency II mapped to the architecture
 
 ---
 
