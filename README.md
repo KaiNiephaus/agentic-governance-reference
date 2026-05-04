@@ -1,26 +1,9 @@
 # Agentic Governance – Applied Reference
 
-When organisations automate processes with AI agents, the technology is only part 
-of the problem. A platform can route, extract, assess, and pay — but defining what 
-each agent is permitted to decide, who is accountable when something goes wrong, 
-how the system can safely change over time, and what a regulator or customer will 
-accept as a sufficient explanation: that requires organisational design no platform 
-provides out of the box.
+Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation.
 
-This reference makes that concrete through one applied scenario. The operational 
-context is travel insurance claims resolution — a single regulated entity operating 
-within an EU context, with seven autonomous agents handling intake through payment. 
-The main subject, however, is how organisations can deploy and govern autonomous 
-agents at scale: the authority boundaries, operating model, escalation cadences, 
-and regulatory obligations that make an agentic system operational, accountable, 
-and auditable in practice.
-
-The business context is grounded in the Allianz Partners / Otera transformation 
-case. The governance architecture developed on top of it is a constructed 
-interpretation designed for this scenario — informed by but distinct from 
-Allianz's published Project Nemo. The governance relationships it demonstrates 
-apply to any organisation deploying autonomous agents at scale in a regulated 
-environment.
+While the original case reflects an ambitious international, multi-country deployment, the scope of the architecture designed for this reference is deliberately narrower: to make it tractable and to expose governance structures that remain relevant across different operational contexts.
+Within that scope it defines a seven-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
 
 **[→ Live reference tool](https://agentic-governance-reference.vercel.app/)**
 
