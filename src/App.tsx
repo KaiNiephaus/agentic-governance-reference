@@ -29,7 +29,7 @@ const tabs: { id: TabId; label: string }[] = [
   { id: 'compliance',  label: 'Compliance Ref.' },
 ]
 
-const BUILT: TabId[] = ['overview', 'flow', 'agents', 'governance', 'opmodel', 'platformorg', 'regulatory', 'govflow', 'compliance']
+const BUILT: TabId[] = ['overview', 'flow', 'agents', 'platformorg', 'governance', 'opmodel', 'govflow', 'regulatory', 'compliance']
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('overview')
