@@ -7,6 +7,8 @@ Within that scope it defines a seven-agent autonomous claims pipeline and the or
 
 **[→ Live reference tool](https://agentic-governance-reference.vercel.app/)**
 
+Version 2.3 | May 2026
+
 ---
 The reference is structured across eight tabs:
 
@@ -21,12 +23,18 @@ The reference is structured across eight tabs:
 
 ---
 
-<img width="1659" height="1152" alt="01 Overview" src="https://github.com/user-attachments/assets/84f481cd-69ec-439e-886a-88c3a9b3869f" />
+<img width="1302" height="1000" alt="Bildschirmfoto 2026-05-04 um 10 58 06" src="https://github.com/user-attachments/assets/3fc88ffe-7a4d-4728-9bb4-1acf87d2c932" />
+<br>
 <img width="1658" height="1160" alt="02 Process Flow" src="https://github.com/user-attachments/assets/c5a50ca3-321f-4d35-afc7-1de874b7ad88" />
+<br>
 <img width="1664" height="1155" alt="03 Agent Register" src="https://github.com/user-attachments/assets/ec83ad15-ce87-4198-87fc-69e7c7d0175b" />
+<br>
 <img width="1670" height="1160" alt="04 Governance Layers" src="https://github.com/user-attachments/assets/26668c60-aa4d-45d5-9a3b-2d80d321abf1" />
+<br>
 <img width="1659" height="1152" alt="05 Operating Model" src="https://github.com/user-attachments/assets/ec16d7dc-e689-45cc-8cee-2916a177ea58" />
+<br>
 <img width="1274" height="1117" alt="06 Governance Flow" src="https://github.com/user-attachments/assets/dce2676b-fcd5-4457-a91a-20ddd3625dc8" />
+<br>
 <img width="1655" height="1154" alt="07 Compliance Ref" src="https://github.com/user-attachments/assets/3de415bc-0b48-46dd-8447-64341b8da37d" />
 
 
