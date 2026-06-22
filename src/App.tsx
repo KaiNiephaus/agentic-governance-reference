@@ -26,7 +26,7 @@ const tabs: { id: TabId; label: string }[] = [
   { id: 'opmodel',     label: 'Operating Model' },
   { id: 'govflow',     label: 'Gov. Flow' },
   { id: 'regulatory',  label: 'Regulatory' },
-  { id: 'compliance',  label: 'Compliance Ref.' },
+  { id: 'compliance',  label: 'Compliance Reference' },
 ]
 
 const BUILT: TabId[] = ['overview', 'flow', 'agents', 'platformorg', 'governance', 'opmodel', 'govflow', 'regulatory', 'compliance']
