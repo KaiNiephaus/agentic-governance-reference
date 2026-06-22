@@ -19,7 +19,7 @@ interface NavOptions {
 
 const tabs: { id: TabId; label: string }[] = [
   { id: 'overview',    label: 'Overview' },
-  { id: 'flow',        label: 'Process Flow' },
+  { id: 'flow',        label: 'Agentic Process Flow' },
   { id: 'agents',      label: 'Agent Register' },
   { id: 'platformorg', label: 'Platform vs. Org' },
   { id: 'governance',  label: 'Governance Layers' },
