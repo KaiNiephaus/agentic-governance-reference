@@ -65,7 +65,7 @@ const frameworks: FrameworkCard[] = [
     icon: '⚖️',
     name: 'EU AI Act',
     scope: 'Regulation (EU) 2024/1689 · In force 1 Aug 2024 · High-risk stand-alone systems: 2 Dec 2027 · Safety component systems: 2 Aug 2028',
-    statusLabel: 'In force — deadlines confirmed',
+    statusLabel: 'In force — further deadlines approved',
     statusVariant: 'active',
     subsections: [
       {
@@ -518,7 +518,7 @@ export default function ComplianceRef({ onNavigate }: ComplianceRefProps) {
       </div>
 
       <div className="callout">
-        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: June 2026.<br />For latest regulatory developments please refer to{' '}
+        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: 29 June 2026.<br />For latest regulatory developments please refer to{' '}
         <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EUR-Lex</a>{' '}
         and{' '}
         <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EU AI Act Explorer</a>.

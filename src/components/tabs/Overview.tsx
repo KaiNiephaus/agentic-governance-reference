@@ -17,7 +17,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
       {/* ── HERO ── */}
       <div className="hero" style={{ position: 'relative' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
-          Version 2.3 | May 2026
+          Version 2.4 | June 2026
         </div>
         <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
