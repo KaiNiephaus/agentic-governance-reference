@@ -24,9 +24,8 @@ export default function AgentRegister({ onNavigate }: AgentRegisterProps) {
   return (
     <div className="section active" id="section-agents">
       <div className="section-title">Agent Authority Register</div>
-      <div className="section-tagline">What each agent may and may not do – and who governs it</div>
       <div className="section-desc">
-        Every agent in the claims processing network. Click any agent to see its permitted decision scope, hard boundaries, escalation triggers, and governance profile. In practice, authority boundaries need to be defined independently of the platform's technical capabilities.
+        Every agent in the claims processing network. Click any agent to see its permitted decision scope, hard boundaries, escalation triggers, and governance profile. Authority boundaries are defined independently of the platform's technical capabilities.
       </div>
 
       <div className="agent-register" id="agent-register">

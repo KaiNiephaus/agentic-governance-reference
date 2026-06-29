@@ -14,11 +14,17 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
   return (
     <div className="section active" id="section-platformorg">
       <div className="section-title">Platform vs. Organisation</div>
-      <div className="section-tagline">What the platform provides and what the organisation must independently design</div>
       <div className="section-desc">
-        Platforms like Otera make autonomous claims operations at scale genuinely possible — handling the execution layer that would otherwise require significant time and effort to build: routing, extracting, scoring, deciding, paying. What the organisation must define alongside it is the governance foundation that makes it safe and accountable to operate in practice: authority boundaries, accountability structures, change governance, and operational oversight. Both are required. Neither substitutes for the other.
+        The most important distinction in agentic governance design — what the platform provides versus what the organisation must independently build.
       </div>
 
+      <div className="callout">
+        "A platform that claims 'built-in governance' addresses some of the mechanics — but none of the institutional design. What Otera provides and what Allianz must design are two different things. Confusing them is the most common governance failure in agentic deployments."
+      </div>
+
+      <div className="section-title" style={{ marginBottom: '1rem' }}>
+        What the platform gives you — and what it doesn't
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>
@@ -66,8 +72,8 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
         </div>
       </div>
 
-      <div className="section-subtitle" style={{ marginBottom: '1rem' }}>
-        The trade-offs that sit in between
+      <div className="section-title" style={{ marginBottom: '1rem' }}>
+        The tensions that don't resolve cleanly
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.5rem' }}>
@@ -106,7 +112,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderLeft: '3px solid var(--accent-cyan)', borderRadius: '4px', padding: '1.25rem' }}>
           <div className="gov-item-title" style={{ marginBottom: '0.5rem' }}>Exception Rate as Governance Signal</div>
           <div className="gov-item-body" style={{ marginBottom: '0.75rem' }}>
-            If for example 20%+ of a decision class is escalating to human review, the agent is not fit for that decision scope. Exception rates are governance data, not just operational metrics. This threshold connects directly to the quarterly Exception Pattern Board Review in the Operating Model.
+            If 20%+ of a decision class is escalating to human review, the agent is not fit for that decision scope. Exception rates are governance data, not just operational metrics. This threshold connects directly to the quarterly Exception Pattern Board Review in the Operating Model.
           </div>
           <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
             See also:{' '}

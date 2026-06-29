@@ -22,7 +22,6 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
   const flowRef     = useRef<HTMLDivElement>(null)
   const detailRef   = useRef<HTMLDivElement>(null)
 
-  // Render SVG whenever activeFlow changes
   useEffect(() => {
     if (!activeFlow || !svgRef.current) return
     const f = gfFlows[activeFlow]
@@ -35,7 +34,6 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       </marker>
     </defs>`
 
-    // Lane backgrounds
     ;([1, 2, 3] as const).forEach(t => {
       const y  = tierY[t]
       const tc = tierColors[t]
@@ -43,13 +41,11 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       h += `<text x="8" y="${y - 14}" font-family="'DM Mono',monospace" font-size="9" fill="${tc}" opacity="0.6" letter-spacing="1">T${t}</text>`
     })
 
-    // Lane dividers
     h += `<line x1="0" y1="${tierY[2] - 28}" x2="860" y2="${tierY[2] - 28}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`
     h += `<line x1="0" y1="${tierY[1] - 28}" x2="860" y2="${tierY[1] - 28}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`
 
     const steps = f.steps
 
-    // Connectors
     for (let i = 0; i < steps.length - 1; i++) {
       const s = steps[i]
       const n = steps[i + 1]
@@ -70,7 +66,6 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       }
     }
 
-    // Branch connector (change flow only)
     if (activeFlow === 'change') {
       const s = steps[1]
       const b = steps[2]
@@ -80,7 +75,6 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       h += `<text x="${(s.x + b.x) / 2 - 20}" y="${tierY[3] - 18}" font-family="'DM Mono',monospace" font-size="8" fill="${col}" opacity="0.6">Tier A only</text>`
     }
 
-    // Nodes
     steps.forEach((s, i) => {
       const sy    = tierY[s.tier]
       const lines = s.label.split('\n')
@@ -103,7 +97,6 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
     svgRef.current.innerHTML = h
   }, [activeFlow])
 
-  // Scroll detail panel into view when a block is selected
   useEffect(() => {
     if (activeBlock && detailRef.current) {
       detailRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
@@ -130,16 +123,14 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
 
   return (
     <div className="section active" id="section-govflow">
-      <div className="section-title">Governance Flow</div>
-      <div className="section-tagline">How governance tiers operate over time</div>
+      <div className="section-title">Governance Flow — How the Tiers Operate Over Time</div>
       <div className="section-desc">
-        The rhythm of governance: when each tier acts, what it produces, and how events propagate across tiers.<br /> 1. Select a governance event. <br />2. Inspect its accountable tier. <br />3. Trace propagation across time from detection to resolution.
+        The rhythm of governance: when each tier acts, what it produces, and how events propagate across tiers. Select an event flow below to trace how a trigger moves from detection to resolution.
       </div>
 
       {/* Time axis + tier lanes */}
       <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden', marginBottom: '1.5rem' }}>
 
-        {/* Time axis header */}
         <div style={{ display: 'flex', borderBottom: '1px solid var(--border)' }}>
           <div style={{ width: '140px', flexShrink: 0, padding: '0.6rem 1rem', borderRight: '1px solid var(--border)' }}>
             <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
@@ -314,7 +305,6 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
           </button>
         </div>
 
-        {/* SVG canvas */}
         {activeFlow && (
           <div
             ref={flowRef}

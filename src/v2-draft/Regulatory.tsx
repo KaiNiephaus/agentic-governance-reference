@@ -2,27 +2,25 @@ import { regData } from '../../data/regulatory'
 import { scalabilitySections } from '../../data/scalability'
 import ScalabilitySection from '../shared/ScalabilitySection'
 
+interface NavOptions {
+  openLayerIndex?: number
+  openBlockKey?: string
+}
+
 interface RegulatoryProps {
-  onNavigate: (tab: string) => void
+  onNavigate: (tab: string, options?: NavOptions) => void
 }
 
 export default function Regulatory({ onNavigate }: RegulatoryProps) {
   return (
     <div className="section active" id="section-regulatory">
-      <div className="section-title">Regulatory Frameworks</div>
-      <div className="section-tagline">How EU AI Act, NIS-2, GDPR, and Solvency II shape governance architecture</div>
+      <div className="section-title">Regulatory Obligations</div>
       <div className="section-desc">
-        Each key framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting.
+        Key regulatory frameworks shaping the governance architecture. Each framework drives specific design decisions — authority gates, audit logging, human oversight mechanisms, and incident reporting. See the Compliance Ref. tab for specific obligations, deadlines, and checklists.
       </div>
 
       <div className="callout">
-        <strong>Architectural lens:</strong> This tab covers how regulations shape governance design within EU context. For specific article-level obligations, implementation deadlines, and readiness checklists, use the{' '}
-        <span
-          onClick={() => onNavigate('compliance')}
-          style={{ color: 'var(--accent-cyan)', cursor: 'pointer' }}
-        >
-          Compliance Ref. →
-        </span>
+        <strong>Architectural lens:</strong> This tab covers how regulations shape governance design. For specific article-level obligations, implementation deadlines, and readiness checklists, use the <strong>Compliance Ref.</strong> tab.
       </div>
 
       <div className="reg-grid" id="reg-grid">

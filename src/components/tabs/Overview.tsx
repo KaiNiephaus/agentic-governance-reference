@@ -1,4 +1,16 @@
-export default function Overview() {
+import { scalabilitySections } from '../../data/scalability'
+import ScalabilitySection from '../shared/ScalabilitySection'
+
+interface NavOptions {
+  openLayerIndex?: number
+  openBlockKey?: string
+}
+
+interface OverviewProps {
+  onNavigate: (tab: string, options?: NavOptions) => void
+}
+
+export default function Overview({ onNavigate }: OverviewProps) {
   return (
     <div className="section active" id="section-overview">
 
@@ -178,7 +190,7 @@ export default function Overview() {
 
       </div>
 
-      
+      <ScalabilitySection data={scalabilitySections.overview} onNavigate={onNavigate} />
 
     </div>
   )

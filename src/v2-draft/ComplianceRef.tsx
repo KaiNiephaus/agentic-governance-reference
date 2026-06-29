@@ -2,15 +2,6 @@ import { useState } from 'react'
 import { scalabilitySections } from '../../data/scalability'
 import ScalabilitySection from '../shared/ScalabilitySection'
 
-interface NavOptions {
-  openLayerIndex?: number
-  openBlockKey?: string
-}
-
-interface ComplianceRefProps {
-  onNavigate: (tab: string, options?: NavOptions) => void
-}
-
 interface CheckItem {
   title: string
   desc: string
@@ -142,7 +133,7 @@ const frameworks: FrameworkCard[] = [
             },
             {
               date: '2 Dec 2027 ⚠',
-              event: "<strong>Parliament's proposed revised deadline for Annex III high-risk systems.</strong> European Parliament adopted this position April 2026 (569–45). Trilogue with Council now begins — final date not yet law. The Digital Omnibus proposal also introduces a \"grandfathering\" clause permitting early deployment without full compliance. Monitor closely.",
+              event: "Parliament's proposed revised deadline for Annex III high-risk systems. European Parliament adopted this position April 2026 (569–45). Trilogue with Council now begins — final date not yet law. The Digital Omnibus proposal also introduces a \"grandfathering\" clause permitting early deployment without full compliance. Monitor closely.",
               variant: 'future',
               dateStyle: { color: 'var(--accent-amber)' },
               itemStyle: { borderLeftColor: 'var(--accent-amber)' },
@@ -161,7 +152,7 @@ const frameworks: FrameworkCard[] = [
     id: 'nis2',
     icon: '🛡️',
     name: 'NIS-2 / German BSI Act (NIS2UmsuCG)',
-    scope: 'Directive (EU) 2022/2555 · German implementation in force 6 December 2025 · No grace period — obligations apply from day of implementation',
+    scope: 'Directive (EU) 2022/2555 · German implementation in force 6 December 2025 · No grace period',
     statusLabel: 'In force now',
     statusVariant: 'active',
     subsections: [
@@ -173,7 +164,7 @@ const frameworks: FrameworkCard[] = [
             {
               label: 'Essential Entity',
               variant: 'red',
-              text: 'Large enterprises (≥250 employees <strong>or</strong> >€50M revenue and >€43M balance sheet) operating in Annex I sectors. Subject to <strong>proactive supervision</strong> and higher penalties (up to €10M or 2% global turnover). In Germany: called "besonders wichtige Einrichtungen." KRITIS operators automatically classified as Essential. <strong>Allianz Partners, operating at scale across 30+ countries: likely qualifies as Essential. Legal counsel should confirm classification before BSI registration.</strong>',
+              text: 'Large enterprises (≥250 employees <strong>or</strong> >€50M revenue and >€43M balance sheet) operating in Annex I sectors. Subject to <strong>proactive supervision</strong> and higher penalties (up to €10M or 2% global turnover). In Germany: called "besonders wichtige Einrichtungen." KRITIS operators automatically classified as Essential. <strong>Allianz Partners at scale: almost certainly Essential.</strong>',
             },
             {
               label: 'Important Entity',
@@ -280,7 +271,7 @@ const frameworks: FrameworkCard[] = [
             {
               label: 'Medical data',
               variant: 'red',
-              text: 'Medical records processed by the Document Extraction Agent are special category data. Lawful basis options: explicit consent (Art. 9(2)(a)), vital interests (Art. 9(2)(c)), or medical purposes where applicable (Art. 9(2)(h)). Legal counsel should confirm the appropriate basis per processing context. Access must be role-restricted. Data minimisation applies — extract only what is necessary for the claim decision. Retention must be limited and documented.',
+              text: 'Medical records processed by the Document Extraction Agent are special category data. Lawful basis options: explicit consent, or vital interests (emergency). Access must be role-restricted. Data minimisation applies — extract only what is necessary for the claim decision. Retention must be limited and documented.',
             },
           ],
         },
@@ -371,7 +362,7 @@ const frameworks: FrameworkCard[] = [
             },
             {
               title: 'Outsourcing rules (Article 49)',
-              desc: 'If agentic platform vendor supports critical or important functions: written agreement required, including: description of services, data protection obligations, business continuity provisions, ability to terminate and transfer, right to audit. Competent supervisory authority (BaFin in Germany) must be notified of material outsourcing arrangements before implementation. Verify notification requirements for each jurisdiction.',
+              desc: 'If agentic platform vendor supports critical or important functions: written agreement required, including: description of services, data protection obligations, business continuity provisions, ability to terminate and transfer, right to audit. Supervisory authority (BaFin) must be notified of material outsourcing arrangements before implementation.',
             },
             {
               title: 'Audit trail for financial decisions',
@@ -510,20 +501,24 @@ function FrameworkCardBlock({ fw }: { fw: FrameworkCard }) {
   )
 }
 
+interface NavOptions {
+  openLayerIndex?: number
+  openBlockKey?: string
+}
+
+interface ComplianceRefProps {
+  onNavigate: (tab: string, options?: NavOptions) => void
+}
+
 export default function ComplianceRef({ onNavigate }: ComplianceRefProps) {
   return (
     <div className="section active" id="section-compliance">
-      <div className="section-title">Compliance Reference & Checklist</div>
-      <div className="section-tagline">Which specific obligations, deadlines, and procedural requirements apply – by framework</div>
-      <div className="section-desc">
-        Distinct from the Regulatory tab, which maps frameworks to governance design decisions. Use this reference to inform design decisions that need to be discussed with and signed off by the compliance officer and legal team.
-      </div>
-
-      <div className="callout">
-        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: May 2026.<br />For latest regulatory developments please refer to{' '}
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EUR-Lex</a>{' '}
-        and{' '}
-        <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EU AI Act Explorer</a>.
+      <div className="hero" style={{ paddingBottom: '1.5rem' }}>
+        <div className="hero-label">Compliance Reference · Decision-Ready Policy Brief</div>
+        <h1>Regulatory <em>Obligations</em></h1>
+        <div className="hero-sub">
+          Specific, actionable obligations by framework — with deadlines, thresholds, and procedural requirements. Distinct from the Regulatory tab, which covers architectural mapping. This tab is for the compliance officer and legal team.
+        </div>
       </div>
 
       <div className="cr-section-head">Step 1 — Establish what applies to your organisation</div>

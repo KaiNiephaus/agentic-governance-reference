@@ -15,7 +15,6 @@ export default function OperatingModel({ onNavigate }: OperatingModelProps) {
   return (
     <div className="section active" id="section-opmodel">
       <div className="section-title">Operating Model</div>
-      <div className="section-tagline">Who reviews, escalades, decides, changes — and owns the system organisationally</div>
       <div className="section-desc">
         Three-tier governance structure covering strategic, operational, and real-time control. Each tier has defined roles, cadence, and activities. The escalation matrix below maps every key scenario to the right human decision-maker.
       </div>
@@ -57,38 +56,30 @@ export default function OperatingModel({ onNavigate }: OperatingModelProps) {
         ))}
       </div>
 
-      <div className="section-subtitle" style={{ marginBottom: '0.4rem' }}>Escalation Matrix</div>
+      <div className="section-title" style={{ marginBottom: '0.4rem' }}>Escalation Matrix</div>
       <div className="section-desc">
         Every key escalation scenario mapped to trigger type, routing destination, SLA, and authority level.
       </div>
 
-      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>
+      <div style={{ overflowX: 'auto' }}>
         <table className="esc-table" id="esc-table">
           <thead>
             <tr>
-              <th>Escalation Scenario</th>
-              <th>Originating Agent</th>
+              <th>Scenario</th>
               <th>Trigger Type</th>
               <th>Routes To</th>
               <th>SLA</th>
               <th>Authority</th>
-              <th>Risk</th>
             </tr>
           </thead>
           <tbody>
             {escData.map((row, i) => (
               <tr key={i}>
-                <td style={{ color: 'var(--text)' }}>{row.scenario}</td>
-                <td style={{ color: 'var(--text-dim)' }}>{row.agent}</td>
-                <td>{row.trigger}</td>
-                <td style={{ color: 'var(--text-dim)' }}>{row.routeTo}</td>
-                <td style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.7rem', color: 'var(--accent-cyan)' }}>
-                  {row.sla}
-                </td>
-                <td style={{ color: 'var(--text-dim)' }}>{row.authority}</td>
-                <td>
-                  <span className={`risk-chip risk-${row.risk}`}>{row.risk}</span>
-                </td>
+                <td>{row.scenario}</td>
+                <td><span className={`esc-tag ${row.triggerClass}`}>{row.trigger}</span></td>
+                <td>{row.routesTo}</td>
+                <td>{row.sla}</td>
+                <td>{row.authority}</td>
               </tr>
             ))}
           </tbody>

@@ -65,17 +65,17 @@ export default function App() {
       </nav>
 
       <main>
-      {activeTab === 'overview'    && <Overview />}
-      {activeTab === 'flow'        && <ProcessFlow />}
-      {activeTab === 'agents'      && <AgentRegister />}
+      {activeTab === 'overview'    && <Overview onNavigate={navigate} />}
+      {activeTab === 'flow'        && <ProcessFlow onNavigate={navigate} />}
+      {activeTab === 'agents'      && <AgentRegister onNavigate={navigate} />}
       {activeTab === 'governance'  && (
-        <GovernanceLayers initialOpenIndex={navOptions.openLayerIndex} />
+        <GovernanceLayers initialOpenIndex={navOptions.openLayerIndex} onNavigate={navigate} />
       )}
-      {activeTab === 'opmodel'     && <OperatingModel />}
+      {activeTab === 'opmodel'     && <OperatingModel onNavigate={navigate} />}
       {activeTab === 'platformorg' && <PlatformVsOrg onNavigate={navigate} />}
-      {activeTab === 'govflow'     && <GovFlow initialBlockKey={navOptions.openBlockKey} />}
+      {activeTab === 'govflow'     && <GovFlow initialBlockKey={navOptions.openBlockKey} onNavigate={navigate} />}
       {activeTab === 'regulatory'  && <Regulatory onNavigate={navigate} />}
-      {activeTab === 'compliance'  && <ComplianceRef />}
+      {activeTab === 'compliance'  && <ComplianceRef onNavigate={navigate} />}
 
       {!BUILT.includes(activeTab) && (
         <div className="section active" style={{ color: 'var(--text-dim)', paddingTop: '3rem' }}>
