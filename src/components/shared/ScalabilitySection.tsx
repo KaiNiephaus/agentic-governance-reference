@@ -186,7 +186,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                   color: 'var(--accent-red)',
                   marginBottom: '0.4rem',
                 }}>
-                  Open Design Challenge
+                  Known Limitation
                 </div>
                 <div style={{
                   fontSize: '0.76rem',

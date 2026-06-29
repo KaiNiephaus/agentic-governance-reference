@@ -35,27 +35,27 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   overview: {
     tabId: 'overview',
-    framing: 'This reference architecture is scoped to one entity, one jurisdiction (EU), and one agenticworkflow (usecase). Each of those constraints is a deliberate simplification — and each creates a specific structural challenge for governing AI in a scaled context.',
+    framing: 'This reference architecture is scoped to one entity, one jurisdiction (EU), and one agentic workflow (usecase). Each of those constraints is a deliberate simplification — and each creates a specific structural challenge for governing AI in a scaled context.',
     axes: ['use-cases', 'jurisdictions', 'people'],
     items: [
       {
         title: 'Axis 1 — Additional Use Cases',
         tags: [{ label: 'Use Cases', color: 'blue' }],
-        body: 'Each new autonomous workflow (fraud investigation, underwriting support, FNOL triage, customer onboarding) currently requires a full governance and deployment cycle from scratch. The fix is capability abstraction: decomposing agents into reusable, independently certified capabilities that are composed into new workflows rather than rebuilt. Governance gates shift from agent-level to capability-level, with a lighter composition review for new deployments.',
+        body: 'Each new autonomous workflow (fraud investigation, underwriting support, FNOL triage, customer onboarding) eventually requires a full governance and deployment cycle from scratch — which doesn’t scale. A suitable and scalable approach is capability abstraction: decomposing agents into reusable, independently certified capabilities that can be re-composed into new agentic workflows rather than rebuilt. Governance gates shift from agent-level to capability-level, with a lighter composition review for new deployments.',
       },
       {
         title: 'Axis 2 — Non-EU Jurisdictions',
         tags: [{ label: 'Jurisdictions', color: 'amber' }],
-        body: 'The regulatory framework here — EU AI Act, GDPR Art. 22, DORA, Solvency II — is not portable. Expanding to Singapore, Australia, or the US requires each jurisdiction\'s regulatory obligations to be modelled as a discrete Regulatory Context Module: defining autonomous decision rights, mandatory human oversight triggers, incident reporting obligations, and audit standards. Agents read their regulatory context from a governance coordination layer; jurisdiction-specific logic is never embedded in agent code.',
+        body: 'The regulatory frameworks — EU AI Act, GDPR Art. 22, DORA, Solvency II — are not transferable. Expanding to Singapore, Australia, or the US requires each jurisdiction\'s regulatory obligations to be modelled as a discrete Regulatory Context Module: defining autonomous decision rights, mandatory human oversight triggers, incident reporting obligations, and audit standards. This requires that Agents can read their regulatory context from a governance coordination layer; jurisdiction-specific logic is never embedded in agent code.',
       },
       {
         title: 'Axis 3 — People and Roles',
         tags: [{ label: 'People & Roles', color: 'purple' }],
-        body: 'The three-tier operating model (Strategic / Operational / Real-time) is defined for one entity with named roles. Across multiple entities and jurisdictions, the model breaks because every committee nominally oversees too much to govern anything meaningfully. The fix is separating governance functions from governance roles, and introducing a Platform Governance Board above Tier 1 that owns cross-entity standards, the Capability Registry, and the Regulatory Context Library. Entity-level tiers retain authority within those bounds.',
+        body: 'The three-tier operating model (Strategic / Operational / Real-time) is defined for one entity with named roles. Across multiple entities and jurisdictions, the governance and operating model breaks because every committee nominally oversees too much to govern anything meaningfully. A tractable approach is separating governance functions from governance roles, and introducing a Platform Governance Board above Tier 1 that owns cross-entity standards, the Capability Registry, and the Regulatory Context Library. Entity-level tiers retain authority within those bounds.',
       },
       {
         title: 'What doesn\'t change at scale',
-        body: 'The four adressed governance challenges — Authority, Accountability, Change, Data & Decision — are tension points at any scale, that need to be addressed and balanced through organizational design. Understanding where and why the balance breaks in a scaled context is the precondition for designing governance and an operating system that works in practice.',
+        body: 'The four adressed governance challenges within the applied context — Authority, Accountability, Change, Data & Decision — are tension points at any scale, that need to be addressed and balanced through organizational design. Understanding where and why the balance breaks in a scaled context is the precondition for designing governance and an operating system that works in practice.',
       },
     ],
     crossLinks: [
@@ -67,18 +67,18 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   flow: {
     tabId: 'flow',
-    framing: 'The seven-agent process flow is built for one use case. At scale, the architectural question is not "how do we replicate this flow?" but "which parts of this flow recur across workflows, and how do we govern them once?"',
-    axes: ['use-cases'],
+    framing: 'The seven-agent process flow is built for one specificuse case. At scale, the architectural question is not "how do we replicate this flow?" but "which parts of this flow are shared across workflows, and how do we govern them as reusable capabilities rather than rebuilding governance for each new deployment?"',
+    axes: ['use-cases', 'jurisdictions'],
     items: [
       {
         title: 'Identifying Reusable Capabilities',
         tags: [{ label: 'Use Cases', color: 'blue' }],
-        body: 'Several nodes in this flow are genuinely use-case-agnostic. Document extraction (IDP), confidence threshold gating, audit log generation, and payment execution are capabilities — not travel claims logic. A fraud investigation workflow, a health claims workflow, and an underwriting support workflow would each need the same IDP extraction and confidence gating. Building them independently is duplication; building them as certified capabilities that compose into new workflows is the scalable pattern.',
+        body: 'Several agents in this flow are genuinely use-case-agnostic. Document extraction (IDP), confidence threshold gating, audit log generation, and payment execution are capabilities — not travel claims logic. A fraud investigation workflow, a health claims workflow, and an underwriting support workflow would each need the same IDP extraction and confidence gating. Building them independently is duplication; building them as certified capabilities that compose into new workflows is the scalable pattern.',
       },
       {
         title: 'What Remains Use-Case-Specific',
         tags: [{ label: 'Use Cases', color: 'blue' }],
-        body: 'Policy rules evaluation, fraud pattern libraries, and settlement calculation are inherently domain-specific — they encode the business logic of travel insurance. These do not abstract cleanly into reusable capabilities. At scale, each new use case requires its own domain-logic agents, but can inherit certified infrastructure capabilities (extraction, gating, audit, payment) without re-governance.',
+        body: 'Policy rules evaluation, fraud pattern libraries, and settlement calculation are inherently domain-specific — they encode the business logic of travel insurance. At scale, each new use case requires its own domain-logic agents, but can inherit certified infrastructure capabilities (extraction, gating, audit, payment) without re-governance.',
       },
       {
         title: 'Governance Implication: Two-Tier Approval',
@@ -95,7 +95,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
   agents: {
     tabId: 'agents',
     framing: 'The Agent Authority Register governs six agents in one deployment context. At scale, the same register concept must govern capabilities — the reusable building blocks that agents are composed from — across multiple use cases and entities.',
-    axes: ['use-cases', 'people'],
+    axes: ['use-cases', 'people', 'jurisdictions'],
     items: [
       {
         title: 'From Agent Register to Capability Registry',
@@ -132,17 +132,17 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       {
         title: 'Layer 01 — Authority: Capability-Level Scope Boundaries',
         tags: [{ label: 'Use Cases', color: 'blue' }],
-        body: 'In V1, authority boundaries are defined per agent per deployment. At scale, authority governance operates at two levels: capability-level (the maximum authority any deployment of this capability may exercise) and deployment-level (the authority actually granted in a specific context). Scope creep becomes a two-dimensional problem — drift within a deployment, and deployment configurations that exceed capability-level ceilings. Both require independent monitoring.',
+        body: 'For the applied architecture, authority boundaries are defined per agent per deployment. At scale, authority governance operates at two levels: capability-level (the maximum authority any deployment of this capability may exercise) and deployment-level (the authority actually granted in a specific context). Scope creep becomes a two-dimensional problem — drift within a deployment, and deployment configurations that exceed capability-level ceilings. Both require independent monitoring.',
       },
       {
         title: 'Layer 02 — Accountability: Cross-Entity Boundary',
         tags: [{ label: 'People & Roles', color: 'purple' }],
-        body: 'In V1, accountability is assigned within one entity. At scale, a shared capability used across entities creates a new accountability question: when a capability behaves incorrectly across multiple deployments simultaneously, is accountability entity-level (each deployment owner) or platform-level (the capability owner)? This boundary must be explicitly designed — in a RACI that covers both levels — before a cross-entity incident makes the gap visible.',
+        body: 'For the applied architecture, accountability is assigned within one entity. At scale, a shared capability used across entities creates a new accountability question: when a capability behaves incorrectly across multiple deployments simultaneously, is accountability entity-level (each deployment owner) or platform-level (the capability owner)? This boundary must be explicitly designed — in a RACI that covers both levels — before a cross-entity incident makes the gap visible.',
       },
       {
         title: 'Layer 03 — Change: Cross-Deployment Propagation',
         tags: [{ label: 'Use Cases', color: 'blue' }],
-        body: 'The Tier A/B/C classification governs changes to a single deployment. At scale, a capability change propagates to every deployment using that capability version. A Tier B change to the IDP extraction capability is not just an operational approval — it is a change that may simultaneously affect travel claims, health claims, and fraud investigation workflows across multiple entities. Change governance must classify not just the change type, but the deployment blast radius, and require sign-off from all affected deployment owners for Tier B and C changes.',
+        body: 'The Tier A/B/C classification governs changes to a single deployment. At scale, a capability change propagates to every deployment using that capability version. A Tier B change to the IDP extraction capability is not just an operational approval — it is a change that may simultaneously affect travel claims, health claims, and fraud investigation workflows across multiple entities. Change governance must classify not just the change type, but the number of deployments affected by the change, and require sign-off from all affected deployment owners for Tier B and C changes.',
       },
       {
         title: 'Layer 04 — Data & Decision: Jurisdiction-Parameterised Standards',
@@ -194,7 +194,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
   govflow: {
     tabId: 'govflow',
     framing: 'The four governance flows — authority review, deployment approval, regulatory horizon, exception patterns — operate on a single-entity cadence. At scale, each flow gains a platform-level counterpart with different triggers, participants, and routing logic.',
-    axes: ['people', 'use-cases'],
+    axes: ['people', 'use-cases', 'jurisdictions'],
     items: [
       {
         title: 'Platform-Level vs. Entity-Level Event Flows',
@@ -230,7 +230,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       },
       {
         title: 'Expanding "What the Organisation Must Design"',
-        tags: [{ label: 'Use Cases', color: 'blue' }, { label: 'Jurisdictions', color: 'amber' }],
+        tags: [{ label: 'Use Cases', color: 'blue' }, { label: 'Jurisdictions', color: 'amber' }, { label: 'People & Roles', color: 'purple' }],
         body: 'The current right-hand column — what counts as a reviewable decision, acceptable thresholds, exception routing, document authority, change governance, human oversight policy — remains entirely valid. At scale, three additional items join it: the Capability Registry and certification process (who certifies, at what standard, with what evidence); Regulatory Context Modules (what the jurisdiction-specific governance parameters are, who maintains them, how they are updated when regulations change); and cross-entity governance standards (the minimum floor every entity deployment must meet, and the process for enforcing it).',
       },
       {
@@ -254,7 +254,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
   regulatory: {
     tabId: 'regulatory',
     framing: 'The four frameworks here — EU AI Act, DORA/NIS-2, GDPR, Solvency II — are specific to EU-regulated entities. Expanding to non-EU jurisdictions requires each framework\'s obligations to be modelled as a discrete Regulatory Context Module: jurisdiction-specific governance parameters that agents read from the coordination layer rather than having embedded in their architecture.',
-    axes: ['jurisdictions'],
+    axes: ['jurisdictions', 'people'],
     items: [
       {
         title: 'The Regulatory Context Module',
