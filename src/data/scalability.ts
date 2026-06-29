@@ -35,7 +35,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   overview: {
     tabId: 'overview',
-    framing: 'This reference architecture is scoped to one entity, one jurisdiction (EU), and one agenticworkflow (usecase). Each of those constraints is a deliberate simplification — and each creates a specific structural problem for scalability.',
+    framing: 'This reference architecture is scoped to one entity, one jurisdiction (EU), and one agenticworkflow (usecase). Each of those constraints is a deliberate simplification — and each creates a specific structural challenge for governing AI in a scaled context.',
     axes: ['use-cases', 'jurisdictions', 'people'],
     items: [
       {
