@@ -67,7 +67,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   flow: {
     tabId: 'flow',
-    framing: 'The seven-agent process flow is built for one specificuse case. At scale, the architectural question is not "how do we replicate this flow?" but "which parts of this flow are shared across workflows, and how do we govern them as reusable capabilities rather than rebuilding governance for each new deployment?"',
+    framing: 'The six-agent process flow is built for one specific use case. At scale, the architectural question is not "how do we replicate this flow?" but "which parts of this flow are shared across workflows, and how do we govern them as reusable capabilities rather than rebuilding governance for each new deployment?"',
     axes: ['use-cases', 'jurisdictions'],
     items: [
       {

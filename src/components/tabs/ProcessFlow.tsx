@@ -86,7 +86,7 @@ export default function ProcessFlow({ onNavigate }: ProcessFlowProps) {
       <div className="section-title">E2E Agentic Claims Processing Flow</div>
       <div className="section-tagline">How decisions move through the claim lifecycle</div>
       <div className="section-desc">
-        A seven-agent flow covering the claims processing from first trigger to resolution — tailored to the travel insurance scenario. Select a node to inspect authority, inputs/outputs, controls, and escalation logic. Stated thresholds are representative values. In practice, each needs to be explicitly defined and signed off at board level.
+        A six-agent flow covering the claims processing from first trigger to resolution — tailored to the travel insurance scenario. Select a node to inspect authority, inputs/outputs, controls, and escalation logic. Stated thresholds are representative values. In practice, each needs to be explicitly defined and signed off at board level.
       </div>
 
       <div className="flow-container">
