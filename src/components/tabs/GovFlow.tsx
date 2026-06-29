@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { gfDetails, gfFlows, blockToFlow, tierY, tierColors } from '../../data/govFlow'
+import { gfDetails, gfFlows, blockToFlow, tierY } from '../../data/govFlow'
 import { scalabilitySections } from '../../data/scalability'
 import ScalabilitySection from '../shared/ScalabilitySection'
 
@@ -21,14 +21,30 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
   const svgRef      = useRef<SVGSVGElement>(null)
   const flowRef     = useRef<HTMLDivElement>(null)
   const detailRef   = useRef<HTMLDivElement>(null)
+  const [themeKey, setThemeKey] = useState(0)
 
-  // Render SVG whenever activeFlow changes
+  useEffect(() => {
+    const observer = new MutationObserver(() => setThemeKey(k => k + 1))
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => observer.disconnect()
+  }, [])
+
+  // Render SVG whenever activeFlow or theme changes
   useEffect(() => {
     if (!activeFlow || !svgRef.current) return
     const f = gfFlows[activeFlow]
     if (!f) return
 
-    const col = f.colorHex
+    const cs = getComputedStyle(document.documentElement)
+    const varName = f.color.replace(/^var\(/, '').replace(/\)$/, '')
+    const col = cs.getPropertyValue(varName).trim() || f.colorHex
+    const textBright = cs.getPropertyValue('--text-bright').trim()
+    const borderCol = cs.getPropertyValue('--border').trim()
+    const laneOpacity = cs.getPropertyValue('--lane-opacity').trim() || '0.04'
+    const tc1 = cs.getPropertyValue('--accent-purple').trim()
+    const tc2 = cs.getPropertyValue('--accent-amber').trim()
+    const tc3 = cs.getPropertyValue('--accent-green').trim()
+    const tcMap: Record<number, string> = { 1: tc1, 2: tc2, 3: tc3 }
     let h = `<defs>
       <marker id="gfarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
         <path d="M2 1L8 5L2 9" fill="none" stroke="${col}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,14 +54,14 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
     // Lane backgrounds
     ;([1, 2, 3] as const).forEach(t => {
       const y  = tierY[t]
-      const tc = tierColors[t]
-      h += `<rect x="0" y="${y - 28}" width="860" height="56" rx="2" fill="${tc}" fill-opacity="0.04"/>`
+      const tc = tcMap[t]
+      h += `<rect x="0" y="${y - 28}" width="860" height="56" rx="2" fill="${tc}" fill-opacity="${laneOpacity}"/>`
       h += `<text x="8" y="${y - 14}" font-family="'DM Mono',monospace" font-size="9" fill="${tc}" opacity="0.6" letter-spacing="1">T${t}</text>`
     })
 
     // Lane dividers
-    h += `<line x1="0" y1="${tierY[2] - 28}" x2="860" y2="${tierY[2] - 28}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`
-    h += `<line x1="0" y1="${tierY[1] - 28}" x2="860" y2="${tierY[1] - 28}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`
+    h += `<line x1="0" y1="${tierY[2] - 28}" x2="860" y2="${tierY[2] - 28}" stroke="${borderCol}" stroke-width="1"/>`
+    h += `<line x1="0" y1="${tierY[1] - 28}" x2="860" y2="${tierY[1] - 28}" stroke="${borderCol}" stroke-width="1"/>`
 
     const steps = f.steps
 
@@ -95,13 +111,13 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         const ly = labelAbove
           ? baseY - (lines.length - 1 - li) * 13
           : baseY + li * 13
-        h += `<text x="${s.x}" y="${ly}" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" fill="#e8f0ff" opacity="0.9">${line}</text>`
+        h += `<text x="${s.x}" y="${ly}" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" fill="${textBright}" opacity="0.9">${line}</text>`
       })
       h += `</g>`
     })
 
     svgRef.current.innerHTML = h
-  }, [activeFlow])
+  }, [activeFlow, themeKey])
 
   // Scroll detail panel into view when a block is selected
   useEffect(() => {

@@ -34,6 +34,17 @@ const BUILT: TabId[] = ['overview', 'flow', 'agents', 'platformorg', 'governance
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('overview')
   const [navOptions, setNavOptions] = useState<NavOptions>({})
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+
+  function toggleTheme() {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    if (next === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
+  }
 
   function navigate(tab: string, options: NavOptions = {}) {
     setNavOptions(options)
@@ -62,6 +73,30 @@ export default function App() {
           </div>
           <div className="nav-scroll-indicator">›</div>
         </div>
+        <button
+          onClick={toggleTheme}
+          style={{
+            position: 'absolute',
+            right: '0.75rem',
+            top: 0,
+            background: 'none',
+            border: 'none',
+            borderLeft: '1px solid var(--border)',
+            padding: '0 0.75rem',
+            fontFamily: "'DM Mono', monospace",
+            fontSize: '0.75rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.03em',
+            color: 'var(--text-dim)',
+            cursor: 'pointer',
+            height: '52px',
+            display: 'flex',
+            alignItems: 'center',
+            zIndex: 10,
+          }}
+        >
+          {theme === 'dark' ? 'Light' : 'Dark'}
+        </button>
       </nav>
 
       <main>
