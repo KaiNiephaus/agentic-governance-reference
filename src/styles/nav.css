@@ -1,6 +1,6 @@
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(10,14,20,0.95);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   height: 52px;
@@ -11,7 +11,7 @@ nav {
   right: 2rem; top: 0;
   height: 52px; width: 4rem;
   display: flex; align-items: center; justify-content: flex-end;
-  background: linear-gradient(to right, transparent, rgba(10,14,20,0.97));
+  background: linear-gradient(to right, transparent, var(--nav-fade));
   color: var(--accent-cyan);
   font-size: 1.4rem;
   pointer-events: none;

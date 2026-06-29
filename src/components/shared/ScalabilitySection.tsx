@@ -28,10 +28,10 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
   return (
     <div style={{ borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '2rem' }}>
       <div style={{
-        border: '1px solid rgba(139, 92, 246, 0.25)',
+        border: '1px solid var(--scalability-border)',
         borderLeft: '3px solid var(--accent-purple)',
         borderRadius: '6px',
-        background: 'rgba(139, 92, 246, 0.04)',
+        background: 'var(--scalability-bg)',
         overflow: 'hidden',
       }}>
         {/* Header — always visible, click to expand */}
@@ -44,7 +44,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
             padding: '0.875rem 1.25rem',
             cursor: 'pointer',
             userSelect: 'none',
-            borderBottom: open ? '1px solid rgba(139, 92, 246, 0.15)' : 'none',
+            borderBottom: open ? '1px solid var(--scalability-header-border)' : 'none',
           }}
         >
           {/* Label */}
@@ -112,7 +112,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
               lineHeight: 1.7,
               marginBottom: '1.25rem',
               paddingBottom: '1.25rem',
-              borderBottom: '1px solid rgba(139, 92, 246, 0.12)',
+              borderBottom: '1px solid var(--scalability-divider)',
             }}>
               {data.framing}
             </div>
@@ -168,13 +168,13 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
               ))}
             </div>
 
-            {/* Caveat — open design challenge */}
+            {/* Caveat — known limitation */}
             {data.caveat && (
               <div style={{
                 marginTop: '1rem',
                 padding: '0.875rem 1.125rem',
-                background: 'rgba(224, 82, 82, 0.05)',
-                border: '1px solid rgba(224, 82, 82, 0.2)',
+                background: 'var(--caveat-bg)',
+                border: '1px solid var(--caveat-border)',
                 borderLeft: '3px solid var(--accent-red)',
                 borderRadius: '4px',
               }}>
@@ -203,7 +203,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
               <div style={{
                 marginTop: '1rem',
                 paddingTop: '1rem',
-                borderTop: '1px solid rgba(139, 92, 246, 0.12)',
+                borderTop: '1px solid var(--scalability-divider)',
                 display: 'flex',
                 flexWrap: 'wrap',
                 gap: '0.75rem',
@@ -227,7 +227,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                       color: 'var(--accent-cyan)',
                       cursor: 'pointer',
                       textDecoration: 'underline',
-                      textDecorationColor: 'rgba(34, 211, 238, 0.35)',
+                      textDecorationColor: 'var(--link-underline)',
                       textUnderlineOffset: '2px',
                     }}
                   >

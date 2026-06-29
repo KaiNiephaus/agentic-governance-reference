@@ -101,8 +101,8 @@ body {
 .mt3 { margin-top: 1.5rem; }
 
 .callout {
-  background: rgba(0,196,204,0.05);
-  border: 1px solid rgba(0,196,204,0.2);
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-border);
   border-left: 3px solid var(--accent-cyan);
   border-radius: 4px; padding: 0.875rem 1rem;
   font-size: 0.78rem; color: var(--text-dim);
