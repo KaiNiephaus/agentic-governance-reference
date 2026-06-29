@@ -64,9 +64,9 @@ const frameworks: FrameworkCard[] = [
     id: 'aiact',
     icon: '⚖️',
     name: 'EU AI Act',
-    scope: 'Regulation (EU) 2024/1689 · In force 1 Aug 2024 · Current legal deadline: 2 Aug 2026 · Parliament proposes: 2 Dec 2027 (trilogue pending)',
-    statusLabel: '⚠ Deadline under revision',
-    statusVariant: 'upcoming',
+    scope: 'Regulation (EU) 2024/1689 · In force 1 Aug 2024 · High-risk stand-alone systems: 2 Dec 2027 · Safety component systems: 2 Aug 2028',
+    statusLabel: 'In force — deadlines confirmed',
+    statusVariant: 'active',
     subsections: [
       {
         title: 'High-Risk Classification — Is your system in scope?',
@@ -134,22 +134,20 @@ const frameworks: FrameworkCard[] = [
           items: [
             { date: '1 Aug 2024', event: 'AI Act entered into force', variant: 'past' },
             { date: '2 Feb 2025', event: 'Prohibited AI provisions applicable', variant: 'past' },
-            { date: 'Now', event: 'Prepare: gap analysis, technical docs, FRIA, governance model', variant: 'now' },
             {
               date: '2 Aug 2026',
-              event: '<strong>Current legal deadline — High-risk AI system obligations (Annex III).</strong> Remains in force until trilogue concludes. Systems placed on market after this date must comply under current law. Systems already deployed: comply if subject to significant change.',
+              event: 'Original deadline for high-risk AI system obligations (Annex III) — <strong>superseded</strong> by the digital omnibus simplification package.',
+              variant: 'past',
+            },
+            { date: 'Now', event: 'Prepare: gap analysis, technical docs, FRIA, governance model', variant: 'now' },
+            {
+              date: '2 Dec 2027',
+              event: '<strong>Confirmed deadline — High-risk stand-alone AI system obligations (Annex III).</strong> European Parliament approved the digital omnibus simplification package (423–57). Systems placed on the market after this date must fully comply.',
               variant: 'upcoming',
             },
             {
-              date: '2 Dec 2027 ⚠',
-              event: "<strong>Parliament's proposed revised deadline for Annex III high-risk systems.</strong> European Parliament adopted this position April 2026 (569–45). Trilogue with Council now begins — final date not yet law. The Digital Omnibus proposal also introduces a \"grandfathering\" clause permitting early deployment without full compliance. Monitor closely.",
-              variant: 'future',
-              dateStyle: { color: 'var(--accent-amber)' },
-              itemStyle: { borderLeftColor: 'var(--accent-amber)' },
-            },
-            {
               date: '2 Aug 2028',
-              event: "Parliament proposes this date for Annex I product safety component AI systems (replacing 2 Aug 2027 under current law). Also subject to trilogue.",
+              event: '<strong>Confirmed deadline — Annex I product safety component AI systems.</strong> AI systems embedded as safety components in products covered by EU sectoral legislation must comply by this date.',
               variant: 'future',
             },
           ],
@@ -520,7 +518,7 @@ export default function ComplianceRef({ onNavigate }: ComplianceRefProps) {
       </div>
 
       <div className="callout">
-        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: May 2026.<br />For latest regulatory developments please refer to{' '}
+        Regulations and obligations below are summarised for architectural decision-making from a governance design lens within EU context. They are not legal advice.<br /> Last updated: June 2026.<br />For latest regulatory developments please refer to{' '}
         <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EUR-Lex</a>{' '}
         and{' '}
         <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-cyan)' }}>EU AI Act Explorer</a>.
@@ -541,7 +539,7 @@ export default function ComplianceRef({ onNavigate }: ComplianceRefProps) {
         <div className="cr-decision-node cr-dn-blue">
           <div className="cr-dn-q">Do your AI systems make or significantly influence individual decisions on insurance coverage, claims, or pricing?</div>
           <div className="cr-dn-answers">
-            <div className="cr-dn-yes">Yes → Likely High-Risk under EU AI Act Annex III. Full conformity obligations apply from <strong>2 August 2026</strong> under current law — Parliament's simplification proposal (adopted April 2026, trilogue pending) proposes extending this to <strong>2 December 2027.</strong> Plan for 2026; monitor trilogue outcome.</div>
+            <div className="cr-dn-yes">Yes → Likely High-Risk under EU AI Act Annex III. Full conformity obligations apply from <strong>2 December 2027</strong> for stand-alone systems (confirmed via digital omnibus package, June 2026). Safety component systems: <strong>2 August 2028.</strong></div>
             <div className="cr-dn-no">No → Limited Risk tier. Transparency obligations only (Article 50).</div>
           </div>
         </div>

@@ -12,7 +12,7 @@ export const regData: RegFramework[] = [
       { label: 'OVERSIGHT', labelClass: 'tag-amber', text: '<strong>Human Oversight Mechanism:</strong> Must be operationally realisable — not just stated in policy. Claimants must be able to request human review. Adjusters must have the authority and context to genuinely review, not just rubber-stamp.' },
       { label: 'AUDIT LOG', labelClass: 'tag-purple', text: '<strong>Logging Obligations:</strong> High-risk agents must log inputs, outputs, and the decision-making context for each consequential decision. Logs retained per regulatory retention requirements.' },
       { label: 'ACCURACY', labelClass: 'tag-green', text: '<strong>Performance Monitoring:</strong> Ongoing monitoring of accuracy and reliability. Significant performance degradation triggers mandatory review. No specific threshold defined — governance committee sets and owns this.' },
-      { label: 'DEADLINE', labelClass: 'tag-red', text: '<strong>Compliance timeline:</strong> Current legal deadline for high-risk obligations is 2 August 2026. The European Parliament adopted a proposed extension to 2 December 2027 (569–45, April 2026), but trilogue with the Council is not concluded. 2 August 2026 remains the operative legal baseline until confirmed otherwise.' }
+      { label: 'DEADLINE', labelClass: 'tag-red', text: '<strong>Compliance timeline:</strong> High-risk stand-alone AI system obligations apply from <strong>2 December 2027</strong>. Safety component AI systems: <strong>2 August 2028</strong>. Confirmed via the digital omnibus simplification package approved by the European Parliament (423–57, June 2026). The original 2 August 2026 deadline has been superseded.' }
     ]
   },
   {
