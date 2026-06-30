@@ -100,8 +100,7 @@
   transition: all 0.2s;
   position: relative;
 }
-.flow-node:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
-.flow-node.selected { border-color: var(--accent-cyan); background: rgba(0,196,204,0.07); }
+.flow-node:hover { transform: translateY(-1px); }
 .flow-node-type {
   font-family: 'DM Mono', monospace;
   font-size: 0.55rem; text-transform: uppercase;
@@ -123,14 +122,28 @@
 }
 .node-agent  { border-left: 3px solid var(--accent-blue); }
 .node-agent .flow-node-type  { color: var(--accent-blue); }
+.node-agent:hover, .node-agent.selected  { border-color: var(--accent-blue); }
+.node-agent.selected  { background: var(--blue-bg); }
+
 .node-human  { border-left: 3px solid var(--accent-amber); }
 .node-human .flow-node-type  { color: var(--accent-amber); }
+.node-human:hover, .node-human.selected  { border-color: var(--accent-amber); }
+.node-human.selected  { background: var(--amber-bg); }
+
 .node-gate   { border-left: 3px solid var(--accent-red); }
 .node-gate .flow-node-type   { color: var(--accent-red); }
+.node-gate:hover, .node-gate.selected   { border-color: var(--accent-red); }
+.node-gate.selected   { background: var(--red-bg); }
+
 .node-system { border-left: 3px solid var(--text-dim); }
 .node-system .flow-node-type { color: var(--text-dim); }
+.node-system:hover, .node-system.selected { border-color: var(--text-dim); }
+.node-system.selected { background: var(--chip-bg); }
+
 .node-output { border-left: 3px solid var(--accent-green); }
 .node-output .flow-node-type { color: var(--accent-green); }
+.node-output:hover, .node-output.selected { border-color: var(--accent-green); }
+.node-output.selected { background: var(--green-bg); }
 .flow-legend {
   display: flex; gap: 1.5rem; margin-top: 1.5rem;
   flex-wrap: wrap;
