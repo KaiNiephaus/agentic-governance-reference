@@ -39,7 +39,7 @@ export const nodeDetails: Record<string, NodeDetail> = {
     inputs: ['Extracted claim record', 'Required fields checklist per claim type', 'Minimum confidence thresholds per field class'],
     outputs: ['Pass: claim proceeds to Stage 2', 'Fail: auto-generated information request to claimant', 'Partial: proceed with flagged gaps noted'],
     governance: ['Threshold values are governance decisions — set by Claims Governance Committee, not platform default', 'Information requests are templated and logged; count toward SLA clock', 'Maximum 2 information requests before human adjuster takes over (examplary threshold — set per governance policy)'],
-    risk: 'Gate — controls data quality entering the decision layer'
+    risk: 'Medium — controls data quality entering the decision layer'
   },
   policy: {
     name: 'Policy Rules Agent',
@@ -69,7 +69,7 @@ export const nodeDetails: Record<string, NodeDetail> = {
     inputs: ['Fraud risk score', 'Coverage determination confidence', 'Claim value vs. authority limit', 'Special flags: fatality, litigation, media, VIP'],
     outputs: ['Track A — Autonomous: straight-through to settlement', 'Track B — Human: routed to adjuster queue with full context package', 'Track C — SIU: routed to Special Investigations Unit'],
     governance: ['Routing thresholds are governance decisions — quarterly review by Claims Governance Committee', 'All threshold changes require documented rationale and impact assessment', 'Track B / C routing cannot be overridden by the agent — hard escalation'],
-    risk: 'Gate — routing error here is the primary systemic risk in the architecture'
+    risk: 'High — routing error here is the primary systemic risk in the architecture'
   },
   humanreview: {
     name: 'Senior Claims Adjuster',
@@ -99,7 +99,7 @@ export const nodeDetails: Record<string, NodeDetail> = {
     inputs: ['Settlement amount', 'Claim complexity tier', 'Customer segment', 'Prior exceptions on this claim'],
     outputs: ['All thresholds are examplary. Define by Board governance process', '€5,001–€25,000: Claims Manager approval required', '€25,001–€100,000: Senior Director approval required', '>€100,000: Chief Claims Officer + Legal sign-off'],
     governance: ['Authority thresholds are Board-approved — changes require formal governance process', 'No agent can self-authorise above its tier — hard system stop, not soft warning', 'All approvals timestamped and linked to approver identity in immutable log', 'Segregation of duties: approver cannot be the adjuster who handled the claim'],
-    risk: 'Critical gate — financial authority control is primary SOX/Solvency II compliance mechanism'
+    risk: 'Critical — financial authority control is primary SOX/Solvency II compliance mechanism'
   },
   payment: {
     name: 'Payment Execution Agent',

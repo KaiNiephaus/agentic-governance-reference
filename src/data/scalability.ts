@@ -35,9 +35,13 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   overview: {
     tabId: 'overview',
-    framing: 'This reference architecture is scoped to one entity, one jurisdiction (EU), and one agentic workflow (usecase). Each of those constraints is a deliberate simplification — and each creates a specific structural challenge for governing AI in a scaled context.',
+    framing: 'This reference architecture is scoped to one entity, one jurisdiction (EU), and one agentic workflow, utilising a centralised governance model, which maximises consistency and control in a bounded context. For scaling horizontally, a Hub and Spoke model is the suitable approach.',
     axes: ['use-cases', 'jurisdictions', 'people'],
     items: [
+      {
+        title: 'Hub and Spoke as the Scaling Model',
+        body: 'When scaling across entities, jurisdictions, and use cases, Hub and Spoke separates what must be governed centrally from what can be governed locally. A Platform Governance Board (hub) owns cross-entity standards, the Capability Registry, and the Regulatory Context Library. Entity-level governance structures (spokes) retain authority over their deployments within those bounds — preserving consistency without centralising every decision.',
+      },
       {
         title: 'Axis 1 — Additional Use Cases',
         tags: [{ label: 'Use Cases', color: 'blue' }],

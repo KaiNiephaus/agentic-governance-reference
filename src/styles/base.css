@@ -130,7 +130,7 @@ body {
 .risk-low  { background: rgba(61,214,140,0.12);  color: var(--accent-green); }
 .risk-med  { background: rgba(245,166,35,0.12);  color: var(--accent-amber); }
 .risk-high { background: rgba(224,82,82,0.12);   color: var(--accent-red); }
-.risk-crit { background: rgba(139,92,246,0.15);  color: var(--accent-purple); }
+.risk-crit { background: var(--accent-red);      color: #ffffff; font-weight: 600; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

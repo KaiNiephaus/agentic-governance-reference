@@ -4,6 +4,20 @@ interface DetailPanelProps {
   detail: NodeDetail | null
 }
 
+const RISK_CLASS_MAP: Record<string, string> = {
+  low: 'low',
+  medium: 'med',
+  high: 'high',
+  critical: 'crit',
+}
+
+function parseRisk(risk: string): { label: string; rest: string; chipClass: string | null } {
+  const [label, ...restParts] = risk.split(' — ')
+  const rest = restParts.join(' — ')
+  const chipClass = RISK_CLASS_MAP[label.trim().toLowerCase()] ?? null
+  return { label: label.trim(), rest, chipClass }
+}
+
 export default function DetailPanel({ detail }: DetailPanelProps) {
   return (
     <div className={`detail-panel${detail ? ' visible' : ''}`} id="node-detail">
@@ -40,11 +54,21 @@ export default function DetailPanel({ detail }: DetailPanelProps) {
               </div>
             </div>
           </div>
-          <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: 'var(--surface2)', borderRadius: '4px', fontSize: '0.7rem' }}>
+          <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: 'var(--surface2)', borderRadius: '4px', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
-              Risk Level:{' '}
+              Risk Level:
             </span>
-            <span style={{ color: 'var(--text)' }}>{detail.risk}</span>
+            {(() => {
+              const { label, rest, chipClass } = parseRisk(detail.risk)
+              return (
+                <>
+                  {chipClass
+                    ? <span className={`risk-chip risk-${chipClass}`}>{label}</span>
+                    : <span style={{ color: 'var(--text)' }}>{label}</span>}
+                  {rest && <span style={{ color: 'var(--text)' }}>— {rest}</span>}
+                </>
+              )
+            })()}
           </div>
         </div>
       )}
