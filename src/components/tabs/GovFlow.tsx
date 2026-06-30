@@ -41,9 +41,9 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
     const textBright = cs.getPropertyValue('--text-bright').trim()
     const borderCol = cs.getPropertyValue('--border').trim()
     const laneOpacity = cs.getPropertyValue('--lane-opacity').trim() || '0.04'
-    const tc1 = cs.getPropertyValue('--accent-purple').trim()
-    const tc2 = cs.getPropertyValue('--accent-amber').trim()
-    const tc3 = cs.getPropertyValue('--accent-green').trim()
+    const tc1 = cs.getPropertyValue('--tier-accent-1').trim()
+    const tc2 = cs.getPropertyValue('--tier-accent-2').trim()
+    const tc3 = cs.getPropertyValue('--tier-accent-3').trim()
     const tcMap: Record<number, string> = { 1: tc1, 2: tc2, 3: tc3 }
     let h = `<defs>
       <marker id="gfarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -172,9 +172,9 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         {/* Tier 1 */}
         <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', minHeight: '190px' }}>
           <div className="gf-tier-sidebar gf-t1">
-            <div className="gf-tier-num" style={{ color: 'var(--accent-purple)' }}>1</div>
+            <div className="gf-tier-num" style={{ color: 'var(--tier-accent-1)' }}>1</div>
             <div className="gf-tier-name">Strategic</div>
-            <div className="gf-tier-cadence" style={{ color: 'var(--accent-purple)' }}>Monthly · Quarterly</div>
+            <div className="gf-tier-cadence" style={{ color: 'var(--tier-accent-1)' }}>Monthly · Quarterly</div>
           </div>
           <div className="gf-tier-canvas">
             {[
@@ -188,7 +188,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
               <div
                 key={block.key}
                 className={`gf-block gf-b-purple${activeBlock === block.key ? ' selected' : ''}`}
-                style={{ ...block.style, outline: activeBlock === block.key ? '2px solid var(--accent-purple)' : undefined }}
+                style={{ ...block.style, outline: activeBlock === block.key ? '2px solid var(--tier-accent-1)' : undefined }}
                 onClick={() => handleBlockClick(block.key)}
               >
                 <div className="gf-block-title">{block.title}</div>
@@ -201,9 +201,9 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         {/* Tier 2 */}
         <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', minHeight: '190px' }}>
           <div className="gf-tier-sidebar gf-t2">
-            <div className="gf-tier-num" style={{ color: 'var(--accent-amber)' }}>2</div>
+            <div className="gf-tier-num" style={{ color: 'var(--tier-accent-2)' }}>2</div>
             <div className="gf-tier-name">Operational</div>
-            <div className="gf-tier-cadence" style={{ color: 'var(--accent-amber)' }}>Weekly</div>
+            <div className="gf-tier-cadence" style={{ color: 'var(--tier-accent-2)' }}>Weekly</div>
           </div>
           <div className="gf-tier-canvas">
             {[
@@ -217,7 +217,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
               <div
                 key={block.key}
                 className={`gf-block gf-b-amber${activeBlock === block.key ? ' selected' : ''}`}
-                style={{ ...block.style, outline: activeBlock === block.key ? '2px solid var(--accent-amber)' : undefined }}
+                style={{ ...block.style, outline: activeBlock === block.key ? '2px solid var(--tier-accent-2)' : undefined }}
                 onClick={() => handleBlockClick(block.key)}
               >
                 <div className="gf-block-title">{block.title}</div>
@@ -230,18 +230,18 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         {/* Tier 3 */}
         <div style={{ display: 'flex', minHeight: '80px' }}>
           <div className="gf-tier-sidebar gf-t3">
-            <div className="gf-tier-num" style={{ color: 'var(--accent-green)' }}>3</div>
+            <div className="gf-tier-num" style={{ color: 'var(--tier-accent-3)' }}>3</div>
             <div className="gf-tier-name">Real-time</div>
-            <div className="gf-tier-cadence" style={{ color: 'var(--accent-green)' }}>Always on</div>
+            <div className="gf-tier-cadence" style={{ color: 'var(--tier-accent-3)' }}>Always on</div>
           </div>
           <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center', padding: '0 1rem' }}>
             <div
               className="gf-continuous-band"
-              style={{ outline: activeBlock === 't3-monitoring' ? '2px solid var(--accent-green)' : undefined }}
+              style={{ outline: activeBlock === 't3-monitoring' ? '2px solid var(--tier-accent-3)' : undefined }}
               onClick={() => handleBlockClick('t3-monitoring')}
             >
               <div className="gf-pulse-dot" />
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'var(--accent-green)', letterSpacing: '0.06em' }}>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'var(--tier-accent-3)', letterSpacing: '0.06em' }}>
                 Platform monitoring &nbsp;·&nbsp; Alert detection &nbsp;·&nbsp; Authority gate integrity &nbsp;·&nbsp; Payment success tracking &nbsp;·&nbsp; On-call coverage 24/7
               </div>
             </div>
@@ -284,9 +284,9 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.outputs}</div>
               </div>
               <div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-purple)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
+                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-1)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>{d.triggersUp}</div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-green)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
+                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-3)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.triggersDown}</div>
               </div>
             </div>

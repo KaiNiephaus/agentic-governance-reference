@@ -5,8 +5,6 @@ import Chevron from '../shared/Chevron'
 import { scalabilitySections } from '../../data/scalability'
 import ScalabilitySection from '../shared/ScalabilitySection'
 
-const accentColors = ['blue', 'amber', 'red', 'purple'] as const
-
 interface NavOptions {
   openLayerIndex?: number
   openBlockKey?: string
@@ -41,7 +39,7 @@ export default function GovernanceLayers({ initialOpenIndex, onNavigate }: Gover
             <div className="gov-layer-header" onClick={() => toggle(i)}>
               <div
                 className="gov-layer-num"
-                style={{ color: `var(--accent-${accentColors[i]})` }}
+                style={{ color: `var(--layer-accent-${i + 1})` }}
               >
                 {layer.num}
               </div>
@@ -83,7 +81,7 @@ export default function GovernanceLayers({ initialOpenIndex, onNavigate }: Gover
                     <div
                       className="gov-item"
                       key={item.title}
-                      style={{ borderColor: 'rgba(224,82,82,0.2)' }}
+                      style={{ borderColor: 'var(--red-border)' }}
                     >
                       <div className="gov-item-title" style={{ color: 'var(--accent-red)' }}>
                         {item.title}

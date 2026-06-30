@@ -5,7 +5,7 @@ export const opModel: OpModelTier[] = [
     tier: 'Tier 1',
     name: 'Strategic Governance',
     cadence: 'Monthly / Quarterly',
-    color: 'var(--accent-purple)',
+    color: 'var(--tier-accent-1)',
     roles: [
       { name: 'Claims Governance Committee', desc: 'Cross-functional. Sets authority thresholds, approves Tier C changes, reviews aggregate performance, owns regulatory obligations.' },
       { name: 'Chief Claims Officer', desc: 'Executive accountable for agent network outcomes. Signs off on EU AI Act conformity documentation.' },
@@ -24,7 +24,7 @@ export const opModel: OpModelTier[] = [
     tier: 'Tier 2',
     name: 'Operational Governance',
     cadence: 'Weekly',
-    color: 'var(--accent-amber)',
+    color: 'var(--tier-accent-2)',
     roles: [
       { name: 'Claims Operations Manager', desc: 'Owns exception queue performance and adjuster capacity planning. Escalates systemic issues to Tier 1.' },
       { name: 'Head of Claims Technology', desc: 'Owns platform health, drift detection, change queue. Approves Tier B changes.' },
@@ -43,7 +43,7 @@ export const opModel: OpModelTier[] = [
     tier: 'Tier 3',
     name: 'Real-Time Control',
     cadence: 'Continuous',
-    color: 'var(--accent-green)',
+    color: 'var(--tier-accent-3)',
     roles: [
       { name: 'Platform Monitoring (Automated)', desc: 'Monitors agent health dashboards, anomaly alerts, authority gate logs, and payment success rates. Generates automated escalation on threshold breach.' },
       { name: 'On-Call Operations Analyst', desc: 'Responds to automated alerts. First escalation point for real-time incidents. 24/7 coverage.' },

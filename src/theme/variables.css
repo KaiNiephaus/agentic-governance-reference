@@ -55,6 +55,13 @@
   --chip-bg-active: rgba(255,255,255,0.08);
   --nav-accent: var(--accent-cyan);
   --lane-opacity: 0.04;
+  --layer-accent-1: var(--accent-blue);
+  --layer-accent-2: var(--accent-amber);
+  --layer-accent-3: var(--accent-red);
+  --layer-accent-4: var(--accent-purple);
+  --tier-accent-1: var(--accent-purple);
+  --tier-accent-2: var(--accent-amber);
+  --tier-accent-3: var(--accent-green);
 }
 
 [data-theme="light"] {
@@ -112,4 +119,11 @@
   --chip-bg-active: rgba(2,3,2,0.1);
   --nav-accent: #020302;
   --lane-opacity: 0.1;
+  --layer-accent-1: color-mix(in srgb, var(--accent-blue) 55%, var(--text-dim) 45%);
+  --layer-accent-2: color-mix(in srgb, var(--accent-amber) 55%, var(--text-dim) 45%);
+  --layer-accent-3: color-mix(in srgb, var(--accent-red) 55%, var(--text-dim) 45%);
+  --layer-accent-4: color-mix(in srgb, var(--accent-purple) 55%, var(--text-dim) 45%);
+  --tier-accent-1: var(--layer-accent-4);
+  --tier-accent-2: var(--layer-accent-2);
+  --tier-accent-3: color-mix(in srgb, var(--accent-green) 55%, var(--text-dim) 45%);
 }

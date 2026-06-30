@@ -210,6 +210,10 @@
 }
 .gov-layer-subtitle { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.15rem; }
 .gov-layer-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+[data-theme="light"] .gov-layer-badges .tag-blue   { background: color-mix(in srgb, var(--layer-accent-1) 12%, transparent); color: var(--layer-accent-1); border-color: color-mix(in srgb, var(--layer-accent-1) 35%, transparent); }
+[data-theme="light"] .gov-layer-badges .tag-amber  { background: color-mix(in srgb, var(--layer-accent-2) 12%, transparent); color: var(--layer-accent-2); border-color: color-mix(in srgb, var(--layer-accent-2) 35%, transparent); }
+[data-theme="light"] .gov-layer-badges .tag-red    { background: color-mix(in srgb, var(--layer-accent-3) 12%, transparent); color: var(--layer-accent-3); border-color: color-mix(in srgb, var(--layer-accent-3) 35%, transparent); }
+[data-theme="light"] .gov-layer-badges .tag-purple { background: color-mix(in srgb, var(--layer-accent-4) 12%, transparent); color: var(--layer-accent-4); border-color: color-mix(in srgb, var(--layer-accent-4) 35%, transparent); }
 .badge {
   font-family: 'DM Mono', monospace;
   font-size: 0.58rem; text-transform: uppercase;
@@ -390,9 +394,9 @@
   content: ''; position: absolute;
   right: -1px; top: 0; width: 2px; height: 100%;
 }
-.gf-t1::after { background: var(--accent-purple); opacity: 0.5; }
-.gf-t2::after { background: var(--accent-amber);  opacity: 0.5; }
-.gf-t3::after { background: var(--accent-green);  opacity: 0.5; }
+.gf-t1::after { background: var(--tier-accent-1); opacity: 0.5; }
+.gf-t2::after { background: var(--tier-accent-2);  opacity: 0.5; }
+.gf-t3::after { background: var(--tier-accent-3);  opacity: 0.5; }
 .gf-tier-num {
   font-family: 'Fraunces', serif;
   font-size: 2.2rem; font-weight: 900;
@@ -412,9 +416,9 @@
 .gf-block:hover { transform: translateY(-1px); filter: brightness(1.15); }
 .gf-block-title { font-size: 0.72rem; font-weight: 500; color: var(--text-bright); line-height: 1.3; margin-bottom: 0.15rem; }
 .gf-block-sub   { font-size: 0.62rem; color: var(--text-dim); line-height: 1.3; }
-.gf-b-purple { background: var(--purple-bg); border-color: var(--purple-border); border-left: 2px solid var(--accent-purple); }
-.gf-b-amber  { background: var(--amber-bg-status);  border-color: var(--amber-border);  border-left: 2px solid var(--accent-amber); }
-.gf-b-green  { background: var(--green-bg-status);  border-color: var(--green-border-strong);  border-left: 2px solid var(--accent-green); }
+.gf-b-purple { background: var(--purple-bg); border-color: var(--purple-border); border-left: 2px solid var(--tier-accent-1); }
+.gf-b-amber  { background: var(--amber-bg-status);  border-color: var(--amber-border);  border-left: 2px solid var(--tier-accent-2); }
+.gf-b-green  { background: var(--green-bg-status);  border-color: var(--green-border-strong);  border-left: 2px solid var(--tier-accent-3); }
 .gf-continuous-band {
   width: 100%; height: 42px;
   background: var(--green-bg);
@@ -427,7 +431,7 @@
 .gf-continuous-band:hover { background: var(--green-bg-hover); }
 .gf-pulse-dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent-green); flex-shrink: 0;
+  background: var(--tier-accent-3); flex-shrink: 0;
   animation: gfPulse 2s ease-in-out infinite;
 }
 .gf-detail-panel {
