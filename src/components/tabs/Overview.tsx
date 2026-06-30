@@ -28,10 +28,10 @@ export default function Overview({ onNavigate }: OverviewProps) {
           Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation. <br />
         <br />
           While the original case reflects an ambitious international, multi-country deployment, the scope of the architecture designed for this reference is deliberately narrower: to make it tractable and to expose governance structures that remain relevant across different operational contexts.
-        <br />Within that scope it defines a six-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
+        <br />Within that scope the architecture defines a six-agent autonomous claims pipeline and the organisational infrastructure required to govern it — bounded to one regulated entity operating within an EU context and a centralized governance model — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
         <br />
          <br />
-        For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is how organisations can deploy and govern autonomous agents at scale. The focus is therefore on the governance and process level, excluding product- and operation-specific aspects of travel insurance such as coverage rules, emergency response, and destination risk.
+        For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is how organisations can deploy and govern autonomous agents. The focus is therefore on the governance and process level, excluding product- and operation-specific aspects of travel insurance such as coverage rules, emergency response, and destination risk.
         </div>
 
         <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '75%', lineHeight: 1.6 }}>
