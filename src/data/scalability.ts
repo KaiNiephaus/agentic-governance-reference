@@ -55,11 +55,11 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       {
         title: 'Axis 3 — People and Roles',
         tags: [{ label: 'People & Roles', color: 'purple' }],
-        body: 'The three-tier operating model (Strategic / Operational / Real-time) is defined for one entity with named roles. Across multiple entities and jurisdictions, the governance and operating model breaks because every committee nominally oversees too much to govern anything meaningfully. A tractable approach is separating governance functions from governance roles, and introducing a Platform Governance Board above Tier 1 (Hub)that owns cross-entity standards, the Capability Registry, and the Regulatory Context Library. Entity-level tiers retain authority within those bounds.',
+        body: 'The three-tier operating model (Strategic / Operational / Real-time) is defined for one entity with named roles. Across multiple entities and jurisdictions, the governance and operating model breaks because every committee nominally oversees too much to govern anything meaningfully. A tractable approach is separating governance functions from governance roles, and introducing a Platform Governance Board above Tier 1 (hub) that owns cross-entity standards, the Capability Registry, and the Regulatory Context Library. Entity-level tiers (spokes) retain authority within those bounds.',
       },
       {
         title: 'What doesn\'t change at scale',
-        body: 'The four adressed governance challenges within the applied context — Authority, Accountability, Change, Data & Decision — are tension points at any scale, that need to be addressed and balanced through organizational design. Understanding where and why the balance breaks in a scaled context is the precondition for designing governance and an operating system that works in practice.',
+        body: 'The four adressed governance challenges — Authority, Accountability, Change, Data & Decision — are tension points at any scale, that need to be addressed and balanced through organizational design. Understanding where and why the balance breaks in a scaled context is the precondition for designing governance and an operating system that works in practice.',
       },
     ],
     crossLinks: [
