@@ -197,7 +197,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   govflow: {
     tabId: 'govflow',
-    framing: 'The four governance flows — authority review, deployment approval, regulatory horizon, exception patterns — operate on a single-entity cadence. At scale, each flow gains a platform-level counterpart with different triggers, participants, and routing logic.',
+    framing: 'These governance flows — authority review and deployment approval, regulatory horizon scanning, and exception pattern analysis — operate on a single-entity cadence. At scale, each flow gains a platform-level counterpart with different triggers, participants, and routing logic.',
     axes: ['people', 'use-cases', 'jurisdictions'],
     items: [
       {
