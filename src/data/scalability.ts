@@ -164,13 +164,13 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
 
   opmodel: {
     tabId: 'opmodel',
-    framing: 'The three-tier operating model governs one entity. Expanding to multiple entities and jurisdictions does not require more committees — it requires a clearer separation between what is governed at platform level and what remains at entity level.',
+    framing: 'The three-tier operating model governs one entity under a centralised structure. Scaling to multiple entities and jurisdictions requires a different model — Hub and Spoke — separating what is governed centrally from what remains at entity level.',
     axes: ['people', 'jurisdictions'],
     items: [
       {
         title: 'A Fourth Tier: Platform Governance Board',
         tags: [{ label: 'People & Roles', color: 'purple' }],
-        body: 'Above Tier 1, a Platform Governance Board owns the artefacts that no single entity can govern alone: the Capability Registry (what capabilities are certified and at what authority level), the Regulatory Context Library (what jurisdiction modules exist and who maintains them), and the cross-entity governance floor (the minimum standards every entity deployment must meet). Entities can add constraints above the floor; they cannot remove them. The Board does not govern operational decisions — it governs the infrastructure that entity-level governance operates on.',
+        body: 'Above Tier 1, a Platform Governance Board (hub) owns the artefacts that no single entity can govern alone: the Capability Registry, the Regulatory Context Library, and the cross-entity governance floor. Entity-level governance structures (spokes) retain authority over their deployments within those bounds. The Board does not govern operational decisions — it governs the infrastructure that entity-level governance operates on.',
       },
       {
         title: 'Entity-Level Tiers: Scoped, Not Reduced',
