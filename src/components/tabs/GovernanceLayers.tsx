@@ -16,10 +16,17 @@ interface GovernanceLayersProps {
 }
 
 export default function GovernanceLayers({ initialOpenIndex, onNavigate }: GovernanceLayersProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(initialOpenIndex ?? null)
+  const [openIndices, setOpenIndices] = useState<Set<number>>(
+    () => new Set(initialOpenIndex !== undefined ? [initialOpenIndex] : [])
+  )
 
   function toggle(i: number) {
-    setOpenIndex(openIndex === i ? null : i)
+    setOpenIndices(prev => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
   }
 
   return (
@@ -33,7 +40,7 @@ export default function GovernanceLayers({ initialOpenIndex, onNavigate }: Gover
       <div className="layers-container" id="gov-layers">
         {govLayers.map((layer, i) => (
           <div
-            className={`gov-layer${openIndex === i ? ' open' : ''}`}
+            className={`gov-layer${openIndices.has(i) ? ' open' : ''}`}
             key={layer.num}
           >
             <div className="gov-layer-header" onClick={() => toggle(i)}>

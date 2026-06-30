@@ -15,10 +15,15 @@ interface AgentRegisterProps {
 }
 
 export default function AgentRegister({ onNavigate }: AgentRegisterProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndices, setOpenIndices] = useState<Set<number>>(() => new Set())
 
   function toggle(i: number) {
-    setOpenIndex(openIndex === i ? null : i)
+    setOpenIndices(prev => {
+      const next = new Set(prev)
+      if (next.has(i)) next.delete(i)
+      else next.add(i)
+      return next
+    })
   }
 
   return (
@@ -32,7 +37,7 @@ export default function AgentRegister({ onNavigate }: AgentRegisterProps) {
       <div className="agent-register" id="agent-register">
         {agents.map((agent, i) => (
           <div
-            className={`agent-card${openIndex === i ? ' open' : ''}`}
+            className={`agent-card${openIndices.has(i) ? ' open' : ''}`}
             key={agent.name}
           >
             <div className="agent-card-header" onClick={() => toggle(i)}>
