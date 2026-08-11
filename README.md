@@ -43,4 +43,4 @@ The reference is structured across eight tabs:
 
 
 ---
-Version 2.3 | May 2026 // Built with Vite + React + TypeScript.
+Version 2.4 | June 2026 // Built with Vite + React + TypeScript.
