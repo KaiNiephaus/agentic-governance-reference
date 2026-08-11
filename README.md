@@ -1,4 +1,4 @@
-# Agentic Governance – Applied Reference
+# Agentic Governance in Practice – Applied Reference
 
 Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation.
 
@@ -20,8 +20,8 @@ The reference is structured across eight tabs:
 - **Regulatory & Compliance** — Requirements EU AI Act, NIS-2, GDPR, DORA, and Solvency II mapped to the architecture
 
 **Requirements for scalability**
-Each tab has a designated section providing contextual information and requirements for a scalable governance model (centralized -> Hub and Spoke),
-suitable for expanding agent deployment horizontally
+Each tab has a designated section providing contextual information and requirements in regards to usecases, people & roles and jurisdictions for a scalable governance model (centralized -> Hub and Spoke),
+suitable for expanding and governing agents horizontally
 
 ---
 
