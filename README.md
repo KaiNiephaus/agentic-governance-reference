@@ -20,8 +20,8 @@ The reference is structured across eight tabs:
 - **Regulatory & Compliance** — Requirements EU AI Act, NIS-2, GDPR, DORA, and Solvency II mapped to the architecture
 
 **Requirements for scalability**
-Each tab has a designated section providing information and contextual notes and requirements for a scalable governance model (centralized -> Hub and Spoke),
-suitable when expanding agent deployment horizontally
+Each tab has a designated section providing contextual information and requirements for a scalable governance model (centralized -> Hub and Spoke),
+suitable for expanding agent deployment horizontally
 
 ---
 
