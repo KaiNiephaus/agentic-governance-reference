@@ -44,7 +44,11 @@ function tabToPath(tab: TabId): string {
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>(() => pathToTab(window.location.pathname))
   const [navOptions, setNavOptions] = useState<NavOptions>({})
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [theme, setTheme] = useState<'dark' | 'light'>('light')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light')
+  }, [])
 
   useEffect(() => {
     function onPopState() {
