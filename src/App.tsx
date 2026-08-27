@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MobileGate from './components/MobileGate'
 import Overview from './components/tabs/Overview'
 import Regulatory from './components/tabs/Regulatory'
@@ -31,10 +31,30 @@ const tabs: { id: TabId; label: string }[] = [
 
 const BUILT: TabId[] = ['overview', 'flow', 'agents', 'platformorg', 'governance', 'opmodel', 'govflow', 'regulatory', 'compliance']
 
+function pathToTab(pathname: string): TabId {
+  const slug = pathname.replace(/^\/+/, '').split('/')[0]
+  const match = tabs.find((t) => t.id === slug)
+  return match ? match.id : 'overview'
+}
+
+function tabToPath(tab: TabId): string {
+  return tab === 'overview' ? '/' : `/${tab}`
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<TabId>('overview')
+  const [activeTab, setActiveTab] = useState<TabId>(() => pathToTab(window.location.pathname))
   const [navOptions, setNavOptions] = useState<NavOptions>({})
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+
+  useEffect(() => {
+    function onPopState() {
+      setNavOptions({})
+      setActiveTab(pathToTab(window.location.pathname))
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
   function toggleTheme() {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -47,8 +67,13 @@ export default function App() {
   }
 
   function navigate(tab: string, options: NavOptions = {}) {
+    const tabId = tab as TabId
     setNavOptions(options)
-    setActiveTab(tab as TabId)
+    setActiveTab(tabId)
+    const path = tabToPath(tabId)
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, '', path)
+    }
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
