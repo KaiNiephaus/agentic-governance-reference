@@ -1,9 +1,9 @@
-# Agentic Governance – Applied Reference
+# Agentic Governance in Practice – Applied Reference
 
 Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation.
 
 While the original case reflects an ambitious international, multi-country deployment, the scope of the architecture designed for this reference is deliberately narrower: to make it tractable and to expose governance structures that remain relevant across different operational contexts.
-Within that scope it defines a seven-agent autonomous claims pipeline and the organisational infrastructure required to govern it — scoped to one regulated entity operating within an EU context — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
+Within that scope the architecture defines a six-agent autonomous claims pipeline and the organisational infrastructure required to govern it — bounded to one regulated entity operating within an EU context and a centralized governance model — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
 
 **[→ Live reference tool](https://agentic-governance-reference.vercel.app/)**
 
@@ -11,13 +11,17 @@ Within that scope it defines a seven-agent autonomous claims pipeline and the or
 The reference is structured across eight tabs:
 
 - **Overview** — case context, scope, and the four governance design problems
-- **Process Flow** — the seven-agent claims pipeline from intake to payment
+- **Agentic Process Flow** — the six-agent claims pipeline from intake to resolution
 - **Agent Register** — authority boundaries, decision scope, and escalation triggers per agent
+- **Platform vs. Org** — what the platform provides and the organisational governance that must be designed to operate save and accountable
 - **Governance Layers** — authority, accountability, change, and data quality as four distinct design problems
 - **Operating Model** — three-tier governance structure with cadences and roles
 - **Governance Flow** — how the operating model responds to specific event types
-- **Platform vs. Org** — what the platform provides and what must be designed organisationally
-- **Regulatory & Compliance** — EU AI Act, NIS-2, GDPR, DORA, and Solvency II mapped to the architecture
+- **Regulatory & Compliance** — Requirements EU AI Act, NIS-2, GDPR, DORA, and Solvency II mapped to the architecture
+
+**Requirements for scalability**
+Each tab has a designated section providing contextual information and requirements in regards to usecases, people & roles and jurisdictions for a scalable governance model (centralized -> Hub and Spoke),
+suitable for expanding and governing agents horizontally
 
 ---
 
@@ -43,4 +47,4 @@ The reference is structured across eight tabs:
 
 
 ---
-Version 2.3 | May 2026 // Built with Vite + React + TypeScript.
+Version 2.4 | June 2026 // Built with Vite + React + TypeScript.
