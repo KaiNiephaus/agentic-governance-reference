@@ -22,16 +22,18 @@ export default function Overview({ onNavigate }: OverviewProps) {
         <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
-          An applied architecture based on the Allianz Partners / Otera autonomous travel-claims resolution
+          An applied architecture for governing autonomous travel-claims resolution
+        </div>
+        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '75%', lineHeight: 1.6 }}>
+          The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
         </div>
         <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '75%' }}>
-          Agentic governance, particularly in regulated and international contexts, is genuinely complex. This interactive reference makes it explorable in context through one applied scenario, informed by the Allianz Partners / Otera case as its real-world foundation. <br />
+          Agentic governance, particularly in regulated contexts, is genuinely complex. This reference makes it explorable in context through one applied scenario: a six-agent travel claims processing flow from intake to resolution, paired with the required governance architecture to run it responsibly <br />
         <br />
-          While the original case reflects an ambitious international, multi-country deployment, the scope of the architecture designed for this reference is deliberately narrower: to make it tractable and to expose governance structures that remain relevant across different operational contexts.
-        <br />Within that scope the architecture defines a six-agent autonomous claims pipeline and the organisational infrastructure required to govern it — bounded to one regulated entity operating within an EU context and a centralized governance model — showing how agents, governance mechanisms, authority boundaries, operating cadences, escalation paths, and regulatory obligations connect in practice.
+          The scope is deliberately kept narrow: one use-case, one regulated entity operating within EU context, and a centralised governance model. This keeps the architecture tractable while exposing governance relationships — authority boundaries, escalation logic, change control, audit trails, operating cadences — that apply broadly to organisations deploying autonomous systems under the EU AI Act.
         <br />
          <br />
-        For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is how organisations can deploy and govern autonomous agents. The focus is therefore on the governance and process level, excluding product- and operation-specific aspects of travel insurance such as coverage rules, emergency response, and destination risk.
+          For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is the interplay of agentic systems, compliance obligations, and their implications for organisational and process design. Thus, product- and operation-specific aspects of travel insurance — coverage rules, emergency response, destination risk — are out of scope
         </div>
 
         <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '75%', lineHeight: 1.6 }}>
