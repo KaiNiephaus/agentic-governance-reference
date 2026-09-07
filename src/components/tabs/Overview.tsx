@@ -28,16 +28,16 @@ export default function Overview({ onNavigate }: OverviewProps) {
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
           An applied architecture for governing autonomous travel-claims resolution
         </div>
-        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '1.5rem', maxWidth: '75%', lineHeight: 1.6 }}>
-          The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
-        </div>
-        <div className="hero-sub" style={{ marginTop: '0.75rem', maxWidth: '75%' }}>
+        <div className="hero-sub" style={{ marginTop: '1.5rem', maxWidth: 'calc(50% - 0.5rem)' }}>
           Agentic governance, particularly in regulated contexts, is genuinely complex. This reference makes it explorable in context through one applied scenario: a six-agent travel claims processing flow from intake to resolution, paired with the required governance architecture to run it responsibly.
         <br />
-          The scope is deliberately kept narrow: one use-case, one regulated entity operating within EU context, and a centralised governance model. This keeps the architecture tractable while exposing governance relationships — authority boundaries, escalation logic, change control, audit trails, operating cadences — that apply broadly to organisations deploying autonomous systems under the EU AI Act.
+          The scope is deliberately narrowed to one use-case, one regulated entity operating within EU context, and a centralised governance model. This keeps the architecture tractable while exposing governance relationships — authority boundaries, escalation logic, change control, audit trails, operating cadences — that apply broadly to organisations deploying autonomous systems under the EU AI Act.
         <br />
          <br />
           For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is the interplay of agentic systems, compliance obligations, and their implications for organisational and process design. Thus, product- and operation-specific aspects of travel insurance — coverage rules, emergency response, destination risk — are out of scope
+        </div>
+        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '0.75rem', lineHeight: 1.6, maxWidth: 'calc(50% - 0.5rem)' }}>
+          The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
         </div>
       </div>
 
