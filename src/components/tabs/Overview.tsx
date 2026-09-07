@@ -34,11 +34,9 @@ export default function Overview({ onNavigate }: OverviewProps) {
           The scope is deliberately narrowed to one use-case, one regulated entity operating within EU context, and a centralised governance model. This keeps the architecture tractable while exposing governance relationships — authority boundaries, escalation logic, change control, audit trails, operating cadences — that apply broadly to organisations deploying autonomous systems under the EU AI Act.
         <br />
          <br />
-          For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is the interplay of agentic systems, compliance obligations, and their implications for organisational and process design. Thus, product- and operation-specific aspects of travel insurance — coverage rules, emergency response, destination risk — are out of scope
+          For the applied scenario, travel-insurance claims resolution provides the operational context; the main subject, however, is the interplay of agents, compliance obligations, and their implications for organisational and process design. Thus, product- and operation-specific aspects of travel insurance, such as coverage rules, emergency response, and destination risk, are out of scope.
         </div>
-        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-bright)', marginTop: '0.75rem', lineHeight: 1.6, maxWidth: 'calc(50% - 0.5rem)' }}>
-          The value of autonomous systems depends on the governance that makes them operational, accountable, and scalable in practice.
-        </div>
+        
       </div>
 
       {/* ── THE GOVERNANCE ARCHITECTURE ── */}
@@ -129,7 +127,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
       <ScalabilitySection data={scalabilitySections.overview} onNavigate={onNavigate} />
 
-      {/* ── THE TRANSFORMATION CASE ── */}
+      {/* ── THE INSPIRATION BEHIND ── */}
       <div style={{ borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '2rem' }}>
         <div style={{ border: '1px solid var(--border)', borderRadius: '6px', overflow: 'hidden' }}>
 
