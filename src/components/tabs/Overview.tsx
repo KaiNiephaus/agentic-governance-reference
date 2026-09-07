@@ -23,7 +23,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
         <div style={{ position: 'absolute', top: 0, right: 0, fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
           Version 2.4 | August 2026
         </div>
-        <div className="hero-label">Applied Usecase · Insurance · Autonomous Claims Processing</div>
+        <div className="hero-label">Autonomous Claims Processing · Insurance</div>
         <h1>Agentic Governance in Practice</h1>
         <div style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', color: 'var(--accent-amber)', marginTop: '0.5rem' }}>
           An applied architecture for governing autonomous travel-claims resolution
