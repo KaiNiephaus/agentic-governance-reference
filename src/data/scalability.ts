@@ -54,7 +54,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       },
       {
         title: 'Axis 3 — People and Roles',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'The three-tier operating model (Strategic / Operational / Real-time) is defined for one entity with named roles. Across multiple entities and jurisdictions, the governance and operating model breaks because every committee nominally oversees too much to govern anything meaningfully. A tractable approach is separating governance functions from governance roles, and introducing a Platform Governance Board above Tier 1 (hub) that owns cross-entity standards, the Capability Registry, and the Regulatory Context Library. Entity-level tiers (spokes) retain authority within those bounds.',
       },
       {
@@ -113,7 +113,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       },
       {
         title: 'Ownership and Accountability at Scale',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'The current register assigns a named role as owner per agent. At scale, ownership splits: a Capability Owner at platform level (accountable for the capability across all deployments) and a Deployment Owner at entity level (accountable for how the capability is configured and used in a specific context). Accountability for system-level behaviour — interactions between capabilities — must be explicitly assigned to a named executive, not left to emerge from individual capability ownership.',
       },
       {
@@ -140,7 +140,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       },
       {
         title: 'Layer 02 — Accountability: Cross-Entity Boundary',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'For the applied architecture, accountability is assigned within one entity. At scale, a shared capability used across entities creates a new accountability question: when a capability behaves incorrectly across multiple deployments simultaneously, is accountability entity-level (each deployment owner) or platform-level (the capability owner)? This boundary must be explicitly designed — in a RACI that covers both levels — before a cross-entity incident makes the gap visible.',
       },
       {
@@ -169,22 +169,22 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
     items: [
       {
         title: 'A Fourth Tier: Platform Governance Board',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'Above Tier 1, a Platform Governance Board (hub) owns the artefacts that no single entity can govern alone: the Capability Registry, the Regulatory Context Library, and the cross-entity governance floor. Entity-level governance structures (spokes) retain authority over their deployments within those bounds. The Board does not govern operational decisions — it governs the infrastructure that entity-level governance operates on.',
       },
       {
         title: 'Entity-Level Tiers: Scoped, Not Reduced',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'Tier 1–3 structures at entity level remain intact but are explicitly scoped. Entity Tier 1 owns: authority configuration for entity deployments, compliance with local regulatory obligations, entity-level incident response, and performance against targets. It does not own capability certification or cross-entity standards — those escalate to the Platform Board. This scoping prevents the most common failure mode at scale: a committee that nominally oversees everything and has genuine authority over nothing.',
       },
       {
         title: 'Governance Functions vs. Governance Roles',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'The current model defines governance by named roles (Claims Governance Committee, CCO, Head of Claims Technology). At scale, roles change but functions must remain constant: authority review, deployment approval, drift detection, incident escalation, regulatory horizon scanning. Designing governance functions first — then assigning roles — means the model survives organisational restructuring. A role change is a RACI update; a function gap is a governance failure.',
       },
       {
         title: 'Escalation Matrix: Two Routing Dimensions',
-        tags: [{ label: 'Jurisdictions', color: 'amber' }, { label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'Jurisdictions', color: 'amber' }, { label: 'People & Roles', color: 'sage' }],
         body: 'The current escalation matrix routes within one entity. At scale, escalation routing has two dimensions: vertical (Tier 3 → Tier 2 → Tier 1 within an entity) and horizontal (entity-level → Platform Board for cross-entity or capability-level events). A capability change with multi-deployment blast radius, a cross-entity incident, or a regulatory ruling affecting multiple jurisdictions all require horizontal routing. The governance coordination layer classifies which dimension applies; it does not make governance decisions itself.',
       },
     ],
@@ -202,7 +202,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
     items: [
       {
         title: 'Platform-Level vs. Entity-Level Event Flows',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'Each existing flow has a platform-level equivalent. Authority Register Review at entity level becomes Capability Registry Review at platform level — same cadence structure, different scope and participants. Deployment Approval at entity level becomes Capability Certification at platform level. The distinction matters because platform-level events require Platform Board sign-off and affect all entities simultaneously; entity-level events are governed locally and do not propagate upward unless they breach the capability ceiling or cross a regulatory threshold.',
       },
       {
@@ -234,7 +234,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       },
       {
         title: 'Expanding "What the Organisation Must Design"',
-        tags: [{ label: 'Use Cases', color: 'blue' }, { label: 'Jurisdictions', color: 'amber' }, { label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'Use Cases', color: 'blue' }, { label: 'Jurisdictions', color: 'amber' }, { label: 'People & Roles', color: 'sage' }],
         body: 'The current right-hand column — what counts as a reviewable decision, acceptable thresholds, exception routing, document authority, change governance, human oversight policy — remains entirely valid. At scale, three additional items join it: the Capability Registry and certification process (who certifies, at what standard, with what evidence); Regulatory Context Modules (what the jurisdiction-specific governance parameters are, who maintains them, how they are updated when regulations change); and cross-entity governance standards (the minimum floor every entity deployment must meet, and the process for enforcing it).',
       },
       {
@@ -277,7 +277,7 @@ export const scalabilitySections: Record<string, ScalabilitySection> = {
       },
       {
         title: 'Module Maintenance: Who Owns the Regulatory Context Library',
-        tags: [{ label: 'People & Roles', color: 'purple' }],
+        tags: [{ label: 'People & Roles', color: 'sage' }],
         body: 'Each Regulatory Context Module requires a designated maintainer: typically Legal & Compliance for that jurisdiction, with a defined review trigger (regulatory update, enforcement action, new guidance) and a change process that routes through the Platform Governance Board before the updated module activates in live deployments. An unreviewed regulatory update propagating to live agent configurations is the equivalent of a policy document change activating without governance review — the failure mode Layer 03 of the governance framework is designed to prevent.',
       },
     ],

@@ -6,7 +6,7 @@ import Chevron from './Chevron'
 const AXIS_CONFIG: Record<string, { label: string; color: string }> = {
   'use-cases':    { label: 'Use Cases',      color: 'var(--accent-blue)'   },
   'jurisdictions':{ label: 'Jurisdictions',  color: 'var(--accent-amber)'  },
-  'people':       { label: 'People & Roles', color: 'var(--accent-purple)' },
+  'people':       { label: 'People & Roles', color: 'var(--accent-sage)' },
 }
 
 const TAG_COLORS: Record<string, string> = {
@@ -16,6 +16,7 @@ const TAG_COLORS: Record<string, string> = {
   green:  'var(--accent-green)',
   red:    'var(--accent-red)',
   cyan:   'var(--accent-cyan)',
+  sage:   'var(--accent-sage)',
 }
 
 interface Props {
