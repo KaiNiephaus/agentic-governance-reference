@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ScalabilitySection as ScalabilitySectionType } from '../../data/scalability'
+import Chevron from './Chevron'
 
 // Axis label config
 const AXIS_CONFIG: Record<string, { label: string; color: string }> = {
@@ -83,21 +84,13 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
             </div>
 
             {/* Chevron */}
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              style={{
-                color: 'var(--accent-purple)',
-                opacity: 0.7,
-                transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-                transition: 'transform 0.2s ease',
-                flexShrink: 0,
-              }}
-            >
-              <path d="M2 5l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <Chevron style={{
+              color: 'var(--accent-purple)',
+              fontSize: '0.8rem',
+              transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: 'transform 0.2s ease',
+              flexShrink: 0,
+            }} />
           </div>
         </div>
 

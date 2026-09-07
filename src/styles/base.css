@@ -49,12 +49,12 @@ body {
 .metric-val {
   font-family: 'Fraunces', serif;
   font-size: 1.8rem; font-weight: 600;
-  color: var(--accent-cyan); line-height: 1;
+  color: var(--text-dim); line-height: 1;
 }
 .metric-unit {
   font-family: 'Fraunces', serif;
   font-size: 1.8rem; font-weight: 600;
-  color: var(--accent-cyan);
+  color: var(--text-dim);
   margin-left: 0.2rem;
 }
 .metric-label {

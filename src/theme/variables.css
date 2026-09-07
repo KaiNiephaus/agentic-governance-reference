@@ -65,11 +65,11 @@
 }
 
 [data-theme="light"] {
-  --bg: #E1DCCD;
-  --surface: #F2EFE9;
-  --surface2: #FCFBF8;
-  --border: rgba(2,3,2,0.14);
-  --border2: rgba(2,3,2,0.08);
+  --bg: #F2EFE9;
+  --surface: #FCFBF8;
+  --surface2: #FFFFFF;
+  --border: rgba(2,3,2,0.20);
+  --border2: rgba(2,3,2,0.16);
   --text: #020302;
   --text-dim: #484856;
   --text-bright: #020302;

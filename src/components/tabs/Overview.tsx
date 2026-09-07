@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { scalabilitySections } from '../../data/scalability'
 import ScalabilitySection from '../shared/ScalabilitySection'
+import Chevron from '../shared/Chevron'
 
 interface NavOptions {
   openLayerIndex?: number
@@ -11,6 +13,8 @@ interface OverviewProps {
 }
 
 export default function Overview({ onNavigate }: OverviewProps) {
+  const [caseOpen, setCaseOpen] = useState(false)
+
   return (
     <div className="section active" id="section-overview">
 
@@ -37,79 +41,14 @@ export default function Overview({ onNavigate }: OverviewProps) {
         </div>
       </div>
 
-      {/* ── THE CASE ── */}
-      {/* Two-column layout: left = transformation case (real), right = reference design (authored) */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'stretch' }}>
+      {/* ── THE GOVERNANCE ARCHITECTURE ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div className="section-subtitle">The Governance Architecture</div>
 
-        {/* ── Left column: The Transformation Case ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <div className="section-subtitle">The Transformation Case</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
 
-          {/* Single card wrapping all case-sourced content */}
-          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
-
-            {/* Intro */}
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7, marginBottom: 0 }}>
-              Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Autonomous agents offer a path to consistent, fast, auditable claims handling across all markets, a transformation Allianz Partners and Otera are running in production today.
-            </div>
-
-            {/* The Problem */}
-            <div>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
-                The Problem
-              </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-                Claims routed manually across 15+ systems. Adjusters in each country applying interpretation variance to identical policy rules. 29-day average resolution. Volume scaling required proportional headcount. No unified audit trail across the claims lifecycle.
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid var(--border)' }} />
-
-            {/* The Impact + metrics */}
-            <div>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.75rem' }}>
-                The Impact
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 1.5rem' }}>
-                <div className="metric-card">
-                  <span className="metric-val">29→3.5<span className="metric-unit">Days</span></span>
-                  <span className="metric-label">Avg resolution time</span>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-val">90%+</span>
-                  <span className="metric-label">Straight-through processing rate</span>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-val">€300M</span>
-                  <span className="metric-label">Targeted annual profit impact</span>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-val">30</span>
-                  <span className="metric-label">Countries</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* ── Right column: The Reference Architecture ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div className="section-subtitle">The Governance Architecture developed upon the case</div>
-
-          {/* The Interpreted Target Architecture */}
-          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', flex: 1 }}>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
-              The Target Architecture
-            </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
-              For this reference — that covers the scenario of end-to-end travel claims resolution for a single regulated entity — specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
-            </div>
-          </div>
-
-          {/* The Governance Challenge */}
-          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', flex: 1 }}>
+          {/* The Accountability Challenge */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
             <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
               The Accountability Challenge
             </div>
@@ -118,22 +57,22 @@ export default function Overview({ onNavigate }: OverviewProps) {
             </div>
           </div>
 
+          {/* The Target Architecture */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
+              The Target Architecture
+            </div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+              For this reference — that covers the scenario of end-to-end travel claims resolution for a single regulated entity — specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
+            </div>
+          </div>
+
         </div>
       </div>
 
-      {/* Generalisation bridge */}
-      <div className="callout" style={{ marginTop: '1.5rem' }}>
-        While the agent pipeline, governance architecture, definitions, and thresholds have been specifically designed for this scenario, the governance relationships they demonstrate apply broadly to organisations deploying autonomous agents at scale in a regulated environment.
-      </div>
-
-      {/* Footnote */}
-      <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '3rem', fontStyle: 'italic', lineHeight: 1.6 }}>
-        Information and metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data. The target architecture is constructed for this scenario, informed by but distinct from Allianz's published Project Nemo.
-      </div>
-
-      {/* ── THE GOVERNANCE ARCHITECTURE ── */}
-      <div style={{ borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '2rem' }}>
-      <div className="section-subtitle">The Four Organisational Governance Challenges at the Center</div>
+      {/* ── THE FOUR ORGANISATIONAL CHALLENGES ── */}
+      <div style={{ marginTop: '2rem' }}>
+      <div className="section-subtitle">The Four Organisational Challenges at the Center</div>
       <div className="section-desc">
         The developed architecture addresses four distinct design problems that require explicit organisational decisions — independent of whatever platform runs the agents.
       </div>
@@ -189,6 +128,107 @@ export default function Overview({ onNavigate }: OverviewProps) {
       </div>
 
       <ScalabilitySection data={scalabilitySections.overview} onNavigate={onNavigate} />
+
+      {/* ── THE TRANSFORMATION CASE ── */}
+      <div style={{ borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '2rem' }}>
+        <div style={{ border: '1px solid var(--border)', borderRadius: '6px', overflow: 'hidden' }}>
+
+          {/* Header — always visible, click to expand */}
+          <div
+            onClick={() => setCaseOpen(!caseOpen)}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '0.875rem 1.25rem', cursor: 'pointer', userSelect: 'none',
+              borderBottom: caseOpen ? '1px solid var(--border)' : 'none',
+            }}
+          >
+            <div className="section-subtitle" style={{ marginBottom: 0, fontSize: '1.1rem', color: 'var(--text-dim)' }}>The Inspiration Behind</div>
+
+            {/* Chevron */}
+            <Chevron style={{
+              color: 'var(--text-dim)', fontSize: '0.8rem',
+              transform: caseOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: 'transform 0.2s ease', flexShrink: 0,
+            }} />
+          </div>
+
+          {/* Body — revealed on expand */}
+          {caseOpen && (
+            <div style={{ padding: '1.25rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+
+                {/* Left column: intro text */}
+                <div className="section-desc" style={{ marginBottom: 0 }}>
+                  While the governance architecture and agent pipeline are independently designed for this reference, the use case is inspired by Allianz Partners / Otera's autonomous travel-claims transformation, a real deployment operating across 30 countries.
+                </div>
+
+                {/* Right column: case content, card-wrapped */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+
+                  {/* Card wrapping all case-sourced content */}
+                  <div style={{ border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+
+                    {/* Intro */}
+                    <div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
+                        The Case
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7, marginBottom: 0 }}>
+                        Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Here, autonomous agents offer a path to adress these business challenges through consistent, fast, auditable claims handling across all markets.
+                      </div>
+                    </div>
+
+                    {/* The Problem */}
+                    <div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
+                        The Problem
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+                        Claims routed manually across 15+ systems. Adjusters in each country applying interpretation variance to identical policy rules. 29-day average resolution. Volume scaling required proportional headcount. No unified audit trail across the claims lifecycle.
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div style={{ borderTop: '1px solid var(--border)' }} />
+
+                    {/* The Impact + metrics */}
+                    <div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.75rem' }}>
+                        The Impact
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 1.5rem' }}>
+                        <div className="metric-card">
+                          <span className="metric-val">29→3.5<span className="metric-unit">Days</span></span>
+                          <span className="metric-label">Avg resolution time</span>
+                        </div>
+                        <div className="metric-card">
+                          <span className="metric-val">90%+</span>
+                          <span className="metric-label">Straight-through processing rate</span>
+                        </div>
+                        <div className="metric-card">
+                          <span className="metric-val">€300M</span>
+                          <span className="metric-label">Targeted annual profit impact</span>
+                        </div>
+                        <div className="metric-card">
+                          <span className="metric-val">30</span>
+                          <span className="metric-label">Countries</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Footnote */}
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6 }}>
+                    Information and metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
     </div>
   )
