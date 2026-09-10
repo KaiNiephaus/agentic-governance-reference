@@ -1,9 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+@font-face { font-family: 'Neue Haas Unica Pro'; src: url('/fonts/NeueHaasUnicaPro-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Neue Haas Unica Pro'; src: url('/fonts/NeueHaasUnicaPro-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Neue Haas Unica Pro'; src: url('/fonts/NeueHaasUnicaPro-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Neue Haas Unica Pro'; src: url('/fonts/NeueHaasUnicaPro-MediumIt.woff2') format('woff2'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Neue Haas Unica Pro'; src: url('/fonts/NeueHaasUnicaPro-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Neue Haas Unica Pro'; src: url('/fonts/NeueHaasUnicaPro-Heavy.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-MediumItalic.woff2') format('woff2'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-Semibold.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-SemiboldItalic.woff2') format('woff2'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-BoldItalic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Tiempos Fine'; src: url('/fonts/TiemposFine-BlackItalic.woff2') format('woff2'); font-weight: 900; font-style: italic; font-display: swap; }
+
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-LightItalic.woff2') format('woff2'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-MediumItalic.woff2') format('woff2'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-SemiBold.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-SemiBoldItalic.woff2') format('woff2'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-BoldItalic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-ExtraBold.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Cambon'; src: url('/fonts/Cambon-BlackItalic.woff2') format('woff2'); font-weight: 900; font-style: italic; font-display: swap; }
+
+@font-face { font-family: 'Geist Mono'; src: url('/fonts/GeistMono.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
 
 :root {
-  --font-serif: 'Fraunces', serif;
-  --font-mono: 'DM Mono', monospace;
-  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Cambon', serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-sans: 'Neue Haas Unica Pro', sans-serif;
 
   --bg: #0a0e14;
   --surface: #111620;

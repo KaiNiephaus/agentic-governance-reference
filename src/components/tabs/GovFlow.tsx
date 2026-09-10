@@ -172,7 +172,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         </div>
 
         {/* Tier 1 */}
-        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', minHeight: '190px' }}>
+        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', minHeight: '300px' }}>
           <div className="gf-tier-sidebar gf-t1">
             <div className="gf-tier-num" style={{ color: 'var(--tier-accent-1)' }}>1</div>
             <div className="gf-tier-name">Strategic</div>
@@ -181,11 +181,11 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
           <div className="gf-tier-canvas">
             {[
               { key: 't1-authority', style: { left: '60%', top: '12px',  width: '17%' }, title: 'Authority Register Review',  sub: 'Scope creep · Coverage gaps' },
-              { key: 't1-deployment',style: { left: '60%', top: '72px',  width: '17%' }, title: 'Agent Deployment Approval',   sub: 'New scope sign-off' },
-              { key: 't1-reg',       style: { left: '60%', top: '132px', width: '17%' }, title: 'Regulatory Review',           sub: 'NIS-2 · AI Act horizon' },
+              { key: 't1-deployment',style: { left: '60%', top: '100px', width: '17%' }, title: 'Agent Deployment Approval',   sub: 'New scope sign-off' },
+              { key: 't1-reg',       style: { left: '60%', top: '188px', width: '17%' }, title: 'Regulatory Review',           sub: 'NIS-2 · AI Act horizon' },
               { key: 't1-patterns',  style: { left: '80%', top: '12px',  width: '17%' }, title: 'Exception Pattern Review',    sub: 'Board-level systemic view' },
-              { key: 't1-aiact',     style: { left: '80%', top: '72px',  width: '17%' }, title: 'EU AI Act Conformity',        sub: 'Annual audit + sign-off' },
-              { key: 't1-pl',        style: { left: '80%', top: '132px', width: '17%' }, title: 'P&L vs. Governance',          sub: 'Performance vs targets' },
+              { key: 't1-aiact',     style: { left: '80%', top: '100px', width: '17%' }, title: 'EU AI Act Conformity',        sub: 'Annual audit + sign-off' },
+              { key: 't1-pl',        style: { left: '80%', top: '188px', width: '17%' }, title: 'P&L vs. Governance',          sub: 'Performance vs targets' },
             ].map(block => (
               <div
                 key={block.key}
@@ -201,7 +201,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         </div>
 
         {/* Tier 2 */}
-        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', minHeight: '190px' }}>
+        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', minHeight: '300px' }}>
           <div className="gf-tier-sidebar gf-t2">
             <div className="gf-tier-num" style={{ color: 'var(--tier-accent-2)' }}>2</div>
             <div className="gf-tier-name">Operational</div>
@@ -210,11 +210,11 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
           <div className="gf-tier-canvas">
             {[
               { key: 't2-exceptions', style: { left: '40%', top: '12px',  width: '17%' }, title: 'Exception Queue Review',      sub: 'Volume · Pattern · SLA' },
-              { key: 't2-thresholds', style: { left: '40%', top: '72px',  width: '17%' }, title: 'Confidence Threshold Check',  sub: 'Escalation rate in band?' },
-              { key: 't2-drift',      style: { left: '40%', top: '132px', width: '17%' }, title: 'Drift Detection Run',          sub: 'vs. baseline distributions' },
+              { key: 't2-thresholds', style: { left: '40%', top: '100px', width: '17%' }, title: 'Confidence Threshold Check',  sub: 'Escalation rate in band?' },
+              { key: 't2-drift',      style: { left: '40%', top: '188px', width: '17%' }, title: 'Drift Detection Run',          sub: 'vs. baseline distributions' },
               { key: 't2-changes',    style: { left: '60%', top: '12px',  width: '17%' }, title: 'Change Request Intake',        sub: 'Classify · Prioritise' },
-              { key: 't2-overrides',  style: { left: '60%', top: '72px',  width: '17%' }, title: 'Override Analysis',            sub: 'Agent failure patterns?' },
-              { key: 't2-data',       style: { left: '60%', top: '132px', width: '17%' }, title: 'Data Quality SLA Report',      sub: 'Upstream source health' },
+              { key: 't2-overrides',  style: { left: '60%', top: '100px', width: '17%' }, title: 'Override Analysis',            sub: 'Agent failure patterns?' },
+              { key: 't2-data',       style: { left: '60%', top: '188px', width: '17%' }, title: 'Data Quality SLA Report',      sub: 'Upstream source health' },
             ].map(block => (
               <div
                 key={block.key}
@@ -271,25 +271,25 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
                 {d.title}
               </span>
             </div>
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.65, marginBottom: '1rem' }}>
+            <p style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.65, marginBottom: '1rem' }}>
               {d.what}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
               <div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Accountable</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text)' }}>{d.who}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'var(--text)' }}>{d.who}</div>
                 <div style={{ marginTop: '0.75rem', fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Inputs</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.inputs}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>{d.inputs}</div>
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Outputs</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.outputs}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>{d.outputs}</div>
               </div>
               <div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-1)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>{d.triggersUp}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>{d.triggersUp}</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-3)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.triggersDown}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>{d.triggersDown}</div>
               </div>
             </div>
           </div>

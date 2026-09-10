@@ -25,7 +25,7 @@ export default function DetailPanel({ detail }: DetailPanelProps) {
         <div id="node-detail-content">
           <span className={`detail-tag ${detail.typeClass}`}>{detail.type}</span>
           <h3>{detail.name}</h3>
-          <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.6, marginBottom: '1rem' }}>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.6, marginBottom: '1rem' }}>
             {detail.desc}
           </p>
           <div className="detail-grid">
@@ -54,7 +54,7 @@ export default function DetailPanel({ detail }: DetailPanelProps) {
               </div>
             </div>
           </div>
-          <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: 'var(--surface2)', borderRadius: '4px', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: 'var(--surface2)', borderRadius: '4px', fontSize: '0.8125rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
               Risk Level:
             </span>

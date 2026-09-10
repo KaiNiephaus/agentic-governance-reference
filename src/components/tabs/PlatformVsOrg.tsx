@@ -76,7 +76,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
           <div className="gov-item-body" style={{ marginBottom: '0.75rem' }}>
             Every increase in autonomous processing reduces human oversight. Every additional governance control reduces velocity. The governance model must define where on this spectrum each decision class sits — and review it regularly as volumes and model performance change.
           </div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>
             See also:{' '}
             <span
               onClick={() => onNavigate('agents')}
@@ -92,7 +92,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
           <div className="gov-item-body" style={{ marginBottom: '0.75rem' }}>
             The value proposition of agentic platforms includes rapid optimisation and deployment. Governance change processes introduce friction. The Tier A/B/C change classification is the mechanism for resolving this — but only if it is enforced, not routed around under delivery pressure.
           </div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>
             See also:{' '}
             <span
               onClick={() => onNavigate('governance', { openLayerIndex: 2 })}
@@ -108,7 +108,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
           <div className="gov-item-body" style={{ marginBottom: '0.75rem' }}>
             If for example 20%+ of a decision class is escalating to human review, the agent is not fit for that decision scope. Exception rates are governance data, not just operational metrics. This threshold connects directly to the quarterly Exception Pattern Board Review in the Operating Model.
           </div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>
             See also:{' '}
             <span
               onClick={() => onNavigate('govflow', { openBlockKey: 't1-patterns' })}

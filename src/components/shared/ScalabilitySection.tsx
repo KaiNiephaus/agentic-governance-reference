@@ -127,7 +127,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                     marginBottom: '0.5rem',
                   }}>
                     <div style={{
-                      fontSize: '0.78rem',
+                      fontSize: '0.8125rem',
                       fontWeight: 600,
                       color: 'var(--text)',
                       lineHeight: 1.3,
@@ -152,7 +152,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                     ))}
                   </div>
                   <div style={{
-                    fontSize: '0.78rem',
+                    fontSize: '0.8125rem',
                     color: 'var(--text-dim)',
                     lineHeight: 1.75,
                   }}>
@@ -183,7 +183,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                   Known Limitation
                 </div>
                 <div style={{
-                  fontSize: '0.76rem',
+                  fontSize: '0.8125rem',
                   color: 'var(--text-dim)',
                   lineHeight: 1.7,
                 }}>
@@ -217,7 +217,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                     key={i}
                     onClick={() => onNavigate(link.tab, link.options)}
                     style={{
-                      fontSize: '0.72rem',
+                      fontSize: '0.8125rem',
                       color: 'var(--accent-cyan)',
                       cursor: 'pointer',
                       textDecoration: 'underline',

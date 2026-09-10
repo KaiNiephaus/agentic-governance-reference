@@ -50,7 +50,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
               The Accountability Challenge
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+            <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
               When agents make autonomous financial decisions at scale, trust requires architecture, not just policy. Authority boundaries, escalation triggers, change control, accountability assignment, and regulatory audit trails must all be designed independently of the platform that runs the agents. Under the EU AI Act, this is a legal requirement, not just good practice. The challenge compounds when operations span jurisdictions and require federated, regional governance structures — excluded here to keep the reference tractable.
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
               The Target Architecture
             </div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+            <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
               For this reference — that covers the scenario of end-to-end travel claims resolution for a single regulated entity — specialist agents handle intake, document extraction, policy validation, fraud detection, settlement calculation, and payment, collaborating under a unified governance layer. Humans handle exceptions at the operational level and actively oversee the system through weekly reviews, monthly authority checks, and quarterly board-level scrutiny. Every agent decision is traceable and explainable. Reversibility is classified per decision class.
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
             What each agent may decide
           </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
             What each agent may decide, and what it cannot. The boundaries are defined independently of the platform's technical capabilities.
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
             Who owns outcomes
           </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
             Who owns outcomes when something goes wrong. Multi-agent systems diffuse responsibility by default. Solving it requires explicit organisational assignment.
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
             How the system evolves
           </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
             How the system evolves, including autonomous optimisation. Covers model updates, policy changes, and drift detection.
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
             Input integrity and explainability
           </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
             Input data integrity, explainability standards, and audit trail completeness. What counts as a sufficient explanation is a governance decision, not a platform feature.
           </div>
         </div>
@@ -171,7 +171,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
                         The Case
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7, marginBottom: 0 }}>
+                      <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7, marginBottom: 0 }}>
                         Allianz Partners processes millions of travel insurance and assistance claims across 30 countries — a scale at which manual processing creates structural inconsistency, cost, and speed problems that headcount alone cannot solve. Here, autonomous agents offer a path to adress these business challenges through consistent, fast, auditable claims handling across all markets.
                       </div>
                     </div>
@@ -181,7 +181,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
                         The Problem
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+                      <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
                         Claims routed manually across 15+ systems. Adjusters in each country applying interpretation variance to identical policy rules. 29-day average resolution. Volume scaling required proportional headcount. No unified audit trail across the claims lifecycle.
                       </div>
                     </div>
@@ -217,7 +217,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
                   </div>
 
                   {/* Footnote */}
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6 }}>
+                  <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', fontStyle: 'italic', lineHeight: 1.6 }}>
                     Information and metrics sourced from HFS Research / Otera case study (2025) and Allianz Partners published data.
                   </div>
                 </div>
