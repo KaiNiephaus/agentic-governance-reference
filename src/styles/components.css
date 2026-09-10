@@ -387,11 +387,12 @@
 
 /* ═══ GOVERNANCE FLOW TAB ═══ */
 .gf-time-col {
-  flex: 1; text-align: center;
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono);
   font-size: 0.58rem; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--text-dim);
-  padding: 0.5rem 0.25rem;
+  padding: 0.5rem 1rem;
   border-right: 1px solid var(--border);
 }
 .gf-time-col:last-child { border-right: none; }
@@ -399,7 +400,8 @@
   width: 140px; flex-shrink: 0;
   padding: 1rem 0.875rem;
   border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; justify-content: center;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
   position: relative;
 }
 .gf-tier-sidebar::after {
@@ -411,10 +413,10 @@
 .gf-t3::after { background: var(--tier-accent-3);  opacity: 0.5; }
 .gf-tier-num {
   font-family: var(--font-serif);
-  font-size: 2.2rem; font-weight: 900;
+  font-size: 2.6rem; font-weight: 900;
   line-height: 1; opacity: 1; margin-bottom: 0.2rem;
 }
-.gf-tier-name { font-family: var(--font-serif); font-size: 0.82rem; font-weight: 600; color: var(--text-bright); }
+.gf-tier-name { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 600; color: var(--text-bright); }
 .gf-tier-cadence {
   font-family: var(--font-mono);
   font-size: 0.56rem; text-transform: uppercase;

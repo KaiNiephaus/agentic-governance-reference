@@ -159,7 +159,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
 
         {/* Time axis header */}
         <div style={{ display: 'flex', borderBottom: '1px solid var(--border)' }}>
-          <div style={{ width: '140px', flexShrink: 0, padding: '0.6rem 1rem', borderRight: '1px solid var(--border)' }}>
+          <div style={{ width: '140px', flexShrink: 0, padding: '0.6rem 1rem', borderRight: '1px solid var(--border)', display: 'flex', alignItems: 'center' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
               Tier / Cadence
             </span>

@@ -47,7 +47,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
           {/* The Accountability Challenge */}
           <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
               The Accountability Challenge
             </div>
             <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
@@ -57,7 +57,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
           {/* The Target Architecture */}
           <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>
               The Target Architecture
             </div>
             <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
@@ -77,7 +77,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-blue)', marginBottom: '0.5rem' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-blue)', marginBottom: '0.5rem' }}>
             Authority
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
@@ -88,7 +88,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           </div>
         </div>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-amber)', marginBottom: '0.5rem' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-amber)', marginBottom: '0.5rem' }}>
             Accountability
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
@@ -99,7 +99,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           </div>
         </div>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-red)', marginBottom: '0.5rem' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-red)', marginBottom: '0.5rem' }}>
             Change
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
@@ -110,7 +110,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
           </div>
         </div>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '1.25rem' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-purple)', marginBottom: '0.5rem' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-purple)', marginBottom: '0.5rem' }}>
             Data & Decision Quality
           </div>
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text)', marginBottom: '0.4rem' }}>
@@ -168,7 +168,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
                     {/* Intro */}
                     <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
                         The Case
                       </div>
                       <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7, marginBottom: 0 }}>
@@ -178,7 +178,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
                     {/* The Problem */}
                     <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.5rem' }}>
                         The Problem
                       </div>
                       <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', lineHeight: 1.7 }}>
@@ -191,7 +191,7 @@ export default function Overview({ onNavigate }: OverviewProps) {
 
                     {/* The Impact + metrics */}
                     <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.75rem' }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-bright)', marginBottom: '0.75rem' }}>
                         The Impact
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 1.5rem' }}>
