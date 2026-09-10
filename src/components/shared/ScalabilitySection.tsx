@@ -174,7 +174,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
               }}>
                 <div style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.58rem',
+                  fontSize: '0.625rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
                   color: 'var(--accent-red)',
@@ -204,7 +204,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
               }}>
                 <span style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.58rem',
+                  fontSize: '0.625rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
                   color: 'var(--text-dim)',

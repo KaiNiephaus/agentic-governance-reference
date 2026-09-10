@@ -18,7 +18,7 @@
 }
 .mobile-gate-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--accent-cyan);
@@ -82,7 +82,7 @@
 }
 .flow-stage-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--text-dim);
   margin-bottom: 0.75rem;
 }
@@ -103,7 +103,7 @@
 .flow-node:hover { transform: translateY(-1px); }
 .flow-node-type {
   font-family: var(--font-mono);
-  font-size: 0.55rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; margin-bottom: 0.3rem;
 }
 .flow-node-name {
@@ -172,7 +172,7 @@
 .detail-tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.6rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; padding: 0.2rem 0.5rem;
   border-radius: 2px; margin-bottom: 0.75rem;
 }
@@ -182,7 +182,7 @@
 }
 .detail-block-title {
   font-family: var(--font-mono);
-  font-size: 0.6rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--text-dim);
   margin-bottom: 0.4rem;
 }
@@ -248,7 +248,7 @@
 }
 .gov-col-title {
   font-family: var(--font-mono);
-  font-size: 0.6rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--text-dim);
   margin-bottom: 0.6rem; padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--border);
@@ -274,7 +274,7 @@
 .om-tier-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
 .om-tier-label {
   font-family: var(--font-mono);
-  font-size: 0.58rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.12em; margin-bottom: 0.3rem;
 }
 .om-tier-name {
@@ -290,7 +290,7 @@
 .om-activities { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
 .om-act-title {
   font-family: var(--font-mono);
-  font-size: 0.58rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 0.5rem;
 }
 .om-act-item {
@@ -349,7 +349,7 @@
 }
 .agent-detail-col-title {
   font-family: var(--font-mono);
-  font-size: 0.58rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 0.4rem;
 }
 .agent-detail-item {
@@ -520,7 +520,7 @@
 .cr-subsection:last-child { margin-bottom: 0; }
 .cr-subsection-title {
   font-family: var(--font-mono);
-  font-size: 0.6rem; text-transform: uppercase;
+  font-size: 0.625rem; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--text-dim);
   margin-bottom: 0.6rem; padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--border);

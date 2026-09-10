@@ -21,7 +21,7 @@ body {
 }
 .hero-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem; letter-spacing: 0.15em;
+  font-size: 0.625rem; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--accent-cyan);
   margin-bottom: 0.75rem;
 }

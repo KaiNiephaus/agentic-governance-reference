@@ -276,19 +276,19 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Accountable</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Accountable</div>
                 <div style={{ fontSize: '0.8125rem', color: 'var(--text)' }}>{d.who}</div>
-                <div style={{ marginTop: '0.75rem', fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Inputs</div>
+                <div style={{ marginTop: '0.75rem', fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Inputs</div>
                 <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>{d.inputs}</div>
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Outputs</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Outputs</div>
                 <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>{d.outputs}</div>
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-1)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-1)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
                 <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>{d.triggersUp}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-3)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-3)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
                 <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)' }}>{d.triggersDown}</div>
               </div>
             </div>

@@ -103,28 +103,25 @@ export default function App() {
           <div className="nav-scroll-indicator">›</div>
         </div>
         <button
+          type="button"
+          role="switch"
+          aria-checked={theme === 'dark'}
+          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
           onClick={toggleTheme}
-          style={{
-            position: 'absolute',
-            right: '0.75rem',
-            top: 0,
-            background: 'none',
-            border: 'none',
-            borderLeft: '1px solid var(--border)',
-            padding: '0 0.75rem',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.03em',
-            color: 'var(--text-dim)',
-            cursor: 'pointer',
-            height: '52px',
-            display: 'flex',
-            alignItems: 'center',
-            zIndex: 10,
-          }}
+          className={`theme-toggle${theme === 'dark' ? ' theme-toggle-on' : ''}`}
         >
-          {theme === 'dark' ? 'Light' : 'Dark'}
+          <span className="theme-toggle-knob">
+            {theme === 'dark' ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" width="13" height="13">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" width="13" height="13">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            )}
+          </span>
         </button>
       </nav>
 
