@@ -45,6 +45,8 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
     const tc2 = cs.getPropertyValue('--tier-accent-2').trim()
     const tc3 = cs.getPropertyValue('--tier-accent-3').trim()
     const tcMap: Record<number, string> = { 1: tc1, 2: tc2, 3: tc3 }
+    const fontMono = cs.getPropertyValue('--font-mono').trim()
+    const fontSans = cs.getPropertyValue('--font-sans').trim()
     let h = `<defs>
       <marker id="gfarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
         <path d="M2 1L8 5L2 9" fill="none" stroke="${col}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -56,7 +58,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       const y  = tierY[t]
       const tc = tcMap[t]
       h += `<rect x="0" y="${y - 28}" width="860" height="56" rx="2" fill="${tc}" fill-opacity="${laneOpacity}"/>`
-      h += `<text x="8" y="${y - 14}" font-family="'DM Mono',monospace" font-size="9" fill="${tc}" opacity="0.6" letter-spacing="1">T${t}</text>`
+      h += `<text x="8" y="${y - 14}" font-family="${fontMono}" font-size="9" fill="${tc}" opacity="0.6" letter-spacing="1">T${t}</text>`
     })
 
     // Lane dividers
@@ -93,7 +95,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       h += `<path d="M${s.x} ${tierY[s.tier] + 6} C${s.x} ${tierY[3]} ${b.x} ${tierY[3]} ${b.x} ${tierY[3]}"
         fill="none" stroke="${col}" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.5"
         marker-end="url(#gfarrow)"/>`
-      h += `<text x="${(s.x + b.x) / 2 - 20}" y="${tierY[3] - 18}" font-family="'DM Mono',monospace" font-size="8" fill="${col}" opacity="0.6">Tier A only</text>`
+      h += `<text x="${(s.x + b.x) / 2 - 20}" y="${tierY[3] - 18}" font-family="${fontMono}" font-size="8" fill="${col}" opacity="0.6">Tier A only</text>`
     }
 
     // Nodes
@@ -105,13 +107,13 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
       h += `<circle cx="${s.x}" cy="${sy}" r="7" fill="${col}" opacity="0.85"/>`
       h += `<circle cx="${s.x}" cy="${sy}" r="7" fill="none" stroke="${col}" stroke-width="1.5" opacity="0.4"/>`
       h += `<rect x="${s.x - 24}" y="${sy + 11}" width="48" height="14" rx="3" fill="${col}" fill-opacity="0.15"/>`
-      h += `<text x="${s.x}" y="${sy + 21}" text-anchor="middle" font-family="'DM Mono',monospace" font-size="8" fill="${col}">${s.time}</text>`
+      h += `<text x="${s.x}" y="${sy + 21}" text-anchor="middle" font-family="${fontMono}" font-size="8" fill="${col}">${s.time}</text>`
       const baseY = labelAbove ? sy - 18 : sy + 38
       lines.forEach((line, li) => {
         const ly = labelAbove
           ? baseY - (lines.length - 1 - li) * 13
           : baseY + li * 13
-        h += `<text x="${s.x}" y="${ly}" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" fill="${textBright}" opacity="0.9">${line}</text>`
+        h += `<text x="${s.x}" y="${ly}" text-anchor="middle" font-family="${fontSans}" font-size="10" fill="${textBright}" opacity="0.9">${line}</text>`
       })
       h += `</g>`
     })
@@ -158,7 +160,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
         {/* Time axis header */}
         <div style={{ display: 'flex', borderBottom: '1px solid var(--border)' }}>
           <div style={{ width: '140px', flexShrink: 0, padding: '0.6rem 1rem', borderRight: '1px solid var(--border)' }}>
-            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
               Tier / Cadence
             </span>
           </div>
@@ -241,7 +243,7 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
               onClick={() => handleBlockClick('t3-monitoring')}
             >
               <div className="gf-pulse-dot" />
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'var(--tier-accent-3)', letterSpacing: '0.06em' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--tier-accent-3)', letterSpacing: '0.06em' }}>
                 Platform monitoring &nbsp;·&nbsp; Alert detection &nbsp;·&nbsp; Authority gate integrity &nbsp;·&nbsp; Payment success tracking &nbsp;·&nbsp; On-call coverage 24/7
               </div>
             </div>
@@ -259,13 +261,13 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
               <span style={{
-                fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase',
+                fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase',
                 letterSpacing: '0.1em', padding: '0.2rem 0.5rem', borderRadius: '2px',
                 border: `1px solid ${d.color}`, color: d.color, background: `${d.color}18`
               }}>
                 {d.tier}
               </span>
-              <span style={{ fontFamily: "'Fraunces', serif", fontSize: '1rem', fontWeight: 600, color: 'var(--text-bright)' }}>
+              <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--text-bright)' }}>
                 {d.title}
               </span>
             </div>
@@ -274,19 +276,19 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
               <div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Accountable</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Accountable</div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text)' }}>{d.who}</div>
-                <div style={{ marginTop: '0.75rem', fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Inputs</div>
+                <div style={{ marginTop: '0.75rem', fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Inputs</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.inputs}</div>
               </div>
               <div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Outputs</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>Outputs</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.outputs}</div>
               </div>
               <div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-1)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-1)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↑ Triggers up</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>{d.triggersUp}</div>
-                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-3)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--tier-accent-3)', marginBottom: '0.4rem', paddingBottom: '0.3rem', borderBottom: '1px solid var(--border)' }}>↓ Triggers down</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>{d.triggersDown}</div>
               </div>
             </div>
@@ -296,10 +298,10 @@ export default function GovFlow({ initialBlockKey, onNavigate }: GovFlowProps) {
 
       {/* Event flows */}
       <div style={{ marginTop: '1.5rem' }}>
-        <div style={{ fontFamily: "'Fraunces', serif", fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-bright)', marginBottom: '0.3rem' }}>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-bright)', marginBottom: '0.3rem' }}>
           Event Flows
         </div>
-        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-dim)', marginBottom: '1rem' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-dim)', marginBottom: '1rem' }}>
           Select a trigger to trace propagation across tiers
         </div>
 

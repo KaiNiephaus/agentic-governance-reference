@@ -23,7 +23,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>
           <div style={{ padding: '0.875rem 1.25rem', borderBottom: '2px solid var(--accent-blue)', background: 'var(--surface2)' }}>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-blue)' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-blue)' }}>
               What the platform provides
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function PlatformVsOrg({ onNavigate }: PlatformVsOrgProps) {
 
         <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden' }}>
           <div style={{ padding: '0.875rem 1.25rem', borderBottom: '2px solid var(--accent-amber)', background: 'var(--surface2)' }}>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-amber)' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent-amber)' }}>
               What the organisation must design
             </div>
           </div>

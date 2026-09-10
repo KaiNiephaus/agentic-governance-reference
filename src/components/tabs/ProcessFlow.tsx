@@ -93,14 +93,14 @@ export default function ProcessFlow({ onNavigate }: ProcessFlowProps) {
         <div className="flow-stage-label">Stage 1 — Intake & Triage</div>
         <FlowRow nodes={stage1} selectedKey={selectedKey} onSelect={handleSelect} />
 
-        <div style={{ margin: '0.75rem 0 0.75rem 162px', color: 'var(--text-dim)', fontSize: '0.7rem', fontFamily: "'DM Mono', monospace", letterSpacing: '0.08em' }}>
+        <div style={{ margin: '0.75rem 0 0.75rem 162px', color: 'var(--text-dim)', fontSize: '0.7rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.08em' }}>
           ↓ PASSED
         </div>
 
         <div className="flow-stage-label">Stage 2 — Validation & Risk</div>
         <FlowRow nodes={stage2} selectedKey={selectedKey} onSelect={handleSelect} />
 
-        <div style={{ margin: '0.75rem 0 0.75rem 0', color: 'var(--text-dim)', fontSize: '0.7rem', fontFamily: "'DM Mono', monospace", letterSpacing: '0.08em', paddingLeft: '2px' }}>
+        <div style={{ margin: '0.75rem 0 0.75rem 0', color: 'var(--text-dim)', fontSize: '0.7rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.08em', paddingLeft: '2px' }}>
           ↓ CLEARED (both paths rejoin here)
         </div>
 

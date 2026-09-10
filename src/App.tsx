@@ -112,7 +112,7 @@ export default function App() {
             border: 'none',
             borderLeft: '1px solid var(--border)',
             padding: '0 0.75rem',
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: 'var(--font-mono)',
             fontSize: '0.75rem',
             textTransform: 'uppercase',
             letterSpacing: '0.03em',

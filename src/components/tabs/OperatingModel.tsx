@@ -82,7 +82,7 @@ export default function OperatingModel({ onNavigate }: OperatingModelProps) {
                 <td style={{ color: 'var(--text-dim)' }}>{row.agent}</td>
                 <td>{row.trigger}</td>
                 <td style={{ color: 'var(--text-dim)' }}>{row.routeTo}</td>
-                <td style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.7rem', color: 'var(--accent-cyan)' }}>
+                <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--accent-cyan)' }}>
                   {row.sla}
                 </td>
                 <td style={{ color: 'var(--text-dim)' }}>{row.authority}</td>

@@ -55,7 +55,7 @@ export default function DetailPanel({ detail }: DetailPanelProps) {
             </div>
           </div>
           <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: 'var(--surface2)', borderRadius: '4px', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-dim)' }}>
               Risk Level:
             </span>
             {(() => {

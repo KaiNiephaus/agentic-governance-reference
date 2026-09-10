@@ -51,7 +51,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
         >
           {/* Label */}
           <div style={{
-            fontFamily: "'Fraunces', serif",
+            fontFamily: 'var(--font-serif)',
             fontSize: '1.1rem',
             fontWeight: 600,
             color: 'var(--accent-purple)',
@@ -69,7 +69,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                 return (
                   <span key={axis} style={{
                     fontSize: '0.6rem',
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: 'var(--font-mono)',
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     color: cfg.color,
@@ -137,7 +137,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                     {item.tags?.map((t, ti) => (
                       <span key={ti} style={{
                         fontSize: '0.55rem',
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: 'var(--font-mono)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
                         color: TAG_COLORS[t.color] ?? 'var(--text-dim)',
@@ -173,7 +173,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                 borderRadius: '4px',
               }}>
                 <div style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: 'var(--font-mono)',
                   fontSize: '0.58rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -203,7 +203,7 @@ export default function ScalabilitySection({ data, onNavigate }: Props) {
                 gap: '0.75rem',
               }}>
                 <span style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: 'var(--font-mono)',
                   fontSize: '0.58rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
